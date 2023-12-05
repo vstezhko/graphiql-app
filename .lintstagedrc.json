@@ -1,0 +1,7 @@
+{
+  "*.{ts,tsx,html}": [
+    "prettier --write",
+    "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+  ],
+  "*.{css,json,md}": "prettier --write"
+}
