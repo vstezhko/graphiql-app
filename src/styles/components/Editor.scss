@@ -1,0 +1,20 @@
+.editor {
+  text-align: left;
+  width: 500px;
+  height: 100%;
+
+  & .cm-editor {
+    height: 200px;
+    min-height: 100%;
+  }
+}
+
+.headers-editor,
+.variable-editor {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.graphql-editor {
+  flex: 1;
+}

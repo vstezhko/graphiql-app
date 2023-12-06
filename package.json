@@ -17,6 +17,7 @@
     "@codemirror/lang-json": "^6.0.1",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.19",
     "@mui/material": "^5.14.20",
     "@uiw/react-codemirror": "^4.21.21",
     "firebase": "^10.7.0",

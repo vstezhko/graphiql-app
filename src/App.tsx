@@ -1,8 +1,8 @@
 import './App.css';
-import Editor from './components/editor/Editor';
+import EditorContainer from './components/editor-container/EditorContainer';
 
 function App() {
-  return <Editor />;
+  return <EditorContainer />;
 }
 
 export default App;
