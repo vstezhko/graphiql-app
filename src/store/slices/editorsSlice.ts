@@ -9,9 +9,18 @@ export interface EditorsState {
 }
 
 const initialState: EditorsState = {
-  queryBody: 'GraphQL query',
-  queryVariables: '',
-  queryHeaders: '',
+  queryBody: `query {
+    viewer {
+      login
+      repositories(last: 10) {
+        nodes {
+          name
+        }
+      }
+    }
+  }`,
+  queryVariables: `{ "last": 10}`,
+  queryHeaders: `{ "Authorization": "Bearer YOUR_TOKEN" }`,
   activeTab: 0,
 };
 
