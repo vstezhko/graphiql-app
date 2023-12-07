@@ -10,18 +10,9 @@ export interface EditorsState {
 }
 
 const initialState: EditorsState = {
-  queryBody: `query {
-    viewer {
-      login
-      repositories(last: 10) {
-        nodes {
-          name
-        }
-      }
-    }
-  }`,
-  queryVariables: `{ "last": 10}`,
-  queryHeaders: `{ "Authorization": "Bearer YOUR_TOKEN" }`,
+  queryBody: '',
+  queryVariables: '',
+  queryHeaders: '',
   activeTab: 0,
   isPanelOpen: true,
 };
