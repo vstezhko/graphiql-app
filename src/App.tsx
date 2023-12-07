@@ -1,13 +1,8 @@
 import './App.css';
+import EditorContainer from './components/editor-container/EditorContainer';
 
 function App() {
-
-
-    return (
-        <div>
-            Hello world
-        </div>
-    );
+  return <EditorContainer />;
 }
 
 export default App;

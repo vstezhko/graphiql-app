@@ -1,0 +1,33 @@
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.editor-tabs {
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-tabs_open {
+  height: 30%;
+}
+
+.editor-tabs:not(.editor-tabs_open) .MuiTabs-indicator {
+  display: none;
+}
+
+.editor-tabs__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.editor-tabs__tab-panels {
+  flex: 1;
+}
+
+.editor-tabs__tab-panel {
+  height: 100%;
+}
+
+
