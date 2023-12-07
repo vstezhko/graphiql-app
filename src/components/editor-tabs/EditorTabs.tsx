@@ -1,26 +1,32 @@
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent } from 'react';
 import { Tabs, Tab, IconButton } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import HeadersEditor from '../headers-editor/HeadersEditor';
 import VariableEditor from '../variable-editor/VariableEditor';
 import TabPanel from './TabPanel';
+import { useDispatch, useSelector } from 'react-redux';
+import { setActiveTab, setIsPanelOpen } from '../../store/slices/editorsSlice';
+import { RootState } from '../../store/store';
 
 const EditorTabs = () => {
-  const [value, setValue] = useState(0);
-  const [isPanelOpen, setIsPanelOpen] = useState(true);
+  const dispatch = useDispatch();
+  const value = useSelector((state: RootState) => state.editors.activeTab);
+  const isPanelOpen = useSelector(
+    (state: RootState) => state.editors.isPanelOpen
+  );
 
   const handleTabChange = (_: SyntheticEvent, newValue: number) => {
-    setIsPanelOpen(true);
-    setValue(newValue);
+    dispatch(setIsPanelOpen(true));
+    dispatch(setActiveTab(newValue));
   };
 
   const handleClosePanel = () => {
-    setIsPanelOpen(false);
+    dispatch(setIsPanelOpen(false));
   };
 
   const handleOpenPanel = () => {
-    setIsPanelOpen(true);
+    dispatch(setIsPanelOpen(true));
   };
 
   const buttonShow = (
