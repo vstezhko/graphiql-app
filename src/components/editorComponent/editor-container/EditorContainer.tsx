@@ -1,6 +1,5 @@
-import GraphQLEditor from '../graphql-editor/GraphQLEditor';
-import '../../styles/components/EditorContainer.scss';
-import EditorTabs from '../editor-tabs/EditorTabs';
+import GraphQLEditor from '../graphql-editor/GraphQLEditor.tsx';
+import EditorTabs from '../editor-tabs/EditorTabs.tsx';
 
 const EditorContainer = () => {
   return (

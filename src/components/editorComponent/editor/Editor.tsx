@@ -1,7 +1,6 @@
 import CodeMirror from '@uiw/react-codemirror';
 import { json } from '@codemirror/lang-json';
 import { useCallback, useState } from 'react';
-import '../../styles/components/Editor.scss';
 
 interface EditorProps {
   className?: string;

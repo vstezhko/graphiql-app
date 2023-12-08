@@ -1,5 +1,4 @@
-import './App.css';
-import EditorContainer from './components/editor-container/EditorContainer';
+import EditorContainer from './components/editorComponent/editor-container/EditorContainer.tsx';
 
 function App() {
   return <EditorContainer />;
