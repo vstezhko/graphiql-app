@@ -19,10 +19,14 @@
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.14.19",
     "@mui/material": "^5.14.20",
+    "@reduxjs/toolkit": "^2.0.1",
+    "@uiw/codemirror-theme-tomorrow-night-blue": "^4.21.21",
     "@uiw/react-codemirror": "^4.21.21",
+    "cm6-graphql": "^0.0.12",
     "firebase": "^10.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-redux": "^9.0.2",
     "sass": "^1.69.5"
   },
   "devDependencies": {

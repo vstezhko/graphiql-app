@@ -1,30 +1,53 @@
+import { useDispatch, useSelector } from 'react-redux';
 import CodeMirror from '@uiw/react-codemirror';
 import { json } from '@codemirror/lang-json';
-import { useCallback, useState } from 'react';
+import { useCallback } from 'react';
 import '../../styles/components/Editor.scss';
+import { RootState } from '../../store/store';
+import { PayloadAction } from '@reduxjs/toolkit';
+import { graphql } from 'cm6-graphql';
+import { tomorrowNightBlue } from '@uiw/codemirror-theme-tomorrow-night-blue';
 
+type StateValueName = 'queryBody' | 'queryVariables' | 'queryHeaders';
 interface EditorProps {
+  stateValueName: StateValueName;
+  action: (value: string) => PayloadAction<string>;
   className?: string;
-  initValue?: string;
   isJson?: boolean;
 }
 
-const Editor = ({ className, isJson = false, initValue = '' }: EditorProps) => {
-  const [value, setValue] = useState(initValue);
-  const onChange = useCallback((val: string) => {
-    console.log('val:', val);
-    setValue(val);
-  }, []);
+const Editor = ({
+  stateValueName,
+  action,
+  className,
+  isJson = false,
+}: EditorProps) => {
+  const dispatch = useDispatch();
+  const value = useSelector(
+    (state: RootState) => state.editors[stateValueName]
+  );
+
+  const onChange = useCallback(
+    (val: string) => {
+      dispatch(action(val));
+    },
+    [dispatch, action]
+  );
+
   return (
     <CodeMirror
       value={value}
-      extensions={isJson ? [json()] : []}
+      extensions={isJson ? [json()] : [graphql()]}
       onChange={onChange}
       className={`editor ${className}`}
       basicSetup={{
         syntaxHighlighting: true,
         autocompletion: true,
+        bracketMatching: true,
+        highlightActiveLine: false,
+        highlightActiveLineGutter: false,
       }}
+      theme={tomorrowNightBlue}
     />
   );
 };

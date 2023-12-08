@@ -1,3 +1,5 @@
+@import './styles/constant.scss';
+
 :root {
   font-family: 'Inconsolata', 'Source Code Pro', monospace;
   line-height: 1.5;
@@ -20,6 +22,8 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: $color-secondary;
+  color: $color-font;
 }
 
 h1 {

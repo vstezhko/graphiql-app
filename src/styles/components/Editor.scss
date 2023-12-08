@@ -1,12 +1,37 @@
+@import '../constant.scss';
+
 .editor {
   text-align: left;
   width: 500px;
   height: 100%;
+  font-size: 1rem;
 
   & .cm-editor {
-    height: 200px;
+    height: 50px;
     min-height: 100%;
+    background-color: $color-primary;
+    padding: 10px;
+
+    & .cm-foldPlaceholder {
+      background-color: $color-secondary;
+      border-color: $color-secondary;
+    }
+
+    & .cm-gutter, 
+    & .cm-lineNumbers {
+      background-color: $color-primary;
+    }
+
+    & .cm-gutters {
+      border-right: 2px solid $color-secondary;
+    }
+
+    & .cm-content {
+      padding-left: 10px;
+    }
+
   }
+
 }
 
 .headers-editor,
