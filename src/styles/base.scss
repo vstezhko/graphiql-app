@@ -1,0 +1,98 @@
+:root {
+  font-family: 'Inconsolata', 'Source Code Pro', monospace;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 10px;
+  background: $color-primary;
+}
+
+a {
+  font-weight: 500;
+  text-decoration: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100vh;
+  min-width: 320px;
+  overflow: auto;
+}
+
+#root {
+  width: 100%;
+  height: 100vh;
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+main {
+  flex-grow: 1;
+  padding: 20px 0;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+
+footer, header {
+  width: 100%;
+  background: $color-secondary;
+  text-align: center;
+  font-size: 2rem;
+  display: flex;
+  gap: 4rem;
+
+  & > a {
+    color: $color-additional;
+    position: relative;
+  }
+}
+
+.footer {
+  padding: 50px 16px;
+  color: $color-additional;
+}
+
+.Mui-selected {
+  color: $color-additional !important;
+}
+
+.MuiTabs-indicator {
+  background-color: $color-additional !important;
+}
+
+
+

@@ -1,0 +1,42 @@
+.editor-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.ͼ15 {
+  background-color: $color-secondary;
+  border-radius: 0.8rem;
+  color: $color-additional;
+  font-size: 1.6rem;
+}
+
+.cm-gutters {
+  background-color: $color-secondary !important;
+  border-bottom-left-radius: 0.8rem;
+  border-top-left-radius: 0.8rem;
+  border-color: #8c91b6 !important;
+  color: #8c91b6 !important;
+}
+
+.cm-activeLineGutter {
+  background-color: #cceeff44 !important;
+}
+
+
+.editor-tabs:not(.editor-tabs_open) .MuiTabs-indicator {
+  display: none;
+}
+
+.editor-tabs__header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.editor-tabs__tab-panel {
+  height: 30vh;
+}
+
+
+
+
