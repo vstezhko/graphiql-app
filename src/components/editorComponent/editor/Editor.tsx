@@ -7,13 +7,18 @@ import { graphql } from 'cm6-graphql';
 import { tomorrowNightBlue } from '@uiw/codemirror-theme-tomorrow-night-blue';
 import { RootState } from '../../../store/store.ts';
 
-type StateValueName = 'queryBody' | 'queryVariables' | 'queryHeaders';
+type StateValueName =
+  | 'queryBody'
+  | 'queryVariables'
+  | 'queryHeaders'
+  | 'response';
 
 interface EditorProps {
   stateValueName: StateValueName;
-  action: (value: string) => PayloadAction<string>;
+  action?: (value: string) => PayloadAction<string>;
   className?: string;
   isJson?: boolean;
+  isReadOnly?: boolean;
 }
 
 const Editor = ({
@@ -21,15 +26,19 @@ const Editor = ({
   action,
   className,
   isJson = false,
+  isReadOnly = false,
 }: EditorProps) => {
   const dispatch = useDispatch();
+
   const value = useSelector(
     (state: RootState) => state.editors[stateValueName]
   );
 
   const onChange = useCallback(
     (val: string) => {
-      dispatch(action(val));
+      if (action) {
+        dispatch(action(val));
+      }
     },
     [dispatch, action]
   );
@@ -48,6 +57,8 @@ const Editor = ({
         highlightActiveLineGutter: false,
       }}
       theme={tomorrowNightBlue}
+      readOnly={isReadOnly}
+      editable={!isReadOnly}
     />
   );
 };

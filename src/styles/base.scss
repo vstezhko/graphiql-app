@@ -30,6 +30,7 @@ body {
   min-height: 100vh;
   min-width: 320px;
   overflow: auto;
+  font-size: 1.4rem;
 }
 
 #root {
@@ -48,6 +49,8 @@ body {
 main {
   flex-grow: 1;
   padding: 20px 0;
+  width: 100%;
+  max-width: 1280px;
 }
 
 h1 {

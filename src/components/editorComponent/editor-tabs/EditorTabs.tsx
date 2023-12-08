@@ -36,7 +36,7 @@ const EditorTabs = () => {
     <IconButton
       aria-label="show-editors-panel"
       onClick={handleOpenPanel}
-      sx={{ color: '#50b5ff', width: '48px' }}
+      className="editor-tabs__button"
     >
       <KeyboardArrowUpIcon />
     </IconButton>
@@ -46,7 +46,7 @@ const EditorTabs = () => {
     <IconButton
       aria-label="hide-editors-panel"
       onClick={handleClosePanel}
-      sx={{ color: '#50b5ff', width: '48px' }}
+      className="editor-tabs__button"
     >
       <KeyboardArrowDownIcon />
     </IconButton>

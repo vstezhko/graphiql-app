@@ -2,12 +2,18 @@ import GraphQLEditor from '../graphql-editor/GraphQLEditor';
 import EditorTabs from '../editor-tabs/EditorTabs';
 import { IconButton } from '@mui/material';
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
-import { makeRequest } from '../../../api/api';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchData } from '../../../store/slices/graphQLThunk';
+import { AppDispatch, RootState } from '../../../store/store';
+import ResponseViewer from '../response-viewer/ResponseViewer';
 
 const EditorContainer = () => {
-  const handleRun = async () => {
-    const data = await makeRequest();
-    console.log(data);
+  const dispatch: AppDispatch = useDispatch();
+  const queryBody = useSelector((state: RootState) => state.editors.queryBody);
+  const handleRun = () => {
+    if (queryBody) {
+      dispatch(fetchData());
+    }
   };
 
   return (
@@ -24,7 +30,9 @@ const EditorContainer = () => {
           <PlayCircleFilledWhiteIcon />
         </IconButton>
       </section>
-      <section className="editor-container__response-section"></section>
+      <section className="editor-container__response-section">
+        <ResponseViewer />
+      </section>
     </div>
   );
 };
