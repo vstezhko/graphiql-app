@@ -5,6 +5,7 @@ import { useCallback } from 'react';
 import '../../styles/components/Editor.scss';
 import { RootState } from '../../store/store';
 import { PayloadAction } from '@reduxjs/toolkit';
+import { graphql } from 'cm6-graphql';
 
 type StateValueName = 'queryBody' | 'queryVariables' | 'queryHeaders';
 interface EditorProps {
@@ -35,12 +36,13 @@ const Editor = ({
   return (
     <CodeMirror
       value={value}
-      extensions={isJson ? [json()] : []}
+      extensions={isJson ? [json()] : [graphql()]}
       onChange={onChange}
       className={`editor ${className}`}
       basicSetup={{
         syntaxHighlighting: true,
         autocompletion: true,
+        bracketMatching: true,
       }}
     />
   );

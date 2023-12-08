@@ -21,6 +21,7 @@
     "@mui/material": "^5.14.20",
     "@reduxjs/toolkit": "^2.0.1",
     "@uiw/react-codemirror": "^4.21.21",
+    "cm6-graphql": "^0.0.12",
     "firebase": "^10.7.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
