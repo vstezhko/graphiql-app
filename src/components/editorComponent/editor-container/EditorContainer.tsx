@@ -1,9 +1,8 @@
 import GraphQLEditor from '../graphql-editor/GraphQLEditor';
-import '../../styles/components/EditorContainer.scss';
 import EditorTabs from '../editor-tabs/EditorTabs';
 import { IconButton } from '@mui/material';
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
-import { makeRequest } from '../../api/api';
+import { makeRequest } from '../../../api/api';
 
 const EditorContainer = () => {
   const handleRun = async () => {

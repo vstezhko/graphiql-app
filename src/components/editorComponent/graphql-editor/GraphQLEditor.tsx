@@ -1,4 +1,4 @@
-import { setQueryBody } from '../../store/slices/editorsSlice';
+import { setQueryBody } from '../../../store/slices/editorsSlice';
 import Editor from '../editor/Editor';
 
 const GraphQLEditor = () => {

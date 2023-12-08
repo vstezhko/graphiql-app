@@ -2,14 +2,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import CodeMirror from '@uiw/react-codemirror';
 import { json } from '@codemirror/lang-json';
 import { useCallback } from 'react';
-import '../../styles/components/Editor.scss';
-import { RootState } from '../../store/store';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { graphql } from 'cm6-graphql';
 import { tomorrowNightBlue } from '@uiw/codemirror-theme-tomorrow-night-blue';
-import { useCallback, useState } from 'react';
+import { RootState } from '../../../store/store.ts';
 
 type StateValueName = 'queryBody' | 'queryVariables' | 'queryHeaders';
+
 interface EditorProps {
   stateValueName: StateValueName;
   action: (value: string) => PayloadAction<string>;

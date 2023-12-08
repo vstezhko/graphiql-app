@@ -1,28 +1,62 @@
+
 .editor-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: calc(100vh - 104px);
+
+  &__request-section {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    position: relative;
+    height: 100%;
+  }
+
+  & .editor-container__run-button {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    transform: translateX(50%);
+    padding: 0;
+
+    svg {
+      width: 50px;
+      height: 50px;
+    }
+
+    svg:hover {
+      color: $color-additional;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background-color: $color-additional;
+      z-index: -1;
+    }
+
+    &:hover::after {
+      background-color: $color-additional-2;
+    }
+
+  }
+
+}
+
+.editor-tabs {
   display: flex;
   flex-direction: column;
-  height: 100%;
 }
 
-.ͼ15 {
-  background-color: $color-secondary;
-  border-radius: 0.8rem;
-  color: $color-additional;
-  font-size: 1.6rem;
+.editor-tabs_open {
+  height: 30vh;
 }
-
-.cm-gutters {
-  background-color: $color-secondary !important;
-  border-bottom-left-radius: 0.8rem;
-  border-top-left-radius: 0.8rem;
-  border-color: #8c91b6 !important;
-  color: #8c91b6 !important;
-}
-
-.cm-activeLineGutter {
-  background-color: #cceeff44 !important;
-}
-
 
 .editor-tabs:not(.editor-tabs_open) .MuiTabs-indicator {
   display: none;
@@ -33,10 +67,27 @@
   justify-content: space-between;
 }
 
-.editor-tabs__tab-panel {
-  height: 30vh;
+.editor-tabs__tab-panels {
+  flex: 1;
 }
 
+.editor-tabs__tab-panel {
+  height: 100%;
+}
 
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
 
+::-webkit-scrollbar-track {
+  background: $color-secondary;
+}
 
+::-webkit-scrollbar-thumb {
+  background: $color-border;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: $color-hovered;
+}

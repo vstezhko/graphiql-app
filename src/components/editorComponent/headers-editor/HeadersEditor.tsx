@@ -1,5 +1,5 @@
-import { setQueryHeaders } from '../../store/slices/editorsSlice';
 import Editor from '../editor/Editor';
+import { setQueryHeaders } from '../../../store/slices/editorsSlice.ts';
 
 const HeadersEditor = () => {
   return (

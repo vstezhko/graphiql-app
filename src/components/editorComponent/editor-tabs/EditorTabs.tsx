@@ -1,16 +1,16 @@
-import { SyntheticEvent, useState } from 'react';
+import { SyntheticEvent } from 'react';
 import { Tabs, Tab, IconButton } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import HeadersEditor from '../headers-editor/HeadersEditor.tsx';
-import VariableEditor from '../variable-editor/VariableEditor.tsx';
-import TabPanel from './TabPanel.tsx';
-import HeadersEditor from '../headers-editor/HeadersEditor';
-import VariableEditor from '../variable-editor/VariableEditor';
-import TabPanel from './TabPanel';
 import { useDispatch, useSelector } from 'react-redux';
-import { setActiveTab, setIsPanelOpen } from '../../store/slices/editorsSlice';
-import { RootState } from '../../store/store';
+import TabPanel from './TabPanel';
+import VariableEditor from '../variable-editor/VariableEditor.tsx';
+import HeadersEditor from '../headers-editor/HeadersEditor.tsx';
+import { RootState } from '../../../store/store.ts';
+import {
+  setActiveTab,
+  setIsPanelOpen,
+} from '../../../store/slices/editorsSlice.ts';
 
 const EditorTabs = () => {
   const dispatch = useDispatch();
@@ -61,7 +61,7 @@ const EditorTabs = () => {
         </Tabs>
         {isPanelOpen ? buttonHide : buttonShow}
       </div>
-      {isPanelOpen ? (
+      {isPanelOpen && (
         <div className="editor-tabs__tab-panels">
           <TabPanel value={value} index={0}>
             <VariableEditor />
@@ -70,8 +70,6 @@ const EditorTabs = () => {
             <HeadersEditor />
           </TabPanel>
         </div>
-      ) : (
-        <div style={{ height: '200px' }}></div> //заглушка, тк дергается контент при скролле, если панель закрыта
       )}
     </div>
   );
