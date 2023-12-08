@@ -6,6 +6,7 @@ import '../../styles/components/Editor.scss';
 import { RootState } from '../../store/store';
 import { PayloadAction } from '@reduxjs/toolkit';
 import { graphql } from 'cm6-graphql';
+import { tomorrowNightBlue } from '@uiw/codemirror-theme-tomorrow-night-blue';
 
 type StateValueName = 'queryBody' | 'queryVariables' | 'queryHeaders';
 interface EditorProps {
@@ -43,7 +44,10 @@ const Editor = ({
         syntaxHighlighting: true,
         autocompletion: true,
         bracketMatching: true,
+        highlightActiveLine: false,
+        highlightActiveLineGutter: false,
       }}
+      theme={tomorrowNightBlue}
     />
   );
 };

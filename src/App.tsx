@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import EditorContainer from './components/editor-container/EditorContainer';
 
 function App() {
