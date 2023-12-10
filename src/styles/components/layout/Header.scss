@@ -2,8 +2,8 @@
   padding: 50px 16px;
   transition: all 0.3s;
 
-  .active{
-    &:after{
+  .active {
+    &:after {
       content: '';
       position: absolute;
       height: 2px;
@@ -11,6 +11,26 @@
       background-color: $color-additional;
       left: 0;
       top: 100%;
+    }
+  }
+
+  &__link {
+    background-color: $color-additional;
+    color: $color-secondary;
+    padding: 1rem 1.2rem;
+    border-radius: 0.4rem;
+    transition: all 0.3s;
+
+    &:hover {
+      color: $color-additional;
+      background-color: $color-additional-2;
+    }
+
+
+    &_outlined {
+      color: $color-additional;
+      background-color: transparent;
+      border: 1px solid $color-additional;
     }
   }
 }
@@ -28,8 +48,8 @@
     color: $color-secondary;
   }
 
-  .active{
-    &:after{
+  .active {
+    &:after {
       content: '';
       position: absolute;
       height: 2px;
@@ -39,5 +59,31 @@
       top: 100%;
     }
   }
+
+  &__link {
+    background-color: transparent;
+    color: $color-secondary;
+    border: 1px solid $color-secondary;
+    padding: 1rem 1.2rem;
+    border-radius: 0.4rem;
+    transition: all 0.3s;
+
+    &:hover {
+      color: $color-additional;
+      background-color: $color-additional-2;
+    }
+
+
+    &_outlined {
+      color: $color-additional;
+      background-color: $color-secondary;
+    }
+  }
+
 }
 
+.links__container{
+  display: flex;
+  gap: 8px;
+  margin-left: auto;
+}
