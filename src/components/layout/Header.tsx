@@ -1,5 +1,6 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
+import Localization from '../localizationComponent/Localization.tsx';
 
 const Header = () => {
   const headerRef = useRef<HTMLDivElement | null>(null);
@@ -35,6 +36,7 @@ const Header = () => {
       <NavLink to={'/'}>Welcome Page</NavLink>
       <NavLink to={'/main'}>Main Page</NavLink>
       <div className="links__container">
+        <Localization />
         {!token ? (
           <button
             className={scroll ? 'sticky__link' : 'header__link'}
@@ -43,24 +45,12 @@ const Header = () => {
             Log out
           </button>
         ) : (
-          <>
-            <Link
-              className={scroll ? 'sticky__link' : 'header__link'}
-              to={'/signIn'}
-            >
-              Sign In
-            </Link>
-            <Link
-              className={
-                scroll
-                  ? 'sticky__link sticky__link_outlined'
-                  : 'header__link header__link_outlined'
-              }
-              to={'/signUp'}
-            >
-              Sign Up
-            </Link>
-          </>
+          <Link
+            className={scroll ? 'sticky__link' : 'header__link'}
+            to={'/signIn'}
+          >
+            Sign In
+          </Link>
         )}
       </div>
     </header>

@@ -14,10 +14,11 @@
     }
   }
 
+
   &__link {
     background-color: $color-additional;
-    color: $color-secondary;
-    padding: 1rem 1.2rem;
+    color: $color-font;
+    padding: 0.6rem 1.6rem;
     border-radius: 0.4rem;
     transition: all 0.3s;
 
@@ -25,14 +26,8 @@
       color: $color-additional;
       background-color: $color-additional-2;
     }
-
-
-    &_outlined {
-      color: $color-additional;
-      background-color: transparent;
-      border: 1px solid $color-additional;
-    }
   }
+
 }
 
 .sticky {
@@ -40,7 +35,7 @@
   top: 0;
   width: 100%;
   z-index: 100;
-  padding: 10px 16px;
+  padding: 1rem 1.6rem;
   background-color: $color-additional;
   transition: all 0.3s;
 
@@ -52,7 +47,7 @@
     &:after {
       content: '';
       position: absolute;
-      height: 2px;
+      height: 0.2rem;
       width: 100%;
       background-color: $color-secondary;
       left: 0;
@@ -61,29 +56,60 @@
   }
 
   &__link {
-    background-color: transparent;
-    color: $color-secondary;
-    border: 1px solid $color-secondary;
-    padding: 1rem 1.2rem;
+    background-color: $color-secondary;
+    color: $color-font;
+    padding: 0.6rem 1.6rem;
     border-radius: 0.4rem;
     transition: all 0.3s;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2), 0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 
     &:hover {
       color: $color-additional;
       background-color: $color-additional-2;
     }
-
-
-    &_outlined {
-      color: $color-additional;
-      background-color: $color-secondary;
-    }
   }
 
 }
 
-.links__container{
+.links__container {
   display: flex;
-  gap: 8px;
+  align-items: center;
+  gap: 2rem;
   margin-left: auto;
+
+}
+
+.language__button {
+  background-color: $color-button !important;
+  font-size: 1.6rem !important;
+}
+
+.MuiPaper-root {
+  top: 110px !important;
+  background-color: $color-additional !important;
+
+
+  & > .MuiList-root {
+    & > .MuiButtonBase-root {
+
+      & > .MuiListItemButton-root {
+        color: $color-font;
+
+        &:hover {
+          background-color: transparent !important;
+        }
+
+        & > .MuiListItemText-root > span {
+          font-size: 1.6rem;
+        }
+      }
+
+      & > .Mui-selected {
+        background-color: transparent !important;
+        color: $color-primary !important;
+        text-decoration: underline;
+      }
+
+    }
+  }
 }
