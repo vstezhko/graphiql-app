@@ -1,0 +1,46 @@
+.footer {
+  padding: 16px;
+  color: $color-additional;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  & > * {
+    flex-basis: 33.3333%;
+  }
+
+  & > a {
+    max-width: 150px;
+  }
+
+  &__date {
+    text-align: end;
+  }
+
+  &__links {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+
+    .link {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+
+      & > a {
+        color: $color-additional;
+        transition: color 0.2s;
+
+        &:hover {
+          color: $color-additional-2;
+        }
+      }
+
+
+      & > img {
+        max-width: 20px;
+      }
+    }
+  }
+}

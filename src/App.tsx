@@ -1,5 +1,6 @@
 import Header from './components/layout/Header.tsx';
 import { Outlet } from 'react-router-dom';
+import Footer from './components/layout/Footer.tsx';
 
 function App() {
   return (
@@ -8,7 +9,7 @@ function App() {
       <main>
         <Outlet />
       </main>
-      <footer className="footer">Footer</footer>
+      <Footer />
     </div>
   );
 }
