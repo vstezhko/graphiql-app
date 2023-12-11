@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
+import { fetchData } from './graphQLThunk';
 
 export interface EditorsState {
   queryBody: string;
@@ -7,6 +8,8 @@ export interface EditorsState {
   queryHeaders: string;
   activeTab: number;
   isPanelOpen: boolean;
+  isFetching: 'idle' | 'loading';
+  response: string;
 }
 
 const initialState: EditorsState = {
@@ -15,6 +18,8 @@ const initialState: EditorsState = {
   queryHeaders: '',
   activeTab: 0,
   isPanelOpen: true,
+  isFetching: 'idle',
+  response: '',
 };
 
 export const editorsSlice = createSlice({
@@ -30,12 +35,25 @@ export const editorsSlice = createSlice({
     setQueryHeaders: (state, action: PayloadAction<string>) => {
       state.queryHeaders = action.payload;
     },
+    setResponse: (state, action: PayloadAction<string>) => {
+      state.response = action.payload;
+    },
     setActiveTab: (state, action: PayloadAction<number>) => {
       state.activeTab = action.payload;
     },
     setIsPanelOpen: (state, action: PayloadAction<boolean>) => {
       state.isPanelOpen = action.payload;
     },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(fetchData.pending, (state) => {
+        state.isFetching = 'loading';
+      })
+      .addCase(fetchData.fulfilled, (state, action) => {
+        state.isFetching = 'idle';
+        state.response = action.payload;
+      });
   },
 });
 

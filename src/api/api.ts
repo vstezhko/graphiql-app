@@ -1,7 +1,6 @@
-import { store } from '../store/store';
+import { RootState } from '../store/store';
 
-export const makeRequest = async () => {
-  const state = store.getState();
+export const makeRequest = async (state: RootState) => {
   const queryBody = state.editors.queryBody;
   const variablesString = state.editors.queryVariables;
   const headersString = state.editors.queryHeaders;
