@@ -12,13 +12,19 @@
   font-size: 1.6rem;
   border: none;
   border-radius: 5px;
-  color: $color-font;
+  color: $color-additional;
   outline: none;
   background-color: $color-primary;
   padding: 10px;
-  min-width: 300px;
+  min-width: 400px;
 }
 
 .editor-toolbar__input::placeholder {
   color: $color-border;
+}
+
+.editor-toolbar__error {
+  margin: 0;
+  font-size: 1.6rem;
+  color: $color-additional;
 }

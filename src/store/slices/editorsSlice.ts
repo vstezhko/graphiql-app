@@ -10,6 +10,8 @@ export interface EditorsState {
   isPanelOpen: boolean;
   isFetching: 'idle' | 'loading';
   response: string;
+  endpoint: string;
+  error: string | null;
 }
 
 const initialState: EditorsState = {
@@ -20,6 +22,8 @@ const initialState: EditorsState = {
   isPanelOpen: true,
   isFetching: 'idle',
   response: '',
+  endpoint: '',
+  error: null,
 };
 
 export const editorsSlice = createSlice({
@@ -44,15 +48,27 @@ export const editorsSlice = createSlice({
     setIsPanelOpen: (state, action: PayloadAction<boolean>) => {
       state.isPanelOpen = action.payload;
     },
+    setEndpoint: (state, action: PayloadAction<string>) => {
+      state.endpoint = action.payload;
+    },
+    setError: (state, action: PayloadAction<string | null>) => {
+      state.error = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
       .addCase(fetchData.pending, (state) => {
+        state.error = null;
         state.isFetching = 'loading';
       })
       .addCase(fetchData.fulfilled, (state, action) => {
         state.isFetching = 'idle';
         state.response = action.payload;
+      })
+      .addCase(fetchData.rejected, (state) => {
+        state.isFetching = 'idle';
+        state.response = '';
+        state.error = 'The endpoint cannot be reached';
       });
   },
 });
@@ -63,6 +79,8 @@ export const {
   setQueryHeaders,
   setActiveTab,
   setIsPanelOpen,
+  setEndpoint,
+  setError,
 } = editorsSlice.actions;
 
 export default editorsSlice.reducer;

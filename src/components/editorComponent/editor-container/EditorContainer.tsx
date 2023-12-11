@@ -6,14 +6,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { fetchData } from '../../../store/slices/graphQLThunk';
 import { AppDispatch, RootState } from '../../../store/store';
 import ResponseViewer from '../response-viewer/ResponseViewer';
+import { setError } from '../../../store/slices/editorsSlice';
 
 const EditorContainer = () => {
   const dispatch: AppDispatch = useDispatch();
   const queryBody = useSelector((state: RootState) => state.editors.queryBody);
   const handleRun = () => {
-    if (queryBody) {
-      dispatch(fetchData());
-    }
+    queryBody
+      ? dispatch(fetchData())
+      : dispatch(setError('Please enter a query'));
   };
 
   return (
