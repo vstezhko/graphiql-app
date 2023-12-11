@@ -1,13 +1,12 @@
 .editor-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: calc(100vh - 160px);
   gap: 60px;
 
-  &__request-section, 
+  &__request-section,
   &__response-section {
     min-width: 100%;
-  } 
+  }
 
   ::-webkit-scrollbar {
     width: 10px;
