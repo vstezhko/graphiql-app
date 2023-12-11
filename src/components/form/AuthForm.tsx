@@ -16,9 +16,10 @@ export interface SignUpValues extends SignInValues {
 
 export interface AuthFormParams {
   type: 'signIn' | 'signUp';
+  onFormSubmit: (data: SignInValues | SignUpValues) => void;
 }
 
-const AuthForm: FC<AuthFormParams> = ({ type }) => {
+const AuthForm: FC<AuthFormParams> = ({ type, onFormSubmit }) => {
   const validationResolver =
     type === 'signIn' ? validationSchema.signIn : validationSchema.signUp;
 
@@ -32,18 +33,16 @@ const AuthForm: FC<AuthFormParams> = ({ type }) => {
     register,
   } = methods;
 
-  const onSubmit = async (data: SignInValues) => {
+  const onSubmit = async (data: SignInValues | SignUpValues) => {
     console.log(data);
+    onFormSubmit(data);
   };
 
   const isValid = errors && !Object.keys(errors).length;
 
   return (
     <FormProvider {...methods}>
-      <form
-        onSubmit={handleSubmit(onSubmit)}
-        className="form"
-      >
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
         <TextInput
           id={FormFields.EMAIL}
           inputName={FormFields.EMAIL}

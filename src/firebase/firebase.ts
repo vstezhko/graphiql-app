@@ -1,11 +1,10 @@
 import { initializeApp } from 'firebase/app';
 import {
+  createUserWithEmailAndPassword,
   getAuth,
   signInWithEmailAndPassword,
-  createUserWithEmailAndPassword,
   signOut,
 } from 'firebase/auth';
-import { getFirestore, addDoc, collection } from 'firebase/firestore';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyDwbZGuG3nKI3Hdgb8R8crLs-Gd89R4LyI',
@@ -19,42 +18,25 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const db = getFirestore(app);
 
-export const logInWithEmailAndPassword = async (
-  email: string,
-  password: string
-) => {
-  try {
-    await signInWithEmailAndPassword(auth, email, password);
-  } catch (err) {
-    if (err instanceof Error) {
-      console.error(err);
-      alert(err.message);
-    }
-  }
+export const signUp = (email: string, password: string) => {
+  return createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      return { token: userCredential.user.getIdToken(), error: undefined };
+    })
+    .catch((error) => {
+      return { error: error.message, token: undefined };
+    });
 };
 
-export const registerWithEmailAndPassword = async (
-  name: string,
-  email: string,
-  password: string
-) => {
-  try {
-    const res = await createUserWithEmailAndPassword(auth, email, password);
-    const user = res.user;
-    await addDoc(collection(db, 'users'), {
-      uid: user.uid,
-      name,
-      authProvider: 'local',
-      email,
+export const sighIn = async (email: string, password: string) => {
+  return signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      return { token: userCredential.user.getIdToken(), error: undefined };
+    })
+    .catch((error) => {
+      return { error: error.message, token: undefined };
     });
-  } catch (err) {
-    if (err instanceof Error) {
-      console.error(err);
-      alert(err.message);
-    }
-  }
 };
 
 export const logout = () => {
