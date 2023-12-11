@@ -1,6 +1,6 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import {Link, NavLink, useNavigate} from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
-import Localization from '../localizationComponent/Localization.tsx';
+import Localization from "../localizationComponent/Localization.tsx";
 
 const Header = () => {
   const headerRef = useRef<HTMLDivElement | null>(null);

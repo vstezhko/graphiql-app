@@ -1,0 +1,57 @@
+.textInput {
+  font-size: 1.3rem;
+
+  &__input {
+    width: 100%;
+    padding: 0.5rem 3rem 0.5rem 0.5rem;
+    line-height: 1.5;
+    box-sizing: border-box;
+    border: 1px solid $color-additional;
+    border-radius: 0.8rem;
+    background-color: $color-secondary;
+    position: relative;
+    color: $color-additional;
+    @include transitionAll;
+
+    &:hover {
+      border: 1px solid $color-hovered;
+    }
+
+    &:focus-visible {
+      outline: none;
+    }
+
+    &_error {
+      border: 1px solid $color-error;
+
+      &:hover {
+        border: 1px solid $color-hovered;
+      }
+    }
+  }
+
+  &__passwordIcon {
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    cursor: pointer;
+    top: 3.2rem;
+    right: 1rem;
+  }
+}
+
+.inputItem {
+  position: relative;
+  width: 100%;
+  padding: 0.6rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 0.1rem;
+  border: none;
+
+  &__error {
+    color: $color-error;
+    height: 1.2rem;
+  }
+}
