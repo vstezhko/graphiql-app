@@ -48,6 +48,10 @@ body {
 main {
   flex-grow: 1;
   padding: 20px 0;
+
+  & > *{
+    height: 100vh;
+  }
 }
 
 h1 {
@@ -78,6 +82,10 @@ footer, header {
   & > a {
     color: $color-additional;
     position: relative;
+    transition: color 0.2s;
+    &:hover{
+      color: $color-additional-2;
+    }
   }
 }
 

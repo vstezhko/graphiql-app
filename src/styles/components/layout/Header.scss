@@ -2,6 +2,7 @@
   padding: 50px 16px;
   transition: all 0.3s;
 
+
   .active{
     &:after{
       content: '';
@@ -40,4 +41,5 @@
     }
   }
 }
+
 
