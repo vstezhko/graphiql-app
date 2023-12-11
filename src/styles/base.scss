@@ -49,7 +49,7 @@ main {
   flex-grow: 1;
   padding: 20px 0;
 
-  & > *{
+  & > * {
     height: 100vh;
   }
 }
@@ -70,8 +70,8 @@ button {
   transition: border-color 0.25s;
 }
 
-
-footer, header {
+footer,
+header {
   width: 100%;
   background: $color-secondary;
   text-align: center;
@@ -83,12 +83,11 @@ footer, header {
     color: $color-additional;
     position: relative;
     transition: color 0.2s;
-    &:hover{
+    &:hover {
       color: $color-additional-2;
     }
   }
 }
-
 
 .Mui-selected {
   color: $color-additional !important;
@@ -97,6 +96,3 @@ footer, header {
 .MuiTabs-indicator {
   background-color: $color-additional !important;
 }
-
-
-

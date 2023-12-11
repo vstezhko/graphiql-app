@@ -1,4 +1,3 @@
-
 .editor-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -44,9 +43,7 @@
     &:hover::after {
       background-color: $color-additional-2;
     }
-
   }
-
 }
 
 .editor-tabs {
