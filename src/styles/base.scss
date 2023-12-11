@@ -51,6 +51,10 @@ main {
   padding: 20px 0;
   width: 100%;
   max-width: 1280px;
+
+  & > * {
+    height: 100vh;
+  }
 }
 
 h1 {
@@ -82,12 +86,11 @@ header {
   & > a {
     color: $color-additional;
     position: relative;
+    transition: color 0.2s;
+    &:hover {
+      color: $color-additional-2;
+    }
   }
-}
-
-.footer {
-  padding: 50px 16px;
-  color: $color-additional;
 }
 
 .Mui-selected {
