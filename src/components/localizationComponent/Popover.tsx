@@ -12,6 +12,7 @@ import { useState } from 'react';
 interface Props {
   selectedLang: string;
   setSelectedLang: (lang: string) => void;
+  scroll: boolean;
 }
 
 const langArray = [
@@ -22,6 +23,7 @@ const langArray = [
 export default function LocalizationPopover({
   selectedLang,
   setSelectedLang,
+  scroll,
 }: Props) {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
 
@@ -56,9 +58,14 @@ export default function LocalizationPopover({
         open={Boolean(anchorEl)}
         anchorEl={anchorEl}
         onClose={handleClose}
+        anchorReference={'anchorPosition'}
+        anchorPosition={{
+          left: window.innerWidth - 200,
+          top: scroll ? 70 : 110,
+        }}
         anchorOrigin={{
           vertical: 'bottom',
-          horizontal: 'left',
+          horizontal: 'right',
         }}
       >
         <MenuList>

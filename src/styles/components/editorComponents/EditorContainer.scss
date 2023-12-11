@@ -1,8 +1,24 @@
-
 .editor-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
   height: calc(100vh - 104px);
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: $color-secondary;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $color-border;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: $color-hovered;
+  }
 
   &__request-section {
     display: flex;
@@ -44,9 +60,7 @@
     &:hover::after {
       background-color: $color-additional-2;
     }
-
   }
-
 }
 
 .editor-tabs {
@@ -73,21 +87,4 @@
 
 .editor-tabs__tab-panel {
   height: 100%;
-}
-
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-}
-
-::-webkit-scrollbar-track {
-  background: $color-secondary;
-}
-
-::-webkit-scrollbar-thumb {
-  background: $color-border;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: $color-hovered;
 }

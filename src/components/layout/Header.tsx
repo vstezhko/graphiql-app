@@ -36,7 +36,7 @@ const Header = () => {
       <NavLink to={'/'}>Welcome Page</NavLink>
       <NavLink to={'/main'}>Main Page</NavLink>
       <div className="links__container">
-        <Localization />
+        <Localization scroll={scroll} />
         {!token ? (
           <button
             className={scroll ? 'sticky__link' : 'header__link'}
