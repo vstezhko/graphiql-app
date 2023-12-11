@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { makeRequest } from '../../api/api';
+import { makeRequest, makeSchemaRequest } from '../../api/api';
 import { RootState } from '../store';
 
 export const fetchData = createAsyncThunk(
@@ -8,6 +8,18 @@ export const fetchData = createAsyncThunk(
     const state = thunkAPI.getState() as RootState;
     try {
       return JSON.stringify(await makeRequest(state), null, 2);
+    } catch (error) {
+      throw error;
+    }
+  }
+);
+
+export const getSchema = createAsyncThunk(
+  'documentation/getSchema',
+  async (_, thunkAPI) => {
+    const state = thunkAPI.getState() as RootState;
+    try {
+      return JSON.stringify(await makeSchemaRequest(state), null, 2);
     } catch (error) {
       throw error;
     }

@@ -1,7 +1,13 @@
-import EditorContainer from '../../components/editorComponent/editor-container/EditorContainer.tsx';
+import EditorToolbar from '../../components/editorToolbar/EditorToolbar.tsx';
+import EditorContainer from '../../components/editorComponent/editorContainer/EditorContainer.tsx';
 
 const MainPage = () => {
-  return <EditorContainer />;
+  return (
+    <div className="editor-page">
+      <EditorToolbar />
+      <EditorContainer />
+    </div>
+  );
 };
 
 export default MainPage;

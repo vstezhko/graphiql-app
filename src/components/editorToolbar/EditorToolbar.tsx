@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
-import { ChangeEvent } from 'react';
+import { ChangeEvent, useEffect } from 'react';
 import { setEndpoint, setError } from '../../store/slices/editorsSlice';
 import { IconButton } from '@mui/material';
-import { fetchData } from '../../store/slices/graphQLThunk';
+import { fetchData, getSchema } from '../../store/slices/graphQLThunk';
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 
 const EditorToolbar = () => {
@@ -13,6 +13,7 @@ const EditorToolbar = () => {
   );
   const error = useSelector((state: RootState) => state.editors.error);
   const queryBody = useSelector((state: RootState) => state.editors.queryBody);
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(setEndpoint(event.target.value));
   };
@@ -22,6 +23,10 @@ const EditorToolbar = () => {
       ? dispatch(fetchData())
       : dispatch(setError('Please enter a query'));
   };
+
+  useEffect(() => {
+    endpointValue && dispatch(getSchema());
+  }, [endpointValue]);
 
   return (
     <div className="editor-toolbar">
@@ -38,6 +43,7 @@ const EditorToolbar = () => {
           size="large"
           aria-label="run-request"
           onClick={handleRun}
+          disabled={!queryBody}
         >
           <PlayCircleFilledWhiteIcon />
         </IconButton>

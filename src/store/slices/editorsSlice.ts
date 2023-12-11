@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { fetchData } from './graphQLThunk';
+import { fetchData, getSchema } from './graphQLThunk';
 
 export interface EditorsState {
   queryBody: string;
@@ -12,6 +12,7 @@ export interface EditorsState {
   response: string;
   endpoint: string;
   error: string | null;
+  documentation: string;
 }
 
 const initialState: EditorsState = {
@@ -24,6 +25,7 @@ const initialState: EditorsState = {
   response: '',
   endpoint: '',
   error: null,
+  documentation: '',
 };
 
 export const editorsSlice = createSlice({
@@ -69,6 +71,19 @@ export const editorsSlice = createSlice({
         state.isFetching = 'idle';
         state.response = '';
         state.error = 'The endpoint cannot be reached';
+      })
+      .addCase(getSchema.pending, (state) => {
+        state.error = null;
+        state.isFetching = 'loading';
+      })
+      .addCase(getSchema.fulfilled, (state, action) => {
+        state.isFetching = 'idle';
+        state.documentation = action.payload;
+      })
+      .addCase(getSchema.rejected, (state) => {
+        state.isFetching = 'idle';
+        state.documentation = '';
+        state.error = 'Failed to fetch schema';
       });
   },
 });
