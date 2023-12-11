@@ -55,9 +55,13 @@ const EditorTabs = () => {
   return (
     <div className={`editor-tabs ${isPanelOpen ? 'editor-tabs_open' : ''}`}>
       <div className="editor-tabs__header">
-        <Tabs value={value} onChange={handleTabChange}>
-          <Tab label="Variables" sx={{ color: '#8c91b6' }} />
-          <Tab label="Headers" sx={{ color: '#8c91b6' }} />
+        <Tabs
+          value={value}
+          onChange={handleTabChange}
+          onClick={handleOpenPanel}
+        >
+          <Tab className="editor-tabs__tab-button" label="Variables" />
+          <Tab className="editor-tabs__tab-button" label="Headers" />
         </Tabs>
         {isPanelOpen ? buttonHide : buttonShow}
       </div>

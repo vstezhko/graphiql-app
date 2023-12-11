@@ -88,6 +88,11 @@
 .editor-tabs__header {
   display: flex;
   justify-content: space-between;
+
+  .editor-tabs__tab-button,
+  .editor-tabs__button {
+    color: $color-border;
+  }
 }
 
 .editor-tabs__tab-panels {
