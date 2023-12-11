@@ -1,6 +1,6 @@
-import GraphQLEditor from '../graphql-editor/GraphQLEditor';
-import EditorTabs from '../editor-tabs/EditorTabs';
-import ResponseViewer from '../response-viewer/ResponseViewer';
+import GraphQLEditor from '../graphqlEditor/GraphQLEditor';
+import EditorTabs from '../editorTabs/EditorTabs';
+import ResponseViewer from '../responseViewer/ResponseViewer';
 
 const EditorContainer = () => {
   return (

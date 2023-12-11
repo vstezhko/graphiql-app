@@ -3,9 +3,9 @@ import { Tabs, Tab, IconButton } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useDispatch, useSelector } from 'react-redux';
-import TabPanel from './TabPanel';
-import VariableEditor from '../variable-editor/VariableEditor.tsx';
-import HeadersEditor from '../headers-editor/HeadersEditor.tsx';
+import TabPanel from './TabPanel.tsx';
+import VariableEditor from '../variableEditor/VariableEditor.tsx';
+import HeadersEditor from '../headersEditor/HeadersEditor.tsx';
 import { RootState } from '../../../store/store.ts';
 import {
   setActiveTab,

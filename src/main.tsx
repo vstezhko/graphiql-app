@@ -28,7 +28,7 @@ const router = createBrowserRouter([
 import './index.scss';
 import { Provider } from 'react-redux';
 import { store } from './store/store.ts';
-import MainPage from './pages/mainPage/MainPage.tsx';
+import EditorPage from './pages/editorPage/EditorPage.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

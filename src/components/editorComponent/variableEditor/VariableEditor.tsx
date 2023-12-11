@@ -1,4 +1,4 @@
-import Editor from '../editor/Editor';
+import Editor from '../editor/Editor.tsx';
 import { setQueryVariables } from '../../../store/slices/editorsSlice.ts';
 
 const VariableEditor = () => {
