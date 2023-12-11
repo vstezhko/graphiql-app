@@ -1,4 +1,4 @@
-import Editor from '../editor/Editor';
+import Editor from '../editor/Editor.tsx';
 import { setQueryHeaders } from '../../../store/slices/editorsSlice.ts';
 
 const HeadersEditor = () => {

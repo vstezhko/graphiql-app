@@ -1,7 +1,8 @@
 .editor-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 60px;
+  gap: 20px;
+  height: 100%;
 
   &__request-section,
   &__response-section {
@@ -31,40 +32,6 @@
     position: relative;
     height: 100%;
   }
-
-  & .editor-container__run-button {
-    position: absolute;
-    top: 30px;
-    right: -30px;
-    transform: translateX(50%);
-    padding: 0;
-
-    svg {
-      width: 50px;
-      height: 50px;
-    }
-
-    svg:hover {
-      color: $color-additional;
-    }
-
-    &::after {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      background-color: $color-additional;
-      z-index: -1;
-    }
-
-    &:hover::after {
-      background-color: $color-additional-2;
-    }
-  }
 }
 
 .editor-tabs {
@@ -88,6 +55,11 @@
 .editor-tabs__header {
   display: flex;
   justify-content: space-between;
+
+  .editor-tabs__tab-button,
+  .editor-tabs__button {
+    color: $color-border;
+  }
 }
 
 .editor-tabs__tab-panels {

@@ -3,9 +3,9 @@ import { Tabs, Tab, IconButton } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useDispatch, useSelector } from 'react-redux';
-import TabPanel from './TabPanel';
-import VariableEditor from '../variable-editor/VariableEditor.tsx';
-import HeadersEditor from '../headers-editor/HeadersEditor.tsx';
+import TabPanel from './TabPanel.tsx';
+import VariableEditor from '../variableEditor/VariableEditor.tsx';
+import HeadersEditor from '../headersEditor/HeadersEditor.tsx';
 import { RootState } from '../../../store/store.ts';
 import {
   setActiveTab,
@@ -55,9 +55,13 @@ const EditorTabs = () => {
   return (
     <div className={`editor-tabs ${isPanelOpen ? 'editor-tabs_open' : ''}`}>
       <div className="editor-tabs__header">
-        <Tabs value={value} onChange={handleTabChange}>
-          <Tab label="Variables" sx={{ color: '#8c91b6' }} />
-          <Tab label="Headers" sx={{ color: '#8c91b6' }} />
+        <Tabs
+          value={value}
+          onChange={handleTabChange}
+          onClick={handleOpenPanel}
+        >
+          <Tab className="editor-tabs__tab-button" label="Variables" />
+          <Tab className="editor-tabs__tab-button" label="Headers" />
         </Tabs>
         {isPanelOpen ? buttonHide : buttonShow}
       </div>

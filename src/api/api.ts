@@ -4,6 +4,7 @@ export const makeRequest = async (state: RootState) => {
   const queryBody = state.editors.queryBody;
   const variablesString = state.editors.queryVariables;
   const headersString = state.editors.queryHeaders;
+  const endpoint = state.editors.endpoint;
 
   let variables = {};
   if (variablesString) {
@@ -23,16 +24,12 @@ export const makeRequest = async (state: RootState) => {
     }
   }
 
-  return fetch('https://api.github.com/graphql', {
+  return fetch(endpoint, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       ...headers,
     },
     body: JSON.stringify({ query: queryBody, variables }),
-  })
-    .then((res) => res.json())
-    .catch((error) => {
-      console.error('An error occurred while making the request:', error);
-    });
+  }).then((res) => res.json());
 };
