@@ -1,5 +1,7 @@
+import EditorContainer from '../../components/editorComponent/editor-container/EditorContainer.tsx';
+
 const MainPage = () => {
-  return <div>Main Page</div>;
+  return <EditorContainer />;
 };
 
 export default MainPage;

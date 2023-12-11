@@ -2,8 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import EditorContainer from './components/editorComponent/editor-container/EditorContainer.tsx';
-import MainPage from './pages/mainPage/MainPage.tsx';
+
 import App from './App.tsx';
 
 const router = createBrowserRouter([
@@ -16,16 +15,12 @@ const router = createBrowserRouter([
         element: <MainPage />,
       },
       {
-        path: '/editor',
-        element: <EditorContainer />,
-      },
-      {
         path: '/signIn',
-        element: <EditorContainer />,
+        element: <div>sign in</div>,
       },
       {
         path: '/signUp',
-        element: <EditorContainer />,
+        element: <div>sign up</div>,
       },
     ],
   },
@@ -33,6 +28,7 @@ const router = createBrowserRouter([
 import './index.scss';
 import { Provider } from 'react-redux';
 import { store } from './store/store.ts';
+import MainPage from './pages/mainPage/MainPage.tsx';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

@@ -1,9 +1,12 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { useEffect, useRef, useState } from 'react';
+import Localization from '../localizationComponent/Localization.tsx';
 
 const Header = () => {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState(false);
+  const [token, setToken] = useState(true);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,11 +26,33 @@ const Header = () => {
     };
   }, []);
 
+  const handleLogout = () => {
+    navigate('/');
+    setToken(false);
+  };
+
   return (
     <header className={scroll ? 'sticky' : 'header'} ref={headerRef}>
+      <NavLink to={'/'}>Welcome Page</NavLink>
       <NavLink to={'/main'}>Main Page</NavLink>
-      <NavLink to={'/logout'}>Log Out</NavLink>
-      <NavLink to={'/editor'}>GraphQL Editor</NavLink>
+      <div className="links__container">
+        <Localization scroll={scroll} />
+        {!token ? (
+          <button
+            className={scroll ? 'sticky__link' : 'header__link'}
+            onClick={handleLogout}
+          >
+            Log out
+          </button>
+        ) : (
+          <Link
+            className={scroll ? 'sticky__link' : 'header__link'}
+            to={'/signIn'}
+          >
+            Sign In
+          </Link>
+        )}
+      </div>
     </header>
   );
 };

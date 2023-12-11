@@ -1,13 +1,14 @@
 import Header from './components/layout/Header.tsx';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
+import WelcomePage from './pages/welcomPage/WelcomePage.tsx';
 
 function App() {
+  const { pathname } = useLocation();
+
   return (
     <div className="wrapper">
       <Header />
-      <main>
-        <Outlet />
-      </main>
+      <main>{pathname !== '/' ? <Outlet /> : <WelcomePage />}</main>
       <footer className="footer">Footer</footer>
     </div>
   );

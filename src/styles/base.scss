@@ -69,13 +69,14 @@ button {
   transition: border-color 0.25s;
 }
 
-
-footer, header {
+footer,
+header {
   width: 100%;
   background: $color-secondary;
   text-align: center;
   font-size: 2rem;
   display: flex;
+  align-items: center;
   gap: 4rem;
 
   & > a {
@@ -96,6 +97,3 @@ footer, header {
 .MuiTabs-indicator {
   background-color: $color-additional !important;
 }
-
-
-
