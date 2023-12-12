@@ -1,0 +1,76 @@
+.doc-section {
+  background-color: $color-primary;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 425px;
+  z-index: 1;
+  border-right: 10px solid $color-button;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 3rem 0;
+
+  &__line {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: $color-border;
+  }
+
+  &__description {
+    color: $color-font;
+  }
+
+
+  &__title {
+    padding: 2rem;
+
+  }
+
+
+  &__list {
+    width: 100%;
+    height: 100%;
+    font-size: 1.6rem;
+    color: $color-additional;
+    overflow-y: auto;
+
+  }
+
+  &__item {
+    font-size: 1.8rem;
+    color: $color-button;
+    cursor: pointer;
+    padding: 1.2rem 2rem;
+    text-align: left;
+    transition: all 0.3s;
+
+
+    & > span {
+      color: $color-border;
+      margin-left: 1rem;
+    }
+
+    &:hover {
+      background-color: #075591;
+    }
+  }
+
+  &_close {
+    transform: translateX(-415px);
+  }
+
+
+  &__btn {
+    position: absolute;
+    background-color: $color-button;
+    transform: rotate(-90deg) translateX(-30%);
+    left: 96%;
+    top: 30%;
+    text-transform: uppercase;
+  }
+}

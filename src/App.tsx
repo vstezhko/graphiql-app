@@ -9,7 +9,11 @@ function App() {
   return (
     <div className="wrapper">
       <Header />
-      <main>{pathname !== '/' ? <Outlet /> : <WelcomePage />}</main>
+      <main>
+        <div className="container">
+          {pathname !== '/' ? <Outlet /> : <WelcomePage />}
+        </div>
+      </main>
       <Footer />
     </div>
   );

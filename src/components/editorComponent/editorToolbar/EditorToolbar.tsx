@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { AppDispatch, RootState } from '../../store/store';
+import { AppDispatch, RootState } from '../../../store/store.ts';
 import { ChangeEvent, useEffect } from 'react';
-import { setEndpoint, setError } from '../../store/slices/editorsSlice';
+import { setEndpoint, setError } from '../../../store/slices/editorsSlice.ts';
 import { IconButton } from '@mui/material';
-import { fetchData, getSchema } from '../../store/slices/graphQLThunk';
+import { fetchData, getSchema } from '../../../store/slices/graphQLThunk.ts';
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 
 const EditorToolbar = () => {
