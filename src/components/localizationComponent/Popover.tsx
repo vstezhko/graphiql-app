@@ -7,25 +7,27 @@ import {
   Button,
   Popover,
 } from '@mui/material';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
+import { LanguageContext, LanguageKeys } from '../../context/LanguageContext';
 
 interface Props {
-  selectedLang: string;
-  setSelectedLang: (lang: string) => void;
   scroll: boolean;
 }
 
-const langArray = [
-  { id: 1, name: 'English', abbr: 'en' },
-  { id: 2, name: 'Russian', abbr: 'ru' },
-];
+type LangArrayObject = {
+  id: string;
+  name: string;
+  abbr: string;
+};
 
-export default function LocalizationPopover({
-  selectedLang,
-  setSelectedLang,
-  scroll,
-}: Props) {
+export default function LocalizationPopover({ scroll }: Props) {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+  const { dictionary, language, setLanguage } = useContext(LanguageContext);
+
+  const langArray: LangArrayObject[] = [
+    { id: 'en', name: dictionary.english, abbr: dictionary.en },
+    { id: 'ru', name: dictionary.russian, abbr: dictionary.ru },
+  ];
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -35,8 +37,8 @@ export default function LocalizationPopover({
     setAnchorEl(null);
   };
 
-  const handleListItemClick = (lang: string) => {
-    setSelectedLang(lang);
+  const handleListItemClick = (lang: LanguageKeys) => {
+    setLanguage(lang);
     handleClose();
   };
 
@@ -50,7 +52,7 @@ export default function LocalizationPopover({
         onClick={handleClick}
         className="language__button"
       >
-        {selectedLang}
+        {langArray.find(({ id }) => id === language)?.abbr}
       </Button>
       <Popover
         disableScrollLock
@@ -69,12 +71,12 @@ export default function LocalizationPopover({
         }}
       >
         <MenuList>
-          {langArray.map(({ id, name, abbr }) => (
+          {langArray.map(({ id, name }) => (
             <MenuItem key={id}>
               <ListItemButton
                 disableRipple
-                selected={selectedLang === abbr}
-                onClick={() => handleListItemClick(abbr)}
+                selected={language === id}
+                onClick={() => handleListItemClick(id as LanguageKeys)}
               >
                 <ListItemText primary={name} />
               </ListItemButton>

@@ -1,20 +1,25 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { LanguageContext } from '../../context/LanguageContext';
 
 const Footer = () => {
+  const { dictionary } = useContext(LanguageContext);
   return (
     <footer className="footer">
       <div className="footer__links">
         <div className="link">
           <img src="./../../../public/github-mark.svg" alt="github" />
-          <Link to="https://github.com/vstezhko">Vika</Link>
+          <Link to="https://github.com/vstezhko">{dictionary.vika}</Link>
         </div>
         <div className="link">
           <img src="./../../../public/github-mark.svg" alt="github" />
-          <Link to="https://github.com/BiarezKseniya">Kseniya</Link>
+          <Link to="https://github.com/BiarezKseniya">
+            {dictionary.kseniya}
+          </Link>
         </div>
         <div className="link">
           <img src="./../../../public/github-mark.svg" alt="github" />
-          <Link to="https://github.com/khaleeva">Jenya</Link>
+          <Link to="https://github.com/khaleeva">{dictionary.jenya}</Link>
         </div>
       </div>
       <Link to="https://rs.school/react/">

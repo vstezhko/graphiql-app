@@ -1,0 +1,19 @@
+{
+  "welcomePage": "Welcome page",
+  "mainPage": "Main page",
+  "en": "en",
+  "ru": "ru",
+  "english": "English",
+  "russian": "Russian",
+  "signIn": "Sign In",
+  "signUp": "Sign Up",
+  "logOut": "Log Out",
+  "enterEndpoint": "Enter a GraphQL endpoint",
+  "enterQuery": "Please enter a query",
+  "endpointError": "The endpoint cannot be reached",
+  "variables": "Variables",
+  "headers": "Headers",
+  "vika": "Vika",
+  "kseniya": "Kseniya",
+  "jenya": "Jenya"
+}
