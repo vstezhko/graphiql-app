@@ -33,6 +33,7 @@ const Localization = ({ scroll }: { scroll: boolean }) => {
   };
 
   const handleListItemClick = (lang: LanguageKeys) => {
+    localStorage.setItem('lang', lang);
     setLanguage(lang);
     handleClose();
   };
