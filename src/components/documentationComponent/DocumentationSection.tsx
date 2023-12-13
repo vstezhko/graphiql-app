@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store.ts';
 import TypesList from './TypesList.tsx';
+import { Button } from '@mui/material';
 
 export interface Type {
   kind: string;
@@ -94,9 +95,9 @@ const DocumentationSection = () => {
     <div className={isOpen ? 'doc-section' : 'doc-section doc-section_close'}>
       {selectedType && rootQuery ? (
         <>
-          <button className="doc-section__back-btn" onClick={handleBackClick}>
+          <Button className="doc-section__back-btn" onClick={handleBackClick}>
             Back
-          </button>
+          </Button>
           <TypesList
             list={selectedType}
             handleTypeClick={handleTypeClick}
@@ -106,30 +107,40 @@ const DocumentationSection = () => {
         </>
       ) : (
         <div className="doc-section__list">
-          <h3>Root Type</h3>
           {rootQuery && (
-            <div
-              className="doc-section__item"
-              onClick={() => handleTypeClick(rootQuery)}
-            >
-              {rootQuery?.name}
-            </div>
+            <>
+              <h3>Root Type</h3>
+              <div
+                className="doc-section__item"
+                onClick={() => handleTypeClick(rootQuery)}
+              >
+                {rootQuery?.name}
+              </div>
+            </>
           )}
-          <h3>All Schema Types</h3>
+
           {allSchemaTypes?.map((type) => (
-            <div
-              className="doc-section__item"
-              key={type.name}
-              onClick={() => handleTypeClick(type)}
-            >
-              {type.name}
-            </div>
+            <>
+              <h3>All Schema Types</h3>
+              <div
+                className="doc-section__item"
+                key={type.name}
+                onClick={() => handleTypeClick(type)}
+              >
+                {type.name}
+              </div>
+            </>
           ))}
         </div>
       )}
-      <button className="doc-section__btn" onClick={handleCloseOpenSection}>
+
+      <Button
+        className="doc-section__btn"
+        onClick={handleCloseOpenSection}
+        disabled={!doc}
+      >
         Schema
-      </button>
+      </Button>
     </div>
   );
 };

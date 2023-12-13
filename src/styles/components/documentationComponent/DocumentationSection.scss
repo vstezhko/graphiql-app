@@ -16,16 +16,16 @@
 
   &__back-btn {
     background-color: transparent;
-    border: 1px solid $color-additional;
-    color: $color-additional;
+    border: 1px solid $color-additional !important;
+    color: $color-additional !important;
     align-self: flex-end;
-    margin-right: 4rem;
+    margin-right: 4rem !important;
     transition: all 0.3s;
 
 
     &:hover {
-      background-color: $color-additional;
-      color: $color-primary;
+      background-color: $color-additional !important;
+      color: $color-primary !important;
     }
   }
 
@@ -105,11 +105,16 @@
 
 
   &__btn {
-    position: absolute;
-    background-color: $color-button;
+    position: absolute !important;
+    background-color: $color-button !important;
     transform: rotate(-90deg) translateX(-30%);
-    left: 96%;
-    top: 30%;
-    text-transform: uppercase;
+    left: 97% !important;
+    top: 30% !important;
+    color: $color-font !important;
+
+  }
+
+  .Mui-disabled{
+    color: #565156 !important;
   }
 }
