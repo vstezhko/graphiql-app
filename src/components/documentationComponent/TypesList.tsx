@@ -1,32 +1,72 @@
 import { findFirstNonNullName } from '../../helpers/findFirstNonNullName.ts';
-import { Documentation, Field } from './DocumentationSection.tsx';
+import { Documentation, Field, Type } from './DocumentationSection.tsx';
+import { useEffect, useState } from 'react';
 
 interface TypesListProps {
   list: Documentation;
-  title?: string;
   handleTypeClick: (type: Documentation) => void;
   schema: Documentation[];
+  root: Documentation;
 }
 
 const TypesList: React.FC<TypesListProps> = ({
   list,
-  title,
   schema,
   handleTypeClick,
+  root,
 }) => {
   const renderList = list?.fields || list?.inputFields;
+
+  const [argumentData, setArgumentData] = useState<{
+    type: string;
+    args: Field[];
+  }>({ type: '', args: [] });
+
+  useEffect(() => {
+    const gatheredArgs =
+      root?.fields?.map((field) => ({
+        type: field?.type?.name || findFirstNonNullName(field?.type) || '',
+        args: field.args || [],
+      })) || [];
+
+    const arg = gatheredArgs.find((data) => data.type === list?.name);
+    if (arg) {
+      setArgumentData(arg);
+    } else setArgumentData({ type: '', args: [] });
+  }, [list?.name]);
+
+  const findSchemaType = (name: string | null, type: Type) => {
+    return schema.find(
+      (l) => l.name === name || l.name === findFirstNonNullName(type)
+    ) as Documentation;
+  };
+
   return (
     <div className="doc-section__list">
-      <p className="doc-section__title">
-        {title} {title !== 'QUERY' && list?.name}
-      </p>
+      {argumentData && argumentData?.args?.length > 0 && (
+        <>
+          <span className="doc-section__line" />
+          <div className="doc-section__args">
+            <h4>Arguments</h4>
+            {argumentData.args.map((arg) => {
+              const res = findSchemaType(arg?.type?.name, arg.type);
+
+              return (
+                <p
+                  className="doc-section__item"
+                  onClick={() => handleTypeClick(res)}
+                  key={arg.name}
+                >{`{ ${arg.name} : ${findFirstNonNullName(arg?.type)} }`}</p>
+              );
+            })}
+          </div>
+          <span className="doc-section__line" />
+        </>
+      )}
+      <p className="doc-section__title">{list?.name}</p>
       <p className="doc-section__description-item">{list?.description}</p>
       {renderList?.map((field: Field) => {
-        const res = schema.find(
-          (l) =>
-            l.name === field?.type?.name ||
-            l.name === findFirstNonNullName(field?.type)
-        ) as Documentation;
+        const res = findSchemaType(field?.type?.name, field?.type);
 
         return (
           <div

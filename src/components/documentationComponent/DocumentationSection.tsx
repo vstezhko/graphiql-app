@@ -10,7 +10,7 @@ export interface Type {
 }
 
 export interface Field {
-  args?: Field[] | null;
+  args: Field[] | null;
   defaultValue: string | null;
   description: string | null;
   name: string | null;
@@ -74,8 +74,6 @@ const DocumentationSection = () => {
     setAllSchemaTypes(allTypes);
   }, [schema, doc]);
 
-  console.log(allSchemaTypes);
-
   const handleCloseOpenSection = () => {
     setIsOpen(!isOpen);
   };
@@ -94,13 +92,16 @@ const DocumentationSection = () => {
 
   return (
     <div className={isOpen ? 'doc-section' : 'doc-section doc-section_close'}>
-      {selectedType ? (
+      {selectedType && rootQuery ? (
         <>
-          <button onClick={handleBackClick}>Back</button>
+          <button className="doc-section__back-btn" onClick={handleBackClick}>
+            Back
+          </button>
           <TypesList
             list={selectedType}
             handleTypeClick={handleTypeClick}
             schema={schema}
+            root={rootQuery}
           />
         </>
       ) : (

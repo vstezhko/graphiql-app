@@ -14,11 +14,39 @@
   align-items: flex-start;
   padding: 1rem 0 3rem;
 
+  &__back-btn {
+    background-color: transparent;
+    border: 1px solid $color-additional;
+    color: $color-additional;
+    align-self: flex-end;
+    margin-right: 4rem;
+    transition: all 0.3s;
+
+
+    &:hover {
+      background-color: $color-additional;
+      color: $color-primary;
+    }
+  }
+
   &__line {
     display: block;
     width: 100%;
     height: 1px;
     background-color: $color-border;
+    margin: 2rem 0;
+  }
+
+  &__args {
+    display: flex;
+    flex-direction: column;
+    color: $color-border;
+
+    & > h4 {
+      padding-left: 20px;
+      color: $color-additional;
+      margin-bottom: 1rem;
+    }
   }
 
   &__description {
@@ -28,6 +56,7 @@
 
   &__title {
     padding: 2rem 2rem 0;
+    margin-bottom: 1rem;
   }
 
 
