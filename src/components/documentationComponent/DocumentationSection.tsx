@@ -38,12 +38,16 @@ const DocumentationSection = () => {
     subscriptionType: null,
   });
 
+  const [allSchemaTypes, setAllSchemaTypes] = useState<
+    Documentation[] | undefined
+  >(undefined);
+
   const [rootQuery, setRootQuery] = useState<Documentation | undefined>(
     undefined
   );
-  const [queryTypes, setQueryTypes] = useState<
-    Record<string, Documentation | undefined>
-  >({ query: undefined, type: undefined, scalar: undefined });
+  const [selectedType, setSelectedType] = useState<Documentation | null>(null);
+
+  const [history, setHistory] = useState<Documentation[]>([]);
 
   useEffect(() => {
     if (doc) {
@@ -62,61 +66,65 @@ const DocumentationSection = () => {
     const root = schema?.find(
       (s: Documentation) => s.name === schemaTypes.queryType
     );
+    const allTypes = schema?.filter(
+      (s: Documentation) =>
+        s.name !== schemaTypes.queryType && !s.name.startsWith('_')
+    );
     setRootQuery(root);
+    setAllSchemaTypes(allTypes);
   }, [schema, doc]);
+
+  console.log(allSchemaTypes);
 
   const handleCloseOpenSection = () => {
     setIsOpen(!isOpen);
   };
 
-  const getTypes = (type: string | null, level: string) => {
-    const dataType = schema?.find((s: Documentation) => s.name === type) as
-      | Documentation
-      | undefined;
-    level === 'query' &&
-      setQueryTypes((prev) => ({ ...prev, query: dataType }));
-    level === 'types' &&
-      setQueryTypes((prev) => ({ ...prev, types: dataType }));
-    level === 'scalar' &&
-      setQueryTypes((prev) => ({ ...prev, scalar: dataType }));
+  const handleTypeClick = (type: Documentation) => {
+    setHistory([...history, type]);
+    setSelectedType(type);
+  };
+
+  const handleBackClick = () => {
+    const newHistory = [...history];
+    newHistory.pop();
+    setHistory(newHistory);
+    setSelectedType(newHistory[newHistory.length - 1] || null);
   };
 
   return (
     <div className={isOpen ? 'doc-section' : 'doc-section doc-section_close'}>
-      {rootQuery && (
-        <TypesList
-          list={rootQuery}
-          getTypes={getTypes}
-          level="query"
-          title="QUERY"
-        />
-      )}
-      <span className="doc-section__line" />
-      {queryTypes.query && (
-        <TypesList
-          list={queryTypes.query}
-          getTypes={getTypes}
-          level="types"
-          title="TYPE DETAILS"
-        />
-      )}
-      <span className="doc-section__line" />
-      {queryTypes.types && (
-        <TypesList
-          list={queryTypes.types}
-          getTypes={getTypes}
-          title="TYPE DETAILS"
-          level="scalar"
-        />
-      )}
-      <span className="doc-section__line" />
-      {queryTypes.scalar && (
-        <TypesList
-          list={queryTypes.scalar}
-          getTypes={getTypes}
-          title="TYPE DETAILS"
-          level="scalar"
-        />
+      {selectedType ? (
+        <>
+          <button onClick={handleBackClick}>Back</button>
+          <TypesList
+            list={selectedType}
+            handleTypeClick={handleTypeClick}
+            schema={schema}
+          />
+        </>
+      ) : (
+        <div className="doc-section__list">
+          <h3>Root Type</h3>
+          {rootQuery && (
+            <div
+              className="doc-section__item"
+              onClick={() => handleTypeClick(rootQuery)}
+            >
+              {rootQuery?.name}
+            </div>
+          )}
+          <h3>All Schema Types</h3>
+          {allSchemaTypes?.map((type) => (
+            <div
+              className="doc-section__item"
+              key={type.name}
+              onClick={() => handleTypeClick(type)}
+            >
+              {type.name}
+            </div>
+          ))}
+        </div>
       )}
       <button className="doc-section__btn" onClick={handleCloseOpenSection}>
         Schema
