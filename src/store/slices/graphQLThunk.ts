@@ -6,10 +6,6 @@ export const fetchData = createAsyncThunk(
   'editors/fetchData',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState() as RootState;
-    try {
-      return JSON.stringify(await makeRequest(state), null, 2);
-    } catch (error) {
-      throw error;
-    }
+    return JSON.stringify(await makeRequest(state), null, 2);
   }
 );

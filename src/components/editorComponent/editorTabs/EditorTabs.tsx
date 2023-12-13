@@ -1,4 +1,4 @@
-import { SyntheticEvent } from 'react';
+import { SyntheticEvent, useContext } from 'react';
 import { Tabs, Tab, IconButton } from '@mui/material';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
@@ -11,6 +11,7 @@ import {
   setActiveTab,
   setIsPanelOpen,
 } from '../../../store/slices/editorsSlice.ts';
+import { LanguageContext } from '../../../context/LanguageContext.tsx';
 
 const EditorTabs = () => {
   const dispatch = useDispatch();
@@ -18,6 +19,7 @@ const EditorTabs = () => {
   const isPanelOpen = useSelector(
     (state: RootState) => state.editors.isPanelOpen
   );
+  const { dictionary } = useContext(LanguageContext);
 
   const handleTabChange = (_: SyntheticEvent, newValue: number) => {
     dispatch(setIsPanelOpen(true));
@@ -60,8 +62,11 @@ const EditorTabs = () => {
           onChange={handleTabChange}
           onClick={handleOpenPanel}
         >
-          <Tab className="editor-tabs__tab-button" label="Variables" />
-          <Tab className="editor-tabs__tab-button" label="Headers" />
+          <Tab
+            className="editor-tabs__tab-button"
+            label={dictionary.variables}
+          />
+          <Tab className="editor-tabs__tab-button" label={dictionary.headers} />
         </Tabs>
         {isPanelOpen ? buttonHide : buttonShow}
       </div>

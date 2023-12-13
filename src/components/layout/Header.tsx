@@ -1,12 +1,14 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import Localization from '../localizationComponent/Localization.tsx';
+import { LanguageContext } from '../../context/LanguageContext.tsx';
 
 const Header = () => {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState(false);
   const [token, setToken] = useState(true);
   const navigate = useNavigate();
+  const { dictionary } = useContext(LanguageContext);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,8 +35,8 @@ const Header = () => {
 
   return (
     <header className={scroll ? 'sticky' : 'header'} ref={headerRef}>
-      <NavLink to={'/'}>Welcome Page</NavLink>
-      <NavLink to={'/main'}>Main Page</NavLink>
+      <NavLink to={'/'}>{dictionary.welcomePage}</NavLink>
+      <NavLink to={'/main'}>{dictionary.mainPage}</NavLink>
       <div className="links__container">
         <Localization scroll={scroll} />
         {!token ? (
@@ -42,14 +44,14 @@ const Header = () => {
             className={scroll ? 'sticky__link' : 'header__link'}
             onClick={handleLogout}
           >
-            Log out
+            {dictionary.logOut}
           </button>
         ) : (
           <Link
             className={scroll ? 'sticky__link' : 'header__link'}
             to={'/signIn'}
           >
-            Sign In
+            {dictionary.signIn}
           </Link>
         )}
       </div>
