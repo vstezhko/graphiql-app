@@ -63,6 +63,8 @@ const DocumentationSection = () => {
     }
   }, [doc]);
 
+  console.log(schema);
+
   useEffect(() => {
     const root = schema?.find(
       (s: Documentation) => s.name === schemaTypes.queryType
@@ -118,26 +120,27 @@ const DocumentationSection = () => {
               </div>
             </>
           )}
-
-          {allSchemaTypes?.map((type) => (
+          {allSchemaTypes && (
             <>
               <h3>All Schema Types</h3>
-              <div
-                className="doc-section__item"
-                key={type.name}
-                onClick={() => handleTypeClick(type)}
-              >
-                {type.name}
-              </div>
+              {allSchemaTypes?.map((type) => (
+                <div
+                  className="doc-section__item"
+                  key={type.name}
+                  onClick={() => handleTypeClick(type)}
+                >
+                  {type.name}
+                </div>
+              ))}
             </>
-          ))}
+          )}
         </div>
       )}
 
       <Button
         className="doc-section__btn"
         onClick={handleCloseOpenSection}
-        disabled={!doc}
+        disabled={!schema}
       >
         Schema
       </Button>

@@ -13,6 +13,9 @@ const EditorToolbar = () => {
   );
   const error = useSelector((state: RootState) => state.editors.error);
   const queryBody = useSelector((state: RootState) => state.editors.queryBody);
+  const queryHeaders = useSelector(
+    (state: RootState) => state.editors.queryHeaders
+  );
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(setEndpoint(event.target.value));
@@ -26,7 +29,7 @@ const EditorToolbar = () => {
 
   useEffect(() => {
     endpointValue && dispatch(getSchema());
-  }, [endpointValue]);
+  }, [endpointValue, queryHeaders]);
 
   return (
     <div className="editor-toolbar">
