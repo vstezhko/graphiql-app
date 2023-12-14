@@ -140,7 +140,7 @@ const DocumentationSection = () => {
       <Button
         className="doc-section__btn"
         onClick={handleCloseOpenSection}
-        disabled={!schema}
+        disabled={schema.length === 0}
       >
         Schema
       </Button>
