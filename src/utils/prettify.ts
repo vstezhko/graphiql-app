@@ -104,3 +104,8 @@ export function parseBlock(block: string) {
 
   return formattedQuery;
 }
+
+export function formatJSON(json: string) {
+  console.log(JSON.stringify(JSON.parse(json), null, 2));
+  return JSON.stringify(JSON.parse(json), null, 2);
+}

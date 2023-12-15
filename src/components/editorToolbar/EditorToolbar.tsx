@@ -5,12 +5,14 @@ import {
   setEndpoint,
   setError,
   setQueryBody,
+  setQueryHeaders,
+  setQueryVariables,
 } from '../../store/slices/editorsSlice';
 import { Button, IconButton } from '@mui/material';
 import { fetchData } from '../../store/slices/graphQLThunk';
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 import { LanguageContext } from '../../context/LanguageContext';
-import { formatGraphQL } from '../../utils/prettifyGraphQL';
+import { formatGraphQL, formatJSON } from '../../utils/prettify';
 
 const EditorToolbar = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -19,6 +21,12 @@ const EditorToolbar = () => {
   );
   const error = useSelector((state: RootState) => state.editors.error);
   const queryBody = useSelector((state: RootState) => state.editors.queryBody);
+  const queryVariables = useSelector(
+    (state: RootState) => state.editors.queryVariables
+  );
+  const queryHeaders = useSelector(
+    (state: RootState) => state.editors.queryHeaders
+  );
   const { dictionary } = useContext(LanguageContext);
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(setEndpoint(event.target.value));
@@ -30,6 +38,8 @@ const EditorToolbar = () => {
 
   const handlePrettify = () => {
     dispatch(setQueryBody(formatGraphQL(queryBody)));
+    if (queryVariables) dispatch(setQueryVariables(formatJSON(queryVariables)));
+    if (queryHeaders) dispatch(setQueryHeaders(formatJSON(queryHeaders)));
   };
 
   return (
