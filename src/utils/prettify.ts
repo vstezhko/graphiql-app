@@ -67,20 +67,30 @@ export function parseBlock(block: string) {
     .replace(/\(\s+/g, '(')
     .replace(/\s+\)/g, ')')
     .replace(/\s+:/g, ':')
+    .replace(/\s+,/g, ',')
+    .replace(/,\s+/g, ',')
     .trim();
   let formattedQuery = '';
   let indentationLevel = 0;
   let isParam = false;
+  console.log(trimmedBlock);
 
   for (let i = 0; i < trimmedBlock.length; i++) {
     const char = trimmedBlock[i];
 
     if (char === '{') {
-      formattedQuery += char + '\n' + '  '.repeat(++indentationLevel);
+      if (trimmedBlock[i + 1] === '}') {
+        formattedQuery += char + trimmedBlock[i + 1];
+        i++;
+      } else {
+        formattedQuery += char + '\n' + '  '.repeat(++indentationLevel);
+      }
     } else if (char === '}') {
       formattedQuery += '\n' + '  '.repeat(--indentationLevel) + char;
-    } else if (char === ',' && !isParam) {
-      formattedQuery += char + '\n' + '  '.repeat(indentationLevel);
+    } else if (char === ',') {
+      isParam
+        ? (formattedQuery += char + ' ')
+        : (formattedQuery += '\n' + '  '.repeat(indentationLevel));
     } else if (char === '=') {
       if (!formattedQuery.endsWith(' ')) {
         formattedQuery += ' ';
@@ -99,15 +109,16 @@ export function parseBlock(block: string) {
       indentationLevel !== 0 &&
       trimmedBlock[i + 1] !== '{' &&
       trimmedBlock[i - 1] !== ':' &&
-      trimmedBlock[i + 1] !== '@' &&
-      trimmedBlock[i - 1] !== ','
+      trimmedBlock[i + 1] !== '@'
     ) {
       formattedQuery += '\n' + '  '.repeat(indentationLevel);
+    } else if (char === ')') {
+      isParam = false;
+      formattedQuery += char;
+      if (trimmedBlock[i + 1] !== ' ') formattedQuery += ' ';
     } else {
       if (char === '(') {
         isParam = true;
-      } else if (char === ')') {
-        isParam = false;
       }
       formattedQuery += char;
     }
