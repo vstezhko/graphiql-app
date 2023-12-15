@@ -1,4 +1,15 @@
 export function formatGraphQL(queryBody: string) {
+  const openBraces = (queryBody.match(/{/g) || []).length;
+  const closeBraces = (queryBody.match(/}/g) || []).length;
+
+  if (openBraces !== closeBraces) {
+    throw new Error('syntax');
+  }
+
+  if (openBraces === 0) {
+    throw new Error('noQuery');
+  }
+
   const blocks = [];
   let currentBlock = '';
   let indentationLevel = 0;

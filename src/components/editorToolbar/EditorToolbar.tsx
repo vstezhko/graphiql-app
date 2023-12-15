@@ -11,7 +11,7 @@ import {
 import { Button, IconButton } from '@mui/material';
 import { fetchData } from '../../store/slices/graphQLThunk';
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
-import { LanguageContext } from '../../context/LanguageContext';
+import { DictionaryKey, LanguageContext } from '../../context/LanguageContext';
 import { formatGraphQL, formatJSON } from '../../utils/prettify';
 
 const EditorToolbar = () => {
@@ -37,7 +37,14 @@ const EditorToolbar = () => {
   };
 
   const handlePrettify = () => {
-    dispatch(setQueryBody(formatGraphQL(queryBody)));
+    dispatch(setError(null));
+    try {
+      dispatch(setQueryBody(formatGraphQL(queryBody)));
+    } catch (error) {
+      if (error instanceof Error) {
+        dispatch(setError(error.message as DictionaryKey));
+      }
+    }
     if (queryVariables) dispatch(setQueryVariables(formatJSON(queryVariables)));
     if (queryHeaders) dispatch(setQueryHeaders(formatJSON(queryHeaders)));
   };
