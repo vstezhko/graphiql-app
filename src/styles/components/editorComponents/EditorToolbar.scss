@@ -46,6 +46,11 @@
       background-color: $color-additional-2;
     }
   }
+
+  & .editor-toolbar__prettify-button {
+    background-color: $color-button;
+    color: white;
+  }
 }
 
 .editor-toolbar__input {

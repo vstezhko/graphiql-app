@@ -1,0 +1,106 @@
+export function formatGraphQL(queryBody: string) {
+  const blocks = [];
+  let currentBlock = '';
+  let indentationLevel = 0;
+  let inComment = false;
+
+  for (let i = 0; i < queryBody.length; i++) {
+    const char = queryBody[i];
+
+    if (char === '#') {
+      inComment = true;
+    }
+
+    if (inComment) {
+      currentBlock += char;
+      if (char === '\n') {
+        blocks.push(currentBlock);
+        currentBlock = '';
+        inComment = false;
+      }
+    } else {
+      currentBlock += char;
+      if (char === '{') {
+        indentationLevel++;
+      } else if (char === '}') {
+        indentationLevel--;
+        if (indentationLevel === 0) {
+          blocks.push(currentBlock);
+          currentBlock = '';
+        }
+      }
+    }
+  }
+
+  let formattedQuery = '';
+  console.log(blocks);
+  for (const block of blocks) {
+    debugger;
+    formattedQuery += parseBlock(block) + '\n';
+  }
+
+  if (formattedQuery.endsWith('\n')) {
+    formattedQuery = formattedQuery.slice(0, -1);
+  }
+
+  return formattedQuery;
+}
+
+export function parseBlock(block: string) {
+  const trimmedBlock = block
+    .replace(/\s+/g, ' ')
+    .replace(/^\s*$[\n\r]{1,}/gm, '')
+    .replace(/{\s+/g, '{')
+    .replace(/\s+}/g, '}')
+    .replace(/\s+\(/g, '(')
+    .replace(/\(\s+/g, '(')
+    .replace(/\s+\)/g, ')')
+    .replace(/\s+:/g, ':')
+    .trim();
+  let formattedQuery = '';
+  let indentationLevel = 0;
+  let isParam = false;
+
+  for (let i = 0; i < trimmedBlock.length; i++) {
+    const char = trimmedBlock[i];
+
+    if (char === '{') {
+      formattedQuery += char + '\n' + '  '.repeat(++indentationLevel);
+    } else if (char === '}') {
+      formattedQuery += '\n' + '  '.repeat(--indentationLevel) + char;
+    } else if (char === ',' && !isParam) {
+      formattedQuery += char + '\n' + '  '.repeat(indentationLevel);
+    } else if (char === '=') {
+      if (!formattedQuery.endsWith(' ')) {
+        formattedQuery += ' ';
+      }
+      formattedQuery += char;
+      if (i + 1 < trimmedBlock.length && trimmedBlock[i + 1] !== ' ') {
+        formattedQuery += ' ';
+      }
+    } else if (char === ':') {
+      formattedQuery += char;
+      if (i + 1 < trimmedBlock.length && trimmedBlock[i + 1] !== ' ') {
+        formattedQuery += ' ';
+      }
+    } else if (
+      char === ' ' &&
+      indentationLevel !== 0 &&
+      trimmedBlock[i + 1] !== '{' &&
+      trimmedBlock[i - 1] !== ':' &&
+      trimmedBlock[i + 1] !== '@' &&
+      trimmedBlock[i - 1] !== ','
+    ) {
+      formattedQuery += '\n' + '  '.repeat(indentationLevel);
+    } else {
+      if (char === '(') {
+        isParam = true;
+      } else if (char === ')') {
+        isParam = false;
+      }
+      formattedQuery += char;
+    }
+  }
+
+  return formattedQuery;
+}

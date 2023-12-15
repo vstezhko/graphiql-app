@@ -1,11 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
 import { ChangeEvent, useContext } from 'react';
-import { setEndpoint, setError } from '../../store/slices/editorsSlice';
-import { IconButton } from '@mui/material';
+import {
+  setEndpoint,
+  setError,
+  setQueryBody,
+} from '../../store/slices/editorsSlice';
+import { Button, IconButton } from '@mui/material';
 import { fetchData } from '../../store/slices/graphQLThunk';
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 import { LanguageContext } from '../../context/LanguageContext';
+import { formatGraphQL } from '../../utils/prettifyGraphQL';
 
 const EditorToolbar = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -21,6 +26,10 @@ const EditorToolbar = () => {
 
   const handleRun = () => {
     queryBody ? dispatch(fetchData()) : dispatch(setError('enterQuery'));
+  };
+
+  const handlePrettify = () => {
+    dispatch(setQueryBody(formatGraphQL(queryBody)));
   };
 
   return (
@@ -41,6 +50,15 @@ const EditorToolbar = () => {
         >
           <PlayCircleFilledWhiteIcon />
         </IconButton>
+        <Button
+          className="editor-toolbar__prettify-button"
+          size="large"
+          aria-label="prettify-request"
+          onClick={handlePrettify}
+          disabled={!queryBody}
+        >
+          {dictionary.prettify}
+        </Button>
       </div>
       {error && <p className="editor-toolbar__error">{dictionary[error]}</p>}
     </div>
