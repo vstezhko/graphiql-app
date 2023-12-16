@@ -1,11 +1,16 @@
-import {Link, NavLink, useNavigate} from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
-import Localization from "../localizationComponent/Localization.tsx";
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { FC, useEffect, useRef, useState } from 'react';
+import Localization from '../localizationComponent/Localization.tsx';
+import { logout } from '../../firebase/firebase.ts';
 
-const Header = () => {
+interface HeaderParams {
+  isLoggedIn: boolean;
+  isLoggedStateLoading: boolean;
+}
+
+const Header: FC<HeaderParams> = ({ isLoggedIn, isLoggedStateLoading }) => {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState(false);
-  const [token, setToken] = useState(true);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -27,17 +32,21 @@ const Header = () => {
   }, []);
 
   const handleLogout = () => {
+    logout();
     navigate('/');
-    setToken(false);
+    // setToken(false);
   };
 
+  //todo replace loading to component
   return (
     <header className={scroll ? 'sticky' : 'header'} ref={headerRef}>
       <NavLink to={'/'}>Welcome Page</NavLink>
       <NavLink to={'/main'}>Main Page</NavLink>
       <div className="links__container">
         <Localization scroll={scroll} />
-        {!token ? (
+        {isLoggedStateLoading ? (
+          'loading'
+        ) : isLoggedIn ? (
           <button
             className={scroll ? 'sticky__link' : 'header__link'}
             onClick={handleLogout}
@@ -45,12 +54,20 @@ const Header = () => {
             Log out
           </button>
         ) : (
-          <Link
-            className={scroll ? 'sticky__link' : 'header__link'}
-            to={'/signIn'}
-          >
-            Sign In
-          </Link>
+          <>
+            <Link
+              className={scroll ? 'sticky__link' : 'header__link'}
+              to={'/signIn'}
+            >
+              Sign In
+            </Link>
+            <Link
+              className={scroll ? 'sticky__link' : 'header__link'}
+              to={'/signUp'}
+            >
+              Sign Up
+            </Link>
+          </>
         )}
       </div>
     </header>

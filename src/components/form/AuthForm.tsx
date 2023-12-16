@@ -4,6 +4,7 @@ import TextInput from '../inputs/TextInput.tsx';
 import { FormFields, validationSchema } from '../../utils/validationSchema.ts';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FC } from 'react';
+import AuthServerErrorMessage from '../AuthServerErrorMessage.tsx';
 
 export interface SignInValues {
   email: string;
@@ -17,9 +18,10 @@ export interface SignUpValues extends SignInValues {
 export interface AuthFormParams {
   type: 'signIn' | 'signUp';
   onFormSubmit: (data: SignInValues | SignUpValues) => void;
+  serverError?: string | undefined;
 }
 
-const AuthForm: FC<AuthFormParams> = ({ type, onFormSubmit }) => {
+const AuthForm: FC<AuthFormParams> = ({ type, onFormSubmit, serverError }) => {
   const validationResolver =
     type === 'signIn' ? validationSchema.signIn : validationSchema.signUp;
 
@@ -34,7 +36,6 @@ const AuthForm: FC<AuthFormParams> = ({ type, onFormSubmit }) => {
   } = methods;
 
   const onSubmit = async (data: SignInValues | SignUpValues) => {
-    console.log(data);
     onFormSubmit(data);
   };
 
@@ -73,6 +74,7 @@ const AuthForm: FC<AuthFormParams> = ({ type, onFormSubmit }) => {
         <Button variant="outlined" type="submit" disabled={!isValid}>
           Submit
         </Button>
+        {serverError && <AuthServerErrorMessage message={serverError} />}
       </form>
     </FormProvider>
   );
