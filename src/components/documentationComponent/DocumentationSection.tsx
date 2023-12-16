@@ -63,6 +63,8 @@ const DocumentationSection = () => {
         subscriptionType:
           JSON.parse(doc).data?.__schema?.subscriptionType?.name || null,
       });
+    } else {
+      setSchema([]);
     }
   }, [doc]);
 
@@ -79,7 +81,9 @@ const DocumentationSection = () => {
   }, [schema, doc]);
 
   useEffect(() => {
-    schema && schema?.length > 0 && setIsOpen(true);
+    if (schema && schema?.length > 0) {
+      setIsOpen(true);
+    } else setIsOpen(false);
   }, [schema]);
 
   const handleCloseOpenSection = () => {

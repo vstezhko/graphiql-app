@@ -56,6 +56,9 @@ export const editorsSlice = createSlice({
     setError: (state, action: PayloadAction<string | null>) => {
       state.error = action.payload;
     },
+    setDocumentation: (state) => {
+      state.documentation = '';
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -96,6 +99,7 @@ export const {
   setIsPanelOpen,
   setEndpoint,
   setError,
+  setDocumentation,
 } = editorsSlice.actions;
 
 export default editorsSlice.reducer;
