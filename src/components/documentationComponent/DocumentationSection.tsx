@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store.ts';
 import TypesList from './TypesList.tsx';
-import { Button } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 
 export interface Type {
   kind: string;
@@ -31,6 +31,9 @@ export interface Documentation {
 
 const DocumentationSection = () => {
   const doc = useSelector((state: RootState) => state.editors.documentation);
+  const isFetching = useSelector(
+    (state: RootState) => state.editors.isFetching
+  );
   const [isOpen, setIsOpen] = useState(false);
   const [schema, setSchema] = useState([]);
   const [schemaTypes, setSchemaTypes] = useState({
@@ -63,8 +66,6 @@ const DocumentationSection = () => {
     }
   }, [doc]);
 
-  console.log(schema);
-
   useEffect(() => {
     const root = schema?.find(
       (s: Documentation) => s.name === schemaTypes.queryType
@@ -76,6 +77,10 @@ const DocumentationSection = () => {
     setRootQuery(root);
     setAllSchemaTypes(allTypes);
   }, [schema, doc]);
+
+  useEffect(() => {
+    schema && schema?.length > 0 && setIsOpen(true);
+  }, [schema]);
 
   const handleCloseOpenSection = () => {
     setIsOpen(!isOpen);
@@ -120,7 +125,7 @@ const DocumentationSection = () => {
               </div>
             </>
           )}
-          {allSchemaTypes && (
+          {allSchemaTypes && allSchemaTypes.length > 0 && (
             <>
               <h3>All Schema Types</h3>
               {allSchemaTypes?.map((type) => (
@@ -140,9 +145,13 @@ const DocumentationSection = () => {
       <Button
         className="doc-section__btn"
         onClick={handleCloseOpenSection}
-        disabled={schema.length === 0}
+        disabled={!schema || schema?.length === 0}
       >
-        Schema
+        {isFetching !== 'loading' ? (
+          'Schema'
+        ) : (
+          <CircularProgress className="doc-section__progress" />
+        )}
       </Button>
     </div>
   );

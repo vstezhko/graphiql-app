@@ -47,17 +47,33 @@ export const makeSchemaRequest = async (state: RootState) => {
     }
   }
 
-  return fetch(endpoint, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      ...headers,
-    },
-    body: JSON.stringify({
-      operationName: 'IntrospectionQuery',
-      query:
-        'query IntrospectionQuery {__schema { queryType { name } mutationType { name } subscriptionType { name } types {...FullType} directives { name description locations args {...InputValue} } } }  fragment FullType on __Type {kind name description fields(includeDeprecated: true) { name description args { ...InputValue } type { ...TypeRef } isDeprecated deprecationReason } inputFields { ...InputValue } interfaces { ...TypeRef } enumValues(includeDeprecated: true) { name description isDeprecated deprecationReason } possibleTypes { ...TypeRef } }  fragment InputValue on __InputValue {   name   description   type { ...TypeRef }   defaultValue }  fragment TypeRef on __Type {   kind   name   ofType {     kind     name     ofType { kind  name  ofType {  kind name  ofType {  kind  name  ofType { kind name ofType {  kind  name  ofType {  kind  name  } } } } } } } } ',
-      variables: {},
-    }),
-  }).then((res) => res.json());
+  try {
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        ...headers,
+      },
+      body: JSON.stringify({
+        operationName: 'IntrospectionQuery',
+        query:
+          'query IntrospectionQuery {__schema { queryType { name } mutationType { name } subscriptionType { name } types {...FullType} directives { name description locations args {...InputValue} } } }  fragment FullType on __Type {kind name description fields(includeDeprecated: true) { name description args { ...InputValue } type { ...TypeRef } isDeprecated deprecationReason } inputFields { ...InputValue } interfaces { ...TypeRef } enumValues(includeDeprecated: true) { name description isDeprecated deprecationReason } possibleTypes { ...TypeRef } }  fragment InputValue on __InputValue {   name   description   type { ...TypeRef }   defaultValue }  fragment TypeRef on __Type {   kind   name   ofType {     kind     name     ofType { kind  name  ofType {  kind name  ofType {  kind  name  ofType { kind name ofType {  kind  name  ofType {  kind  name  } } } } } } } } ',
+        variables: {},
+      }),
+    });
+    if (response.status === 401) {
+      const responseBody = await response.text();
+      const parsedResponse = JSON.parse(responseBody);
+      throw new Error(`${parsedResponse.message}`);
+    }
+
+    if (!response.ok) {
+      throw new Error(`Server responded with status ${response.status}`);
+    }
+
+    return await response.json();
+  } catch (error) {
+    console.error('An error occurred during the schema request:', error);
+    throw error;
+  }
 };

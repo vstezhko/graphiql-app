@@ -2,12 +2,12 @@
   background-color: $color-primary;
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   bottom: 0;
   width: 100%;
-  max-width: 425px;
-  z-index: 1;
-  border-right: 10px solid $color-button;
+  max-width: 415px;
+  z-index: 2;
+  border-left: 10px solid $color-button;
   transition: all 0.3s;
   display: flex;
   flex-direction: column;
@@ -100,7 +100,7 @@
   }
 
   &_close {
-    transform: translateX(-415px);
+    transform: translateX(405px);
   }
 
 
@@ -108,13 +108,20 @@
     position: absolute !important;
     background-color: $color-button !important;
     transform: rotate(-90deg) translateX(-30%);
-    left: 97% !important;
+    right: 97.5% !important;
     top: 30% !important;
     color: $color-font !important;
+    height: 30px !important;
 
   }
 
-  .Mui-disabled{
+  &__progress {
+    color: $color-font !important;
+    width: 13px !important;
+    height: 13px !important;
+  }
+
+  .Mui-disabled {
     color: #565156 !important;
   }
 }

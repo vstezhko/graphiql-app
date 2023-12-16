@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
@@ -14,7 +14,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/main',
-        element: <MainPage />,
+        element: (
+          <Suspense
+            fallback={
+              <div style={{ color: '#fff', zIndex: '100' }}>Loading...</div>
+            }
+          >
+            <MainPage />
+          </Suspense>
+        ),
       },
       {
         path: '/signIn',
@@ -27,7 +35,6 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>

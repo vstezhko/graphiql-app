@@ -80,10 +80,10 @@ export const editorsSlice = createSlice({
         state.isFetching = 'idle';
         state.documentation = action.payload;
       })
-      .addCase(getSchema.rejected, (state) => {
+      .addCase(getSchema.rejected, (state, action) => {
         state.isFetching = 'idle';
         state.documentation = '';
-        state.error = 'Failed to fetch schema';
+        state.error = action.error.message || 'Failed to fetch schema';
       });
   },
 });
