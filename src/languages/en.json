@@ -15,5 +15,8 @@
   "headers": "Headers",
   "vika": "Vika",
   "kseniya": "Kseniya",
-  "jenya": "Jenya"
+  "jenya": "Jenya",
+  "prettify": "Prettify",
+  "noQuery": "No query to format",
+  "syntax": "Please check the query syntax"
 }
