@@ -26,7 +26,7 @@
     }
 
     svg:hover {
-      color: $color-additional;
+      color: $color-hovered;
     }
 
     &::after {
@@ -44,6 +44,17 @@
 
     &:hover::after {
       background-color: $color-additional-2;
+    }
+  }
+
+  & .editor-toolbar__prettify-button {
+    background-color: $color-button;
+    color: white;
+    transition: 0.3s;
+
+    &:hover {
+      background-color: $color-hovered;
+      color: $color-additional-2;
     }
   }
 }

@@ -1,10 +1,18 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from '../../store/store';
-import { ChangeEvent } from 'react';
-import { setEndpoint, setError } from '../../store/slices/editorsSlice';
-import { IconButton } from '@mui/material';
+import { ChangeEvent, useContext } from 'react';
+import {
+  setEndpoint,
+  setError,
+  setQueryBody,
+  setQueryHeaders,
+  setQueryVariables,
+} from '../../store/slices/editorsSlice';
+import { Button, IconButton } from '@mui/material';
 import { fetchData } from '../../store/slices/graphQLThunk';
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
+import { DictionaryKey, LanguageContext } from '../../context/LanguageContext';
+import { formatGraphQL, formatJSON } from '../../utils/prettify';
 
 const EditorToolbar = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -13,14 +21,32 @@ const EditorToolbar = () => {
   );
   const error = useSelector((state: RootState) => state.editors.error);
   const queryBody = useSelector((state: RootState) => state.editors.queryBody);
+  const queryVariables = useSelector(
+    (state: RootState) => state.editors.queryVariables
+  );
+  const queryHeaders = useSelector(
+    (state: RootState) => state.editors.queryHeaders
+  );
+  const { dictionary } = useContext(LanguageContext);
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(setEndpoint(event.target.value));
   };
 
   const handleRun = () => {
-    queryBody
-      ? dispatch(fetchData())
-      : dispatch(setError('Please enter a query'));
+    queryBody ? dispatch(fetchData()) : dispatch(setError('enterQuery'));
+  };
+
+  const handlePrettify = () => {
+    dispatch(setError(null));
+    try {
+      dispatch(setQueryBody(formatGraphQL(queryBody)));
+    } catch (error) {
+      if (error instanceof Error) {
+        dispatch(setError(error.message as DictionaryKey));
+      }
+    }
+    if (queryVariables) dispatch(setQueryVariables(formatJSON(queryVariables)));
+    if (queryHeaders) dispatch(setQueryHeaders(formatJSON(queryHeaders)));
   };
 
   return (
@@ -30,7 +56,7 @@ const EditorToolbar = () => {
           className="editor-toolbar__input"
           value={endpointValue}
           type="text"
-          placeholder="Enter a GraphQL endpoint"
+          placeholder={dictionary.enterEndpoint}
           onChange={handleChange}
         ></input>
         <IconButton
@@ -41,8 +67,17 @@ const EditorToolbar = () => {
         >
           <PlayCircleFilledWhiteIcon />
         </IconButton>
+        <Button
+          className="editor-toolbar__prettify-button"
+          size="large"
+          aria-label="prettify-request"
+          onClick={handlePrettify}
+          disabled={!queryBody}
+        >
+          {dictionary.prettify}
+        </Button>
       </div>
-      {error && <p className="editor-toolbar__error">{error}</p>}
+      {error && <p className="editor-toolbar__error">{dictionary[error]}</p>}
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import { fetchData } from './graphQLThunk';
+import { DictionaryKey } from '../../context/LanguageContext';
 
 export interface EditorsState {
   queryBody: string;
@@ -11,7 +12,7 @@ export interface EditorsState {
   isFetching: 'idle' | 'loading';
   response: string;
   endpoint: string;
-  error: string | null;
+  error: DictionaryKey | null;
 }
 
 const initialState: EditorsState = {
@@ -51,7 +52,7 @@ export const editorsSlice = createSlice({
     setEndpoint: (state, action: PayloadAction<string>) => {
       state.endpoint = action.payload;
     },
-    setError: (state, action: PayloadAction<string | null>) => {
+    setError: (state, action: PayloadAction<DictionaryKey | null>) => {
       state.error = action.payload;
     },
   },
@@ -68,7 +69,7 @@ export const editorsSlice = createSlice({
       .addCase(fetchData.rejected, (state) => {
         state.isFetching = 'idle';
         state.response = '';
-        state.error = 'The endpoint cannot be reached';
+        state.error = 'endpointError';
       });
   },
 });

@@ -1,9 +1,10 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import Localization from '../localizationComponent/Localization.tsx';
 import { logout } from '../../firebase/firebase.ts';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store.ts';
+import { LanguageContext } from '../../context/LanguageContext.tsx';
 
 const Header = () => {
   const { isLoading, status } = useSelector(
@@ -13,6 +14,7 @@ const Header = () => {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState(false);
   const navigate = useNavigate();
+  const { dictionary } = useContext(LanguageContext);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -40,8 +42,8 @@ const Header = () => {
   //todo replace loading to component
   return (
     <header className={scroll ? 'sticky' : 'header'} ref={headerRef}>
-      <NavLink to={'/'}>Welcome Page</NavLink>
-      <NavLink to={'/main'}>Main Page</NavLink>
+      <NavLink to={'/'}>{dictionary.welcomePage}</NavLink>
+      <NavLink to={'/main'}>{dictionary.mainPage}</NavLink>
       <div className="links__container">
         <Localization scroll={scroll} />
         {isLoading ? (
@@ -51,7 +53,7 @@ const Header = () => {
             className={scroll ? 'sticky__link' : 'header__link'}
             onClick={handleLogout}
           >
-            Log out
+            {dictionary.logOut}
           </button>
         ) : (
           <>
@@ -59,7 +61,7 @@ const Header = () => {
               className={scroll ? 'sticky__link' : 'header__link'}
               to={'/signIn'}
             >
-              Sign In
+              {dictionary.signIn}
             </Link>
             <Link
               className={scroll ? 'sticky__link' : 'header__link'}
