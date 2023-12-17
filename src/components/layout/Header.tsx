@@ -45,7 +45,7 @@ const Header = () => {
       <NavLink to={'/'}>{dictionary.welcomePage}</NavLink>
       <NavLink to={'/main'}>{dictionary.mainPage}</NavLink>
       <div className="links__container">
-        <Localization scroll={scroll} />
+        <Localization scroll={scroll} status={status} />
         {isLoading ? (
           'loading'
         ) : status ? (

@@ -34,11 +34,7 @@ const GQLRouterProvider = () => {
   const router = createBrowserRouter([
     {
       path: '/',
-      element: (
-        <Suspense fallback={<h2>LOADING SUSPENSE</h2>}>
-          <App />
-        </Suspense>
-      ),
+      element: <App />,
       children: [
         {
           path: '/',
@@ -47,9 +43,11 @@ const GQLRouterProvider = () => {
         {
           path: '/main',
           element: (
-            <ProtectedRoute isAllowed={isLoggedIn}>
-              <MainPage />
-            </ProtectedRoute>
+            <Suspense fallback={<h2>LOADING SUSPENSE</h2>}>
+              <ProtectedRoute isAllowed={isLoggedIn}>
+                <MainPage />
+              </ProtectedRoute>
+            </Suspense>
           ),
         },
         {
