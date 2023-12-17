@@ -29,6 +29,7 @@ const GQLRouterProvider = () => {
   );
 
   const isAllowed = useMemo(() => !isLoading && !status, [isLoading, status]);
+  const isLoggedIn = useMemo(() => status, [status]);
 
   const router = createBrowserRouter([
     {
@@ -45,7 +46,11 @@ const GQLRouterProvider = () => {
         },
         {
           path: '/main',
-          element: <MainPage />,
+          element: (
+            <ProtectedRoute isAllowed={isLoggedIn}>
+              <MainPage />
+            </ProtectedRoute>
+          ),
         },
         {
           path: '/signIn',
