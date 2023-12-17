@@ -6,11 +6,11 @@ import {
 } from 'react-router-dom';
 import App from '../App.tsx';
 import WelcomePage from '../pages/welcomPage/WelcomePage.tsx';
-import EditorPage from '../pages/editorPage/EditorPage.tsx';
 import SignIn from '../pages/SignIn.tsx';
 import SignUp from '../pages/SignUp.tsx';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store.ts';
+import MainPage from '../pages/mainPage/MainPage.tsx';
 
 const ProtectedRoute = ({
   isAllowed,
@@ -45,7 +45,7 @@ const GQLRouterProvider = () => {
         },
         {
           path: '/main',
-          element: <EditorPage />,
+          element: <MainPage />,
         },
         {
           path: '/signIn',
