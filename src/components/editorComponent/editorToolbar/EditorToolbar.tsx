@@ -1,4 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { AppDispatch, RootState } from '../../../store/store.ts';
+import { ChangeEvent, useEffect } from 'react';
+import {
+  setDocumentation,
+  setEndpoint,
+  setError,
+} from '../../../store/slices/editorsSlice.ts';
+import { IconButton } from '@mui/material';
+import { fetchData, getSchema } from '../../../store/slices/graphQLThunk.ts';
 import { AppDispatch, RootState } from '../../store/store';
 import { ChangeEvent, useContext } from 'react';
 import {
@@ -21,6 +30,10 @@ const EditorToolbar = () => {
   );
   const error = useSelector((state: RootState) => state.editors.error);
   const queryBody = useSelector((state: RootState) => state.editors.queryBody);
+  const queryHeaders = useSelector(
+    (state: RootState) => state.editors.queryHeaders
+  );
+
   const queryVariables = useSelector(
     (state: RootState) => state.editors.queryVariables
   );
@@ -49,6 +62,14 @@ const EditorToolbar = () => {
     if (queryHeaders) dispatch(setQueryHeaders(formatJSON(queryHeaders)));
   };
 
+  useEffect(() => {
+    if (endpointValue) {
+      dispatch(getSchema());
+    } else {
+      dispatch(setDocumentation());
+    }
+  }, [endpointValue, queryHeaders]);
+
   return (
     <div className="editor-toolbar">
       <div className="editor-toolbar__controls">
@@ -64,6 +85,7 @@ const EditorToolbar = () => {
           size="large"
           aria-label="run-request"
           onClick={handleRun}
+          disabled={!queryBody}
         >
           <PlayCircleFilledWhiteIcon />
         </IconButton>
@@ -77,7 +99,7 @@ const EditorToolbar = () => {
           {dictionary.prettify}
         </Button>
       </div>
-      {error && <p className="editor-toolbar__error">{dictionary[error]}</p>}
+      {error && <p className="editor-toolbar__error">{error}</p>}
     </div>
   );
 };
