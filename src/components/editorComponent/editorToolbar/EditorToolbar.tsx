@@ -1,27 +1,22 @@
 import { useDispatch, useSelector } from 'react-redux';
+import { ChangeEvent, useEffect, useContext } from 'react';
+import { Button, IconButton } from '@mui/material';
+import { fetchData, getSchema } from '../../../store/slices/graphQLThunk.ts';
+import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
 import { AppDispatch, RootState } from '../../../store/store.ts';
-import { ChangeEvent, useEffect } from 'react';
+import {
+  DictionaryKey,
+  LanguageContext,
+} from '../../../context/LanguageContext.tsx';
 import {
   setDocumentation,
-  setEndpoint,
-  setError,
-} from '../../../store/slices/editorsSlice.ts';
-import { IconButton } from '@mui/material';
-import { fetchData, getSchema } from '../../../store/slices/graphQLThunk.ts';
-import { AppDispatch, RootState } from '../../store/store';
-import { ChangeEvent, useContext } from 'react';
-import {
   setEndpoint,
   setError,
   setQueryBody,
   setQueryHeaders,
   setQueryVariables,
-} from '../../store/slices/editorsSlice';
-import { Button, IconButton } from '@mui/material';
-import { fetchData } from '../../store/slices/graphQLThunk';
-import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
-import { DictionaryKey, LanguageContext } from '../../context/LanguageContext';
-import { formatGraphQL, formatJSON } from '../../utils/prettify';
+} from '../../../store/slices/editorsSlice.ts';
+import { formatGraphQL, formatJSON } from '../../../utils/prettify.ts';
 
 const EditorToolbar = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -30,9 +25,6 @@ const EditorToolbar = () => {
   );
   const error = useSelector((state: RootState) => state.editors.error);
   const queryBody = useSelector((state: RootState) => state.editors.queryBody);
-  const queryHeaders = useSelector(
-    (state: RootState) => state.editors.queryHeaders
-  );
 
   const queryVariables = useSelector(
     (state: RootState) => state.editors.queryVariables
