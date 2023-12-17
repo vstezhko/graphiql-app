@@ -2,8 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.scss';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
+import { Provider } from 'react-redux';
+import { store } from './store/store.ts';
+import MainPage from './pages/mainPage/MainPage.tsx';
 import App from './App.tsx';
+import LanguageProvider from './context/LanguageContext.tsx';
 
 const router = createBrowserRouter([
   {
@@ -12,7 +15,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/main',
-        element: <EditorPage />,
+        element: (
+          <Suspense
+            fallback={
+              <div style={{ color: '#fff', zIndex: '100' }}>Loading...</div>
+            }
+          >
+            <MainPage />
+          </Suspense>
+        ),
       },
       {
         path: '/signIn',
@@ -25,12 +36,6 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-import './index.scss';
-import { Provider } from 'react-redux';
-import { store } from './store/store.ts';
-import EditorPage from './pages/editorPage/EditorPage.tsx';
-import LanguageProvider from './context/LanguageContext.tsx';
-
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <Provider store={store}>
