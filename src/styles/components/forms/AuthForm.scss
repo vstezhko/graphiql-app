@@ -12,4 +12,19 @@
   button {
     margin: 0.6rem 0;
   }
+
+  .MuiButtonBase-root.MuiButton-root {
+    border-color: $color-additional;
+    color: $color-additional;
+    font-family: "Inconsolata", "Source Code Pro", monospace;
+    line-height: 1.5;
+    font-weight: 400;
+    font-size: 1.3rem;
+    border-radius: 0.8rem;
+
+    &.Mui-disabled {
+      border-color: $color-secondary;
+      color: $color-secondary;
+    }
+  }
 }
