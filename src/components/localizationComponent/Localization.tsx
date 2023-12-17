@@ -58,7 +58,7 @@ const Localization = ({ scroll }: { scroll: boolean }) => {
         onClose={handleClose}
         anchorReference={'anchorPosition'}
         anchorPosition={{
-          left: window.innerWidth - 200,
+          left: window.innerWidth - 320,
           top: scroll ? 70 : 110,
         }}
         anchorOrigin={{

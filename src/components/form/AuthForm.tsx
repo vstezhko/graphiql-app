@@ -27,6 +27,7 @@ const AuthForm: FC<AuthFormParams> = ({ type, onFormSubmit, serverError }) => {
 
   const methods = useForm({
     resolver: yupResolver(validationResolver as typeof validationSchema.signUp),
+    mode: 'onChange',
   });
 
   const {
