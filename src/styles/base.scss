@@ -31,7 +31,8 @@ body {
   width: 100%;
   min-height: 100vh;
   min-width: 320px;
-  overflow: auto;
+  overflow-x:hidden;
+  overflow-y: auto;
   font-size: 1.4rem;
 }
 
