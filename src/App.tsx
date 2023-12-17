@@ -14,7 +14,9 @@ function App() {
       <div className="wrapper">
         <Header />
         <main>
-          <Outlet />
+          <div className="container">
+            <Outlet />
+          </div>
         </main>
         <Footer />
       </div>
