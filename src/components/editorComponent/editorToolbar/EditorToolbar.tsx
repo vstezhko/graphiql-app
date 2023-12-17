@@ -91,7 +91,7 @@ const EditorToolbar = () => {
           {dictionary.prettify}
         </Button>
       </div>
-      {error && <p className="editor-toolbar__error">{error}</p>}
+      {error && <p className="editor-toolbar__error">{dictionary[error]}</p>}
     </div>
   );
 };

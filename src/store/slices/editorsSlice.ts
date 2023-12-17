@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import { fetchData } from './graphQLThunk';
 import { DictionaryKey } from '../../context/LanguageContext';
 import { fetchData, getSchema } from './graphQLThunk';
 
@@ -55,7 +54,7 @@ export const editorsSlice = createSlice({
     setEndpoint: (state, action: PayloadAction<string>) => {
       state.endpoint = action.payload;
     },
-    setError: (state, action: PayloadAction<string | null>) => {
+    setError: (state, action: PayloadAction<DictionaryKey | null>) => {
       state.error = action.payload;
     },
     setDocumentation: (state) => {
@@ -76,7 +75,6 @@ export const editorsSlice = createSlice({
         state.isFetching = 'idle';
         state.response = '';
         state.error = 'endpointError';
-        state.error = 'The endpoint cannot be reached';
       })
       .addCase(getSchema.pending, (state) => {
         state.error = null;
@@ -86,10 +84,10 @@ export const editorsSlice = createSlice({
         state.isFetching = 'idle';
         state.documentation = action.payload;
       })
-      .addCase(getSchema.rejected, (state, action) => {
+      .addCase(getSchema.rejected, (state) => {
         state.isFetching = 'idle';
         state.documentation = '';
-        state.error = action.error.message || 'Failed to fetch schema';
+        state.error = 'authenticated';
       });
   },
 });

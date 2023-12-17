@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store.ts';
 import TypesList from './TypesList.tsx';
 import { Button, CircularProgress } from '@mui/material';
+import { LanguageContext } from '../../context/LanguageContext.tsx';
 
 export interface Type {
   kind: string;
@@ -34,6 +35,7 @@ const DocumentationSection = () => {
   const isFetching = useSelector(
     (state: RootState) => state.editors.isFetching
   );
+  const { dictionary } = useContext(LanguageContext);
   const [isOpen, setIsOpen] = useState(false);
   const [schema, setSchema] = useState([]);
   const [schemaTypes, setSchemaTypes] = useState({
@@ -152,7 +154,7 @@ const DocumentationSection = () => {
         disabled={!schema || schema?.length === 0}
       >
         {isFetching !== 'loading' ? (
-          'Schema'
+          dictionary.schema
         ) : (
           <CircularProgress className="doc-section__progress" />
         )}

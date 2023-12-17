@@ -18,5 +18,7 @@
   "jenya": "Jenya",
   "prettify": "Prettify",
   "noQuery": "No query to format",
-  "syntax": "Please check the query syntax"
+  "syntax": "Please check the query syntax",
+  "authenticated": "This endpoint requires you to be authenticated",
+  "schema": "Schema"
 }
