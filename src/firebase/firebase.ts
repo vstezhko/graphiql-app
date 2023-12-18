@@ -29,7 +29,7 @@ export const signUp = (email: string, password: string) => {
     });
 };
 
-export const sighIn = async (email: string, password: string) => {
+export const signIn = async (email: string, password: string) => {
   return signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
       return { token: userCredential.user.getIdToken(), error: undefined };

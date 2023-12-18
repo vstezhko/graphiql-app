@@ -1,4 +1,4 @@
-import { PropsWithChildren, Suspense, useMemo } from 'react';
+import { ReactNode, Suspense, useState } from 'react';
 import {
   createBrowserRouter,
   Navigate,
@@ -8,29 +8,20 @@ import App from '../App.tsx';
 import WelcomePage from '../pages/welcomPage/WelcomePage.tsx';
 import SignIn from '../pages/SignIn.tsx';
 import SignUp from '../pages/SignUp.tsx';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store/store.ts';
+
 import MainPage from '../pages/mainPage/MainPage.tsx';
 
-const ProtectedRoute = ({
-  isAllowed,
-  children,
-}: PropsWithChildren<{
-  isAllowed: boolean;
-}>) => {
-  if (!isAllowed) {
-    return <Navigate to={'/'} replace />;
+const ProtectedRoute = ({ children }: { children: ReactNode }) => {
+  const [auth] = useState<boolean>(
+    localStorage.getItem('isLoggedIn') === 'true'
+  );
+
+  if (!auth) {
+    return <Navigate to={'/signIn'} replace />;
   }
   return children;
 };
 const GQLRouterProvider = () => {
-  const { isLoading, status } = useSelector(
-    (state: RootState) => state.isLoggedIn
-  );
-
-  const isAllowed = useMemo(() => !isLoading && !status, [isLoading, status]);
-  const isLoggedIn = useMemo(() => status, [status]);
-
   const router = createBrowserRouter([
     {
       path: '/',
@@ -44,7 +35,7 @@ const GQLRouterProvider = () => {
           path: '/main',
           element: (
             <Suspense fallback={<h2>LOADING SUSPENSE</h2>}>
-              <ProtectedRoute isAllowed={isLoggedIn}>
+              <ProtectedRoute>
                 <MainPage />
               </ProtectedRoute>
             </Suspense>
@@ -52,19 +43,11 @@ const GQLRouterProvider = () => {
         },
         {
           path: '/signIn',
-          element: (
-            <ProtectedRoute isAllowed={isAllowed}>
-              <SignIn />
-            </ProtectedRoute>
-          ),
+          element: <SignIn />,
         },
         {
           path: '/signUp',
-          element: (
-            <ProtectedRoute isAllowed={isAllowed}>
-              <SignUp />
-            </ProtectedRoute>
-          ),
+          element: <SignUp />,
         },
       ],
     },

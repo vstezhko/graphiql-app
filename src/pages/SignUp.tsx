@@ -17,11 +17,11 @@ const SignUp = () => {
       return;
     }
     setServerError(undefined);
-    navigate('/');
+    navigate('/main');
   };
 
   return (
-    <div className="wrapper">
+    <div className="auth-page">
       <h2 className="h2">Sign Up</h2>
       <AuthForm
         type={'signUp'}
