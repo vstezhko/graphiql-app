@@ -41,7 +41,7 @@ const Header = () => {
   return (
     <header className={scroll ? 'sticky' : 'header'} ref={headerRef}>
       <NavLink to={'/'}>{dictionary.welcomePage}</NavLink>
-      {status && <NavLink to={'/main'}>{dictionary.mainPage}</NavLink>}
+      <NavLink to={'/main'}>{dictionary.mainPage}</NavLink>
       <div className="links__container">
         <Localization status={status} />
         {status ? (
