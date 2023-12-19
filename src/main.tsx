@@ -7,6 +7,7 @@ import { store } from './store/store.ts';
 import MainPage from './pages/mainPage/MainPage.tsx';
 import App from './App.tsx';
 import LanguageProvider from './context/LanguageContext.tsx';
+import NotFoundPage from './pages/NotFoundPage';
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
         element: <div>sign up</div>,
       },
     ],
+  },
+  {
+    path: '*',
+    element: <NotFoundPage />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById('root')!).render(
