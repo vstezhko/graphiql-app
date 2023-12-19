@@ -21,5 +21,6 @@
   "syntax": "Please check the query syntax",
   "authenticated": "This endpoint requires you to be authenticated",
   "schema": "Schema",
-  "notFoundText": "Oooops! Something went wrong..."
+  "notFoundTitle": "ERROR 404",
+  "notFoundText": "Sorry! Page not found..."
 }

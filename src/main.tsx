@@ -38,7 +38,7 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <NotFoundPage />,
+    element: <NotFoundPage title="notFoundTitle" text="notFoundText" />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById('root')!).render(

@@ -76,11 +76,16 @@ main {
 
     & > img {
       object-fit: cover;
+      max-width: 400px;
+    }
+
+    & > h1{
+      color: $color-additional;
     }
 
     & > p {
       font-size: 2rem;
-      color: $color-additional;
+      color: $color-font;
     }
 
   }

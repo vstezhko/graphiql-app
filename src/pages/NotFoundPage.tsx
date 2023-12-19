@@ -1,14 +1,15 @@
 import { useContext } from 'react';
-import { LanguageContext } from '../context/LanguageContext';
+import { DictionaryKey, LanguageContext } from '../context/LanguageContext';
 import Layout from './../components/layout/Layout';
 
-const NotFoundPage = () => {
+const NotFoundPage = ({ title, text }: { title: string; text: string }) => {
   const { dictionary } = useContext(LanguageContext);
   return (
     <Layout>
       <div className="container__img">
-        <img src="../../public/404.png" alt="404" />
-        <p>{dictionary.notFoundText}</p>
+        <img src="../../public/error.png" alt="404" />
+        <h1>{dictionary[title as DictionaryKey]}</h1>
+        <p>{dictionary[text as DictionaryKey]}</p>
       </div>
     </Layout>
   );
