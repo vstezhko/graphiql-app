@@ -2,7 +2,7 @@ import { useContext } from 'react';
 import { DictionaryKey, LanguageContext } from '../context/LanguageContext';
 import Layout from './../components/layout/Layout';
 
-const NotFoundPage = ({ title, text }: { title: string; text: string }) => {
+const ErrorPage = ({ title, text }: { title: string; text: string }) => {
   const { dictionary } = useContext(LanguageContext);
   return (
     <Layout>
@@ -15,4 +15,4 @@ const NotFoundPage = ({ title, text }: { title: string; text: string }) => {
   );
 };
 
-export default NotFoundPage;
+export default ErrorPage;

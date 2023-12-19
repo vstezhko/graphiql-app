@@ -7,15 +7,17 @@ import { store } from './store/store.ts';
 import MainPage from './pages/mainPage/MainPage.tsx';
 import App from './App.tsx';
 import LanguageProvider from './context/LanguageContext.tsx';
-import ErrorBoundary from './components/errorBaundary/ErrorBoundary';
-import FallBack from './components/errorBaundary/FallBack';
-import NotFoundPage from './pages/NotFoundPage';
+import ErrorBoundary from './components/ErrorBoundary.tsx';
+
+import ErrorPage from './pages/ErrorPage.tsx';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: (
-      <ErrorBoundary fallback={<FallBack />}>
+      <ErrorBoundary
+        fallback={<ErrorPage title="errorTitle" text="errorText" />}
+      >
         <App />
       </ErrorBoundary>
     ),
@@ -44,7 +46,7 @@ const router = createBrowserRouter([
   },
   {
     path: '*',
-    element: <NotFoundPage title="notFoundTitle" text="notFoundText" />,
+    element: <ErrorPage title="notFoundTitle" text="notFoundText" />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById('root')!).render(

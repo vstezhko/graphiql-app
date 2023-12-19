@@ -22,5 +22,7 @@
   "authenticated": "This endpoint requires you to be authenticated",
   "schema": "Schema",
   "notFoundTitle": "ERROR 404",
-  "notFoundText": "Sorry! Page not found..."
+  "notFoundText": "Sorry! Page not found...",
+  "errorTitle": "ERROR",
+  "errorText": "Something went wrong... We try to fix it!"
 }
