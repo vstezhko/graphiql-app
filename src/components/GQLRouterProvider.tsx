@@ -1,72 +1,47 @@
-import { PropsWithChildren, Suspense, useMemo } from 'react';
-import {
-  createBrowserRouter,
-  Navigate,
-  RouterProvider,
-} from 'react-router-dom';
+import { Suspense } from 'react';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import App from '../App.tsx';
-import WelcomePage from '../pages/welcomPage/WelcomePage.tsx';
-import SignIn from '../pages/SignIn.tsx';
-import SignUp from '../pages/SignUp.tsx';
-import { useSelector } from 'react-redux';
-import { RootState } from '../store/store.ts';
 import MainPage from '../pages/mainPage/MainPage.tsx';
+import ErrorPage from '../pages/ErrorPage.tsx';
+import ErrorBoundary from './ErrorBoundary.tsx';
 
-const ProtectedRoute = ({
-  isAllowed,
-  children,
-}: PropsWithChildren<{
-  isAllowed: boolean;
-}>) => {
-  if (!isAllowed) {
-    return <Navigate to={'/'} replace />;
-  }
-  return children;
-};
 const GQLRouterProvider = () => {
-  const { isLoading, status } = useSelector(
-    (state: RootState) => state.isLoggedIn
-  );
-
-  const isAllowed = useMemo(() => !isLoading && !status, [isLoading, status]);
-  const isLoggedIn = useMemo(() => status, [status]);
-
   const router = createBrowserRouter([
     {
       path: '/',
-      element: <App />,
+      element: (
+        <ErrorBoundary
+          fallback={<ErrorPage title="errorTitle" text="errorText" />}
+        >
+          <App />
+        </ErrorBoundary>
+      ),
       children: [
-        {
-          path: '/',
-          element: <WelcomePage />,
-        },
         {
           path: '/main',
           element: (
-            <Suspense fallback={<h2>LOADING SUSPENSE</h2>}>
-              <ProtectedRoute isAllowed={isLoggedIn}>
-                <MainPage />
-              </ProtectedRoute>
+            <Suspense
+              fallback={
+                <div style={{ color: '#fff', zIndex: '100' }}>Loading...</div>
+              }
+            >
+              <MainPage />
             </Suspense>
           ),
         },
         {
           path: '/signIn',
-          element: (
-            <ProtectedRoute isAllowed={isAllowed}>
-              <SignIn />
-            </ProtectedRoute>
-          ),
+          element: <div>sign in</div>,
         },
         {
           path: '/signUp',
-          element: (
-            <ProtectedRoute isAllowed={isAllowed}>
-              <SignUp />
-            </ProtectedRoute>
-          ),
+          element: <div>sign up</div>,
         },
       ],
+    },
+    {
+      path: '*',
+      element: <ErrorPage title="notFoundTitle" text="notFoundText" />,
     },
   ]);
 
