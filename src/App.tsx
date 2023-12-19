@@ -4,19 +4,23 @@ import WelcomePage from './pages/welcomPage/WelcomePage.tsx';
 import Footer from './components/layout/Footer.tsx';
 import { ThemeProvider } from '@emotion/react';
 import { theme } from './providers/MuiThemeProvider.ts';
+import { useEffect } from 'react';
 
 function App() {
   const { pathname } = useLocation();
+  useEffect(() => {
+    throw new Error('Test error inside MainPage component');
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>
       <div className="wrapper">
         <Header />
-          <main>
+        <main>
           <div className="container">
-              {pathname !== '/' ? <Outlet /> : <WelcomePage />}
+            {pathname !== '/' ? <Outlet /> : <WelcomePage />}
           </div>
-          </main>
+        </main>
         <Footer />
       </div>
     </ThemeProvider>

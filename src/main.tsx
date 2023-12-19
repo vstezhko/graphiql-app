@@ -7,11 +7,17 @@ import { store } from './store/store.ts';
 import MainPage from './pages/mainPage/MainPage.tsx';
 import App from './App.tsx';
 import LanguageProvider from './context/LanguageContext.tsx';
+import ErrorBoundary from './components/errorBaundary/ErrorBoundary';
+import FallBack from './components/errorBaundary/FallBack';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App />,
+    element: (
+      <ErrorBoundary fallback={<FallBack />}>
+        <App />
+      </ErrorBoundary>
+    ),
     children: [
       {
         path: '/main',
