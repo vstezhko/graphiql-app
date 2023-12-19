@@ -11,13 +11,14 @@
 
 * {
   box-sizing: border-box;
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 html {
   font-size: 10px;
   background: $color-primary;
+  color: $color-additional;
 }
 
 a {
@@ -96,6 +97,11 @@ h1 {
   line-height: 1.1;
 }
 
+h2 {
+  font-size: 2.2em;
+  line-height: 1.1;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -128,6 +134,12 @@ header {
   }
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition: background-color 0s 600000s,
+  color 0s 600000s;
+}
+
 .Mui-selected {
   color: $color-additional !important;
 }
@@ -135,3 +147,6 @@ header {
 .MuiTabs-indicator {
   background-color: $color-additional !important;
 }
+
+
+

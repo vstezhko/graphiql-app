@@ -1,0 +1,30 @@
+.form {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 40rem;
+
+ @media (max-width: $mobile-big-width) {
+   padding: 0 1rem;
+   width: 100%;
+ }
+
+  button {
+    margin: 0.6rem 0;
+  }
+
+  .MuiButtonBase-root.MuiButton-root {
+    border-color: $color-additional;
+    color: $color-additional;
+    font-family: "Inconsolata", "Source Code Pro", monospace;
+    line-height: 1.5;
+    font-weight: 400;
+    font-size: 1.3rem;
+    border-radius: 0.8rem;
+
+    &.Mui-disabled {
+      border-color: $color-secondary;
+      color: $color-secondary;
+    }
+  }
+}

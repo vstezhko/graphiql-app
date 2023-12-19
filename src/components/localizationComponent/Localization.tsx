@@ -15,7 +15,13 @@ type LangArrayObject = {
   abbr: string;
 };
 
-const Localization = ({ scroll }: { scroll: boolean }) => {
+const Localization = ({
+  scroll,
+  status,
+}: {
+  scroll: boolean;
+  status: boolean;
+}) => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const { dictionary, language, setLanguage } = useContext(LanguageContext);
 
@@ -58,7 +64,7 @@ const Localization = ({ scroll }: { scroll: boolean }) => {
         onClose={handleClose}
         anchorReference={'anchorPosition'}
         anchorPosition={{
-          left: window.innerWidth - 200,
+          left: status ? window.innerWidth - 200 : window.innerWidth - 320,
           top: scroll ? 70 : 110,
         }}
         anchorOrigin={{

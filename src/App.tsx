@@ -3,8 +3,12 @@ import WelcomePage from './pages/welcomPage/WelcomePage.tsx';
 import Layout from './components/layout/Layout';
 import { useEffect } from 'react';
 
+import { useFetchAndSetFirebaseStatus } from './hooks/fetchFirebaseStatus.ts';
+
 function App() {
   const { pathname } = useLocation();
+  console.log('render app');
+  useFetchAndSetFirebaseStatus();
 
   //todo: add error to test and review
 
