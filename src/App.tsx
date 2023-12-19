@@ -6,7 +6,6 @@ import { ThemeProvider } from '@emotion/react';
 import { theme } from './providers/MuiThemeProvider.ts';
 
 function App() {
-  console.log('render app');
   useFetchAndSetFirebaseStatus();
 
   return (
