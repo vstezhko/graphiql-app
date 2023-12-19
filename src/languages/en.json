@@ -20,5 +20,7 @@
   "noQuery": "No query to format",
   "syntax": "Please check the query syntax",
   "authenticated": "This endpoint requires you to be authenticated",
-  "schema": "Schema"
+  "schema": "Schema",
+  "notFoundTitle": "ERROR 404",
+  "notFoundText": "Sorry! Page not found..."
 }

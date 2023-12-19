@@ -9,6 +9,7 @@ import App from './App.tsx';
 import LanguageProvider from './context/LanguageContext.tsx';
 import ErrorBoundary from './components/errorBaundary/ErrorBoundary';
 import FallBack from './components/errorBaundary/FallBack';
+import NotFoundPage from './pages/NotFoundPage';
 
 const router = createBrowserRouter([
   {
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
         element: <div>sign up</div>,
       },
     ],
+  },
+  {
+    path: '*',
+    element: <NotFoundPage title="notFoundTitle" text="notFoundText" />,
   },
 ]);
 ReactDOM.createRoot(document.getElementById('root')!).render(
