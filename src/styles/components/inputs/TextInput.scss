@@ -22,7 +22,7 @@
     }
 
     &_error {
-      border: 1px solid $color-error;
+      border: 1px solid $color-button;
 
       &:hover {
         border: 1px solid $color-hovered;
@@ -51,7 +51,7 @@
   border: none;
 
   &__error {
-    color: $color-error;
+    color: $color-button;
     height: 1.2rem;
   }
 }

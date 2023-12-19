@@ -32,7 +32,7 @@ body {
   width: 100%;
   min-height: 100vh;
   min-width: 320px;
-  overflow-x:hidden;
+  overflow-x: hidden;
   overflow-y: auto;
   font-size: 1.4rem;
 }
@@ -54,10 +54,9 @@ main {
   flex-grow: 1;
   width: 100%;
   position: relative;
-
 }
 
-.container{
+.container {
   max-width: 1280px;
   padding: 20px 0;
   margin: 0 auto;
@@ -110,8 +109,9 @@ header {
 
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
-  transition: background-color 0s 600000s,
-  color 0s 600000s;
+  transition:
+    background-color 0s 600000s,
+    color 0s 600000s;
 }
 
 .Mui-selected {
@@ -121,6 +121,3 @@ input:-webkit-autofill:focus {
 .MuiTabs-indicator {
   background-color: $color-additional !important;
 }
-
-
-

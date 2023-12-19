@@ -1,4 +1,4 @@
-import { ReactNode, Suspense, useState } from 'react';
+import { ReactNode, Suspense } from 'react';
 import {
   createBrowserRouter,
   Navigate,
@@ -12,15 +12,15 @@ import SignUp from '../pages/SignUp.tsx';
 import MainPage from '../pages/mainPage/MainPage.tsx';
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
-  const [auth] = useState<boolean>(
-    localStorage.getItem('isLoggedIn') === 'true'
-  );
+  const auth = localStorage.getItem('isLoggedIn') === 'true';
 
   if (!auth) {
     return <Navigate to={'/signIn'} replace />;
   }
+
   return children;
 };
+
 const GQLRouterProvider = () => {
   const router = createBrowserRouter([
     {

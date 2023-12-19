@@ -1,12 +1,9 @@
-
 .auth-page {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin-top: -100px;
-  //height: calc(100vh - 50px) !important;
-
 }
 
 .form {
@@ -25,17 +22,22 @@
   }
 
   .MuiButtonBase-root.MuiButton-root {
-    border-color: $color-additional;
-    color: $color-additional;
-    font-family: "Inconsolata", "Source Code Pro", monospace;
+    background-color: $color-additional;
+    color: $color-font;
+    font-family: 'Inconsolata', 'Source Code Pro', monospace;
     line-height: 1.5;
     font-weight: 400;
     font-size: 1.3rem;
     border-radius: 0.8rem;
 
+    &:hover {
+      background-color: #075591;
+      color: $color-additional;
+    }
+
     &.Mui-disabled {
-      border-color: $color-secondary;
-      color: $color-secondary;
+      background-color: $color-secondary;
+      color: $color-hovered;
     }
   }
 }

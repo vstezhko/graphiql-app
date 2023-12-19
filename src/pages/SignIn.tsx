@@ -4,12 +4,23 @@ import AuthForm, {
 } from '../components/form/AuthForm.tsx';
 import { signIn } from '../firebase/firebase.ts';
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const SignIn = () => {
   const navigate = useNavigate();
 
   const [serverError, setServerError] = useState();
+
+  useEffect(() => {
+    const checkLoggedIn = async () => {
+      if (localStorage.getItem('isLoggedIn') === 'true') {
+        navigate('/main');
+      }
+    };
+
+    checkLoggedIn();
+  }, [navigate]);
+
   const onSubmit = async (data: SignInValues | SignUpValues) => {
     const res = await signIn(data.email, data.password);
     if (res.error) {
