@@ -19,7 +19,7 @@
   "prettify": "Prettify",
   "noQuery": "No query to format",
   "syntax": "Please check the query syntax",
-  "authenticated": "This endpoint requires you to be authenticated",
+  "errorSchema": "An error occurred during the schema request",
   "schema": "Schema",
   "notFoundTitle": "ERROR 404",
   "notFoundText": "Sorry! Page not found...",

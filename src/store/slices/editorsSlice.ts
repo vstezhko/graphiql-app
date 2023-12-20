@@ -87,7 +87,7 @@ export const editorsSlice = createSlice({
       .addCase(getSchema.rejected, (state) => {
         state.isFetching = 'idle';
         state.documentation = '';
-        state.error = 'authenticated';
+        state.error = 'errorSchema';
       });
   },
 });
