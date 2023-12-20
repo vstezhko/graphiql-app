@@ -1,0 +1,132 @@
+.team-member {
+  display: flex;
+  gap: 30px;
+  flex-wrap: nowrap;
+  padding: 30px;
+  align-items: center;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+  &__name{
+    font-weight: 700;
+    font-size: 3rem;
+  }
+
+  &__biography {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    line-height: 1.5rem;
+    flex: 1;
+  }
+
+  &__role {
+    font-weight: 700;
+    font-size: 1.6rem;
+  }
+
+  &__image-block {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 5px;
+  }
+
+  &__social {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+
+    svg {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+
+    }
+
+    .linkedin, .github {
+      color: $color-additional-2;
+      transition: all 0.3s;
+
+      &:hover{
+        color: $color-additional;
+      }
+    }
+
+  }
+
+  &__image {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+  &__contributions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    gap: 7px;
+  }
+
+  &__skill {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      text-transform: capitalize;
+    }
+
+  }
+
+  .team-member__contributions-range {
+    pointer-events: none;
+    width: 250px;
+
+    .css-h22bzp-MuiSlider-root {
+      height: 6px;
+    }
+
+  }
+
+  .css-nnid7-MuiSlider-valueLabel {
+    line-height: 0.8rem;
+  }
+
+  .css-nnid7-MuiSlider-valueLabel:before {
+    z-index: -1;
+  }
+
+
+
+}
+
+.even {
+  background-color: $color-font;
+
+  .team-member__image-block {
+    background-color: $color-font;
+  }
+
+}
+
+.odd {
+  background-color: $color-font;
+
+  .team-member__biography {
+    order: 3;
+  }
+
+  .team-member__image-block {
+    background-color: $color-font;
+    order: 2;
+  }
+
+  .team-member__contributions {
+    order: 1;
+  }
+
+
+
+}

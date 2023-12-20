@@ -1,0 +1,16 @@
+.welcomePage {
+  min-height: 100vh;
+  height: 100%;
+
+
+  &__title{
+    text-align: center;
+  }
+
+  &__item{
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+}

@@ -10,7 +10,6 @@ const Header = () => {
   const { isLoading, status } = useSelector(
     (state: RootState) => state.isLoggedIn
   );
-  console.log(isLoading, status);
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState(false);
   const navigate = useNavigate();

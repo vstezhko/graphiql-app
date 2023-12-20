@@ -4,6 +4,8 @@ import App from '../App.tsx';
 import MainPage from '../pages/mainPage/MainPage.tsx';
 import ErrorPage from '../pages/ErrorPage.tsx';
 import ErrorBoundary from './ErrorBoundary.tsx';
+import SignIn from '../pages/SignIn.tsx';
+import SignUp from '../pages/SignUp.tsx';
 
 const GQLRouterProvider = () => {
   const router = createBrowserRouter([
@@ -31,11 +33,11 @@ const GQLRouterProvider = () => {
         },
         {
           path: '/signIn',
-          element: <div>sign in</div>,
+          element: <SignIn />,
         },
         {
           path: '/signUp',
-          element: <div>sign up</div>,
+          element: <SignUp />,
         },
       ],
     },
