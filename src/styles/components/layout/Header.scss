@@ -1,6 +1,7 @@
 .header {
-  padding: 50px 16px;
+  padding: 1.6rem;
   transition: all 0.3s;
+  z-index: 100;
 
   .active {
     &:after {
@@ -33,7 +34,7 @@
   top: 0;
   width: 100%;
   z-index: 100;
-  padding: 1rem 1.6rem;
+  padding: 1.6rem;
   background-color: $color-additional;
   transition: all 0.3s;
 

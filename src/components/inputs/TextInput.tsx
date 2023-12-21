@@ -54,7 +54,9 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputParams>(
           name={inputName}
           onChange={handleChange}
           {...rest}
-          type={hideInputData ? 'password' : type === 'password' ? 'text' : type}
+          type={
+            hideInputData ? 'password' : type === 'password' ? 'text' : type
+          }
         />
         <p className="inputItem__error">{isError ? error.message : ' '}</p>
         {type === 'password' && passwordIcon}

@@ -54,7 +54,6 @@ main {
   flex-grow: 1;
   width: 100%;
   position: relative;
-
 }
 
 .container {
@@ -136,8 +135,9 @@ header {
 
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
-  transition: background-color 0s 600000s,
-  color 0s 600000s;
+  transition:
+    background-color 0s 600000s,
+    color 0s 600000s;
 }
 
 .Mui-selected {
@@ -147,6 +147,3 @@ input:-webkit-autofill:focus {
 .MuiTabs-indicator {
   background-color: $color-additional !important;
 }
-
-
-

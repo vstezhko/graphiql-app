@@ -7,10 +7,8 @@ import { RootState } from '../../store/store.ts';
 import { LanguageContext } from '../../context/LanguageContext.tsx';
 
 const Header = () => {
-  const { isLoading, status } = useSelector(
-    (state: RootState) => state.isLoggedIn
-  );
-  console.log(isLoading, status);
+  const { status } = useSelector((state: RootState) => state.isLoggedIn);
+
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState(false);
   const navigate = useNavigate();
@@ -34,9 +32,9 @@ const Header = () => {
     };
   }, []);
 
-  const handleLogout = () => {
-    logout();
-    navigate('/');
+  const handleLogout = async () => {
+    await logout();
+    navigate('/signIn');
   };
 
   //todo replace loading to component
@@ -45,10 +43,8 @@ const Header = () => {
       <NavLink to={'/'}>{dictionary.welcomePage}</NavLink>
       <NavLink to={'/main'}>{dictionary.mainPage}</NavLink>
       <div className="links__container">
-        <Localization scroll={scroll} status={status} />
-        {isLoading ? (
-          'loading'
-        ) : status ? (
+        <Localization status={status} />
+        {status ? (
           <button
             className={scroll ? 'sticky__link' : 'header__link'}
             onClick={handleLogout}

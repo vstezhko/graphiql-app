@@ -17,6 +17,7 @@ export const isLoggedInSlice = createSlice({
   reducers: {
     setStatus: (state, action: PayloadAction<boolean>) => {
       state.status = action.payload;
+      localStorage.setItem('isLoggedIn', JSON.stringify(action.payload));
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
       state.isLoading = action.payload;

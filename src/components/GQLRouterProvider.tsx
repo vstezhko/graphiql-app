@@ -1,9 +1,27 @@
-import { Suspense } from 'react';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { ReactNode, Suspense } from 'react';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom';
 import App from '../App.tsx';
+import WelcomePage from '../pages/welcomPage/WelcomePage.tsx';
+import SignIn from '../pages/SignIn.tsx';
+import SignUp from '../pages/SignUp.tsx';
+
 import MainPage from '../pages/mainPage/MainPage.tsx';
 import ErrorPage from '../pages/ErrorPage.tsx';
 import ErrorBoundary from './ErrorBoundary.tsx';
+
+const ProtectedRoute = ({ children }: { children: ReactNode }) => {
+  const auth = localStorage.getItem('isLoggedIn') === 'true';
+
+  if (!auth) {
+    return <Navigate to={'/signIn'} replace />;
+  }
+
+  return children;
+};
 
 const GQLRouterProvider = () => {
   const router = createBrowserRouter([
@@ -20,22 +38,20 @@ const GQLRouterProvider = () => {
         {
           path: '/main',
           element: (
-            <Suspense
-              fallback={
-                <div style={{ color: '#fff', zIndex: '100' }}>Loading...</div>
-              }
-            >
-              <MainPage />
+            <Suspense fallback={<h2>LOADING SUSPENSE</h2>}>
+              <ProtectedRoute>
+                <MainPage />
+              </ProtectedRoute>
             </Suspense>
           ),
         },
         {
           path: '/signIn',
-          element: <div>sign in</div>,
+          element: <SignIn />,
         },
         {
           path: '/signUp',
-          element: <div>sign up</div>,
+          element: <SignUp />,
         },
       ],
     },
