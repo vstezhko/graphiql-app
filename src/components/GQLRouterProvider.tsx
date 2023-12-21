@@ -5,7 +5,6 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import App from '../App.tsx';
-import WelcomePage from '../pages/welcomPage/WelcomePage.tsx';
 import SignIn from '../pages/SignIn.tsx';
 import SignUp from '../pages/SignUp.tsx';
 
