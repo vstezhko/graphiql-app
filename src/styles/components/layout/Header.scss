@@ -1,7 +1,6 @@
 .header {
   padding: 1.6rem;
   transition: all 0.3s;
-  z-index: 100;
 
   .active {
     &:after {
@@ -38,9 +37,12 @@
   background-color: $color-additional;
   transition: all 0.3s;
 
-  & > a {
-    color: $color-secondary;
+  & > .navigation {
+    & > a {
+      color: $color-secondary;
+    }
   }
+
 
   .active {
     &:after {
@@ -60,10 +62,9 @@
     padding: 0.6rem 1.6rem;
     border-radius: 0.4rem;
     transition: all 0.3s;
-    box-shadow:
-      0px 3px 1px -2px rgba(0, 0, 0, 0.2),
-      0px 2px 2px 0px rgba(0, 0, 0, 0.14),
-      0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+    0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 
     &:hover {
       color: $color-additional;
@@ -83,6 +84,39 @@
   background-color: $color-button !important;
   font-size: 1.6rem !important;
 }
+
+.lang__menu{
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+
+    & > .MuiButtonBase-root {
+      padding: 0;
+      & > .MuiListItemButton-root {
+        color: $color-font;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        border: 1px solid $color-button;
+
+        &:hover {
+          background-color: $color-button !important;
+          color: $color-font !important;
+        }
+
+        & > .MuiListItemText-root > span {
+          font-size: 1.2rem;
+        }
+      }
+
+      & > .Mui-selected {
+        background-color: $color-button  !important;
+        color: $color-font !important;
+      }
+    }
+  }
+
+
+
 
 .MuiPaper-root {
   background-color: $color-additional !important;
