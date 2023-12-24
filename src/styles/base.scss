@@ -189,6 +189,11 @@ header {
 
           & > a{
             background-color: $color-additional;
+
+            &:hover {
+              color: $color-additional;
+              background-color: $color-additional-2;
+            }
           }
         }
       }

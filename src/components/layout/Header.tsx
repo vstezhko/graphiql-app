@@ -11,17 +11,23 @@ const Navigation = ({
   scroll,
   onClick,
   isBurger,
+  handleCloseMenu,
 }: {
   scroll: boolean;
   onClick: () => void;
+  handleCloseMenu?: () => void;
   isBurger: boolean;
 }) => {
   const { dictionary } = useContext(LanguageContext);
   const { status } = useSelector((state: RootState) => state.isLoggedIn);
   return (
     <div className={isBurger ? 'burger__menu' : 'navigation'}>
-      <NavLink to={'/'}>{dictionary.welcomePage}</NavLink>
-      <NavLink to={'/main'}>{dictionary.mainPage}</NavLink>
+      <NavLink to={'/'} onClick={handleCloseMenu}>
+        {dictionary.welcomePage}
+      </NavLink>
+      <NavLink to={'/main'} onClick={handleCloseMenu}>
+        {dictionary.mainPage}
+      </NavLink>
       <div className="links__container">
         <Localization status={status} isBurger={isBurger} />
         {status ? (
@@ -36,12 +42,14 @@ const Navigation = ({
             <Link
               className={scroll ? 'sticky__link' : 'header__link'}
               to={'/signIn'}
+              onClick={handleCloseMenu}
             >
               {dictionary.signIn}
             </Link>
             <Link
               className={scroll ? 'sticky__link' : 'header__link'}
               to={'/signUp'}
+              onClick={handleCloseMenu}
             >
               Sign Up
             </Link>
@@ -78,6 +86,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     await logout();
+    handleCloseMenu();
     navigate('/signIn');
   };
 
@@ -107,6 +116,7 @@ const Header = () => {
             <Navigation
               scroll={scroll}
               onClick={handleLogout}
+              handleCloseMenu={handleCloseMenu}
               isBurger={true}
             />
             <button className="burger__close" onClick={handleCloseMenu}>
