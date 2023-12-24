@@ -2,8 +2,12 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  margin-top: -100px;
+  justify-content: flex-start;
+  padding-top: 200px;
+
+  @media (max-width: 768px) {
+    padding-top: 50px;
+  }
 }
 
 .form {

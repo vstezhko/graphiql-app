@@ -15,7 +15,13 @@ type LangArrayObject = {
   abbr: string;
 };
 
-const Localization = ({ status }: { status: boolean }) => {
+const Localization = ({
+  status,
+  isBurger,
+}: {
+  status: boolean;
+  isBurger: boolean;
+}) => {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
   const { dictionary, language, setLanguage } = useContext(LanguageContext);
 
@@ -40,8 +46,22 @@ const Localization = ({ status }: { status: boolean }) => {
 
   const id = Boolean(anchorEl) ? 'simple-popover' : undefined;
 
-  return (
-    <div>
+  return isBurger ? (
+    <MenuList className="lang__menu">
+      {langArray.map(({ id, abbr }) => (
+        <MenuItem key={id}>
+          <ListItemButton
+            disableRipple
+            selected={language === id}
+            onClick={() => handleListItemClick(id as LanguageKeys)}
+          >
+            <ListItemText primary={abbr} />
+          </ListItemButton>
+        </MenuItem>
+      ))}
+    </MenuList>
+  ) : (
+    <>
       <Button
         aria-describedby={id}
         variant="contained"
@@ -80,7 +100,7 @@ const Localization = ({ status }: { status: boolean }) => {
           ))}
         </MenuList>
       </Popover>
-    </div>
+    </>
   );
 };
 
