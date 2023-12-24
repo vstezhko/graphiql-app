@@ -147,3 +147,10 @@ input:-webkit-autofill:focus {
 .MuiTabs-indicator {
   background-color: $color-additional !important;
 }
+
+.main-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

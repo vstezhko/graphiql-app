@@ -4,14 +4,15 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 import { useDispatch, useSelector } from 'react-redux';
 import TabPanel from './TabPanel.tsx';
-import VariableEditor from '../variableEditor/VariableEditor.tsx';
-import HeadersEditor from '../headersEditor/HeadersEditor.tsx';
 import { RootState } from '../../../store/store.ts';
 import {
   setActiveTab,
   setIsPanelOpen,
+  setQueryHeaders,
+  setQueryVariables,
 } from '../../../store/slices/editorsSlice.ts';
 import { LanguageContext } from '../../../context/LanguageContext.tsx';
+import Editor from '../editor/Editor.tsx';
 
 const EditorTabs = () => {
   const dispatch = useDispatch();
@@ -73,10 +74,20 @@ const EditorTabs = () => {
       {isPanelOpen && (
         <div className="editor-tabs__tab-panels">
           <TabPanel value={value} index={0}>
-            <VariableEditor />
+            <Editor
+              stateValueName="queryVariables"
+              action={setQueryVariables}
+              className="variable-editor"
+              isJson
+            />
           </TabPanel>
           <TabPanel value={value} index={1}>
-            <HeadersEditor />
+            <Editor
+              stateValueName="queryHeaders"
+              action={setQueryHeaders}
+              className="headers-editor"
+              isJson
+            />
           </TabPanel>
         </div>
       )}

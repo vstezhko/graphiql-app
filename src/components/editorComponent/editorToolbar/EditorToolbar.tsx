@@ -3,6 +3,7 @@ import { ChangeEvent, useEffect, useContext } from 'react';
 import { Button, IconButton } from '@mui/material';
 import { fetchData, getSchema } from '../../../store/slices/graphQLThunk.ts';
 import PlayCircleFilledWhiteIcon from '@mui/icons-material/PlayCircleFilledWhite';
+import PauseCircleFilledIcon from '@mui/icons-material/PauseCircleFilled';
 import { AppDispatch, RootState } from '../../../store/store.ts';
 import {
   DictionaryKey,
@@ -25,6 +26,9 @@ const EditorToolbar = () => {
   );
   const error = useSelector((state: RootState) => state.editors.error);
   const queryBody = useSelector((state: RootState) => state.editors.queryBody);
+  const isFetching = useSelector(
+    (state: RootState) => state.editors.isFetchingQuery
+  );
 
   const queryVariables = useSelector(
     (state: RootState) => state.editors.queryVariables
@@ -79,7 +83,11 @@ const EditorToolbar = () => {
           onClick={handleRun}
           disabled={!queryBody}
         >
-          <PlayCircleFilledWhiteIcon />
+          {isFetching === 'loading' ? (
+            <PauseCircleFilledIcon />
+          ) : (
+            <PlayCircleFilledWhiteIcon />
+          )}
         </IconButton>
         <Button
           className="editor-toolbar__prettify-button"
