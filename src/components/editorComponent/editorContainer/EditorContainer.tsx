@@ -1,16 +1,25 @@
-import GraphQLEditor from '../graphqlEditor/GraphQLEditor';
+import { setQueryBody } from '../../../store/slices/editorsSlice';
+import Editor from '../editor/Editor';
 import EditorTabs from '../editorTabs/EditorTabs';
-import ResponseViewer from '../responseViewer/ResponseViewer';
 
 const EditorContainer = () => {
   return (
     <div className="editor-container">
       <section className="editor-container__request-section">
-        <GraphQLEditor />
+        <Editor
+          stateValueName="queryBody"
+          action={setQueryBody}
+          className="graphql-editor"
+        />
         <EditorTabs />
       </section>
       <section className="editor-container__response-section">
-        <ResponseViewer />
+        <Editor
+          stateValueName="response"
+          className="variable-editor"
+          isJson
+          isReadOnly
+        />
       </section>
     </div>
   );
