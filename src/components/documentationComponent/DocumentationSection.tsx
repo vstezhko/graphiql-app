@@ -33,7 +33,7 @@ export interface Documentation {
 const DocumentationSection = () => {
   const doc = useSelector((state: RootState) => state.editors.documentation);
   const isFetching = useSelector(
-    (state: RootState) => state.editors.isFetching
+    (state: RootState) => state.editors.isFetchingSchema
   );
   const { dictionary } = useContext(LanguageContext);
   const [isOpen, setIsOpen] = useState(false);

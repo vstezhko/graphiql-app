@@ -45,6 +45,15 @@
     &:hover::after {
       background-color: $color-additional-2;
     }
+
+    &:disabled svg {
+      color: $color-border;
+    }
+
+    &:disabled::after {
+      background-color: $color-hovered;
+    }
+
   }
 
   & .editor-toolbar__prettify-button {

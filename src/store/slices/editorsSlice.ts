@@ -9,7 +9,8 @@ export interface EditorsState {
   queryHeaders: string;
   activeTab: number;
   isPanelOpen: boolean;
-  isFetching: 'idle' | 'loading';
+  isFetchingQuery: 'idle' | 'loading';
+  isFetchingSchema: 'idle' | 'loading';
   response: string;
   endpoint: string;
   error: DictionaryKey | null;
@@ -22,7 +23,8 @@ const initialState: EditorsState = {
   queryHeaders: '',
   activeTab: 0,
   isPanelOpen: true,
-  isFetching: 'idle',
+  isFetchingQuery: 'idle',
+  isFetchingSchema: 'idle',
   response: '',
   endpoint: '',
   error: null,
@@ -65,27 +67,27 @@ export const editorsSlice = createSlice({
     builder
       .addCase(fetchData.pending, (state) => {
         state.error = null;
-        state.isFetching = 'loading';
+        state.isFetchingQuery = 'loading';
       })
       .addCase(fetchData.fulfilled, (state, action) => {
-        state.isFetching = 'idle';
+        state.isFetchingQuery = 'idle';
         state.response = action.payload;
       })
       .addCase(fetchData.rejected, (state) => {
-        state.isFetching = 'idle';
+        state.isFetchingQuery = 'idle';
         state.response = '';
         state.error = 'endpointError';
       })
       .addCase(getSchema.pending, (state) => {
         state.error = null;
-        state.isFetching = 'loading';
+        state.isFetchingSchema = 'loading';
       })
       .addCase(getSchema.fulfilled, (state, action) => {
-        state.isFetching = 'idle';
+        state.isFetchingSchema = 'idle';
         state.documentation = action.payload;
       })
       .addCase(getSchema.rejected, (state) => {
-        state.isFetching = 'idle';
+        state.isFetchingSchema = 'idle';
         state.documentation = '';
         state.error = 'errorSchema';
       });
