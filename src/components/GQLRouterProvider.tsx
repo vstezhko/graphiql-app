@@ -11,6 +11,7 @@ import SignUp from '../pages/SignUp.tsx';
 import MainPage from '../pages/mainPage/MainPage.tsx';
 import ErrorPage from '../pages/ErrorPage.tsx';
 import ErrorBoundary from './ErrorBoundary.tsx';
+import { CircularProgress } from '@mui/material';
 
 const ProtectedRoute = ({ children }: { children: ReactNode }) => {
   const auth = localStorage.getItem('isLoggedIn') === 'true';
@@ -37,7 +38,7 @@ const GQLRouterProvider = () => {
         {
           path: '/main',
           element: (
-            <Suspense fallback={<h2>LOADING SUSPENSE</h2>}>
+            <Suspense fallback={<CircularProgress className="main-loading" />}>
               <ProtectedRoute>
                 <MainPage />
               </ProtectedRoute>
