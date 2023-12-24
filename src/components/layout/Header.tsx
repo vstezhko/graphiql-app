@@ -5,7 +5,7 @@ import { logout } from '../../firebase/firebase.ts';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store.ts';
 import { LanguageContext } from '../../context/LanguageContext.tsx';
-// import { Button } from '@mui/material';
+import { Button } from '@mui/material';
 
 const Navigation = ({
   scroll,
@@ -14,7 +14,7 @@ const Navigation = ({
 }: {
   scroll: boolean;
   onClick: () => void;
-  isBurger?: boolean;
+  isBurger: boolean;
 }) => {
   const { dictionary } = useContext(LanguageContext);
   const { status } = useSelector((state: RootState) => state.isLoggedIn);
@@ -23,7 +23,7 @@ const Navigation = ({
       <NavLink to={'/'}>{dictionary.welcomePage}</NavLink>
       <NavLink to={'/main'}>{dictionary.mainPage}</NavLink>
       <div className="links__container">
-        <Localization status={status} />
+        <Localization status={status} isBurger={isBurger} />
         {status ? (
           <button
             className={scroll ? 'sticky__link' : 'header__link'}
@@ -56,7 +56,7 @@ const Header = () => {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState(false);
   const navigate = useNavigate();
-  // const [isVisible, setIsVisible] = useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -81,29 +81,40 @@ const Header = () => {
     navigate('/signIn');
   };
 
+  const handleOpenMenu = () => {
+    setIsVisible(true);
+    document.body.classList.add('no-scroll');
+  };
+
+  const handleCloseMenu = () => {
+    setIsVisible(false);
+    document.body.classList.remove('no-scroll');
+  };
+
   return (
     <header className={scroll ? 'sticky' : 'header'} ref={headerRef}>
-      <Navigation scroll={scroll} onClick={handleLogout} />
-      {/*<div className="burger">*/}
-      {/*  <Button*/}
-      {/*    variant="contained"*/}
-      {/*    className="burger__btn"*/}
-      {/*    onClick={() => setIsVisible(true)}*/}
-      {/*  >*/}
-      {/*    Menu*/}
-      {/*  </Button>*/}
-      {/*  {isVisible && (*/}
-      {/*    <>*/}
-      {/*      <Navigation scroll={scroll} onClick={handleLogout} isBurger />*/}
-      {/*      <button*/}
-      {/*        className="burger__close"*/}
-      {/*        onClick={() => setIsVisible(false)}*/}
-      {/*      >*/}
-      {/*        X*/}
-      {/*      </button>*/}
-      {/*    </>*/}
-      {/*  )}*/}
-      {/*</div>*/}
+      <Navigation scroll={scroll} onClick={handleLogout} isBurger={false} />
+      <div className="burger">
+        <Button
+          variant="contained"
+          className="burger__btn"
+          onClick={handleOpenMenu}
+        >
+          Menu
+        </Button>
+        {isVisible && (
+          <>
+            <Navigation
+              scroll={scroll}
+              onClick={handleLogout}
+              isBurger={true}
+            />
+            <button className="burger__close" onClick={handleCloseMenu}>
+              X
+            </button>
+          </>
+        )}
+      </div>
     </header>
   );
 };

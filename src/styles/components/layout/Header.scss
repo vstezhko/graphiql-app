@@ -86,6 +86,39 @@
   font-size: 1.6rem !important;
 }
 
+.lang__menu{
+    display: flex;
+    gap: 1rem;
+    padding: 0;
+
+    & > .MuiButtonBase-root {
+      padding: 0;
+      & > .MuiListItemButton-root {
+        color: $color-font;
+        padding: 0.5rem 1rem;
+        border-radius: 6px;
+        border: 1px solid $color-button;
+
+        &:hover {
+          background-color: $color-button !important;
+          color: $color-font !important;
+        }
+
+        & > .MuiListItemText-root > span {
+          font-size: 1.2rem;
+        }
+      }
+
+      & > .Mui-selected {
+        background-color: $color-button  !important;
+        color: $color-font !important;
+      }
+    }
+  }
+
+
+
+
 .MuiPaper-root {
   background-color: $color-additional !important;
 
