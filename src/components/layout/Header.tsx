@@ -51,7 +51,7 @@ const Navigation = ({
               to={'/signUp'}
               onClick={handleCloseMenu}
             >
-              Sign Up
+              {dictionary.signUp}
             </Link>
           </>
         )}
