@@ -113,8 +113,8 @@ const DocumentationSection = () => {
         <>
           <Button
             className="doc-section__back-btn"
-            onClick={handleBackClick}
             data-testid="backBtn"
+            onClick={handleBackClick}
           >
             Back
           </Button>
@@ -145,6 +145,7 @@ const DocumentationSection = () => {
               {allSchemaTypes?.map((type) => (
                 <div
                   className="doc-section__item"
+                  data-testid="link"
                   key={type.name}
                   onClick={() => handleTypeClick(type)}
                 >

@@ -69,7 +69,6 @@ test('open doc section if schema is ready, render schema', async () => {
     expect(buttonElement).not.toBeDisabled();
     expect(docSection).not.toHaveClass('doc-section_close');
     expect(screen.getByText('Root Type')).toBeInTheDocument();
-    screen.debug();
   });
 });
 
@@ -111,32 +110,13 @@ it('should not render the back button when no type is selected', () => {
   expect(backButton).not.toBeInTheDocument();
 });
 
-it('should render the back button when a type is selected', async () => {
-  const store = configureStore({
-    reducer: {
-      editors: editorsReducer,
-    },
-  });
+it('should render the back button when a type is selected, should back history', async () => {
   render(
     <Provider store={store}>
       <DocumentationSection />
     </Provider>
   );
 
-  await act(async () => {
-    store.dispatch(setEndpoint('https://countries.trevorblades.com/graphql'));
-    store.dispatch(getSchema());
-  });
-
-  await waitFor(() => {
-    const typeElement = screen.getByText('ID');
-    fireEvent.click(typeElement);
-    const backButton = screen.getByTestId('backBtn');
-    expect(backButton).toBeInTheDocument();
-  });
-});
-
-test('should update history and set the selected type correctly', () => {
   const { result } = renderHook(() => {
     const [history, setHistory] = useState(['Type1', 'Type2']);
     const [selectedType, setSelectedType] = useState<string | null>(null);
@@ -151,12 +131,49 @@ test('should update history and set the selected type correctly', () => {
     return { handleBackClick, history, selectedType };
   });
 
+  await act(async () => {
+    store.dispatch(setEndpoint('https://countries.trevorblades.com/graphql'));
+    store.dispatch(getSchema());
+  });
+
+  await waitFor(() => {
+    const typeElement = screen.getByText('ID');
+    fireEvent.click(typeElement);
+    const backButton = screen.getByTestId('backBtn');
+    expect(backButton).toBeInTheDocument();
+    fireEvent.click(backButton);
+  });
+
   act(() => {
     result.current.handleBackClick();
   });
 
   expect(result.current.history).toEqual(['Type1']);
   expect(result.current.selectedType).toEqual('Type1');
+});
+
+test('should click on links and call the mock function', async () => {
+  const store = configureStore({
+    reducer: {
+      editors: editorsReducer,
+    },
+  });
+
+  render(
+    <Provider store={store}>
+      <DocumentationSection />
+    </Provider>
+  );
+
+  await act(async () => {
+    store.dispatch(setEndpoint('https://countries.trevorblades.com/graphql'));
+    store.dispatch(getSchema());
+  });
+
+  await waitFor(() => {
+    const link = screen.getByText('Query');
+    expect(link).toBeInTheDocument();
+  });
 });
 
 test('test TypeList component', () => {
