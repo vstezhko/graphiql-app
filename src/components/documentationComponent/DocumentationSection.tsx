@@ -105,10 +105,17 @@ const DocumentationSection = () => {
   };
 
   return (
-    <div className={isOpen ? 'doc-section' : 'doc-section doc-section_close'}>
+    <div
+      data-testid="docSection"
+      className={isOpen ? 'doc-section' : 'doc-section doc-section_close'}
+    >
       {selectedType && rootQuery ? (
         <>
-          <Button className="doc-section__back-btn" onClick={handleBackClick}>
+          <Button
+            className="doc-section__back-btn"
+            onClick={handleBackClick}
+            data-testid="backBtn"
+          >
             Back
           </Button>
           <TypesList
@@ -150,13 +157,17 @@ const DocumentationSection = () => {
 
       <Button
         className="doc-section__btn"
+        data-testid="openBtn"
         onClick={handleCloseOpenSection}
         disabled={!schema || schema?.length === 0}
       >
         {isFetching !== 'loading' ? (
           dictionary.schema
         ) : (
-          <CircularProgress className="doc-section__progress" />
+          <CircularProgress
+            data-testid="сircularProgress"
+            className="doc-section__progress"
+          />
         )}
       </Button>
     </div>
