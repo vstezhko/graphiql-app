@@ -132,6 +132,7 @@ const DocumentationSection = () => {
               <h3>Root Type</h3>
               <div
                 className="doc-section__item"
+                data-testid="link"
                 onClick={() => handleTypeClick(rootQuery)}
               >
                 {rootQuery?.name}

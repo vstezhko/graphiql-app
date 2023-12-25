@@ -1,4 +1,10 @@
-import { act, fireEvent, render, waitFor } from '@testing-library/react';
+import {
+  act,
+  fireEvent,
+  render,
+  renderHook,
+  waitFor,
+} from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { store } from '../store/store.ts';
 import { screen } from '@testing-library/dom';
@@ -11,6 +17,7 @@ import editorsReducer, { setEndpoint } from '../store/slices/editorsSlice.ts';
 import { getSchema } from '../store/slices/graphQLThunk.ts';
 import TypesList from '../components/documentationComponent/TypesList.tsx';
 import { mockSchema } from './mockSchema.ts';
+import { useState } from 'react';
 
 test('renders DocumentationSection', () => {
   render(
@@ -93,7 +100,66 @@ test('open/ close doc section', async () => {
   });
 });
 
-test('render types', async () => {
+it('should not render the back button when no type is selected', () => {
+  render(
+    <Provider store={store}>
+      <DocumentationSection />
+    </Provider>
+  );
+
+  const backButton = screen.queryByTestId('backBtn');
+  expect(backButton).not.toBeInTheDocument();
+});
+
+it('should render the back button when a type is selected', async () => {
+  const store = configureStore({
+    reducer: {
+      editors: editorsReducer,
+    },
+  });
+  render(
+    <Provider store={store}>
+      <DocumentationSection />
+    </Provider>
+  );
+
+  await act(async () => {
+    store.dispatch(setEndpoint('https://countries.trevorblades.com/graphql'));
+    store.dispatch(getSchema());
+  });
+
+  await waitFor(() => {
+    const typeElement = screen.getByText('ID');
+    fireEvent.click(typeElement);
+    const backButton = screen.getByTestId('backBtn');
+    expect(backButton).toBeInTheDocument();
+  });
+});
+
+test('should update history and set the selected type correctly', () => {
+  const { result } = renderHook(() => {
+    const [history, setHistory] = useState(['Type1', 'Type2']);
+    const [selectedType, setSelectedType] = useState<string | null>(null);
+
+    const handleBackClick = () => {
+      const newHistory = [...history];
+      newHistory.pop();
+      setHistory(newHistory);
+      setSelectedType(newHistory[newHistory.length - 1] || null);
+    };
+
+    return { handleBackClick, history, selectedType };
+  });
+
+  act(() => {
+    result.current.handleBackClick();
+  });
+
+  expect(result.current.history).toEqual(['Type1']);
+  expect(result.current.selectedType).toEqual('Type1');
+});
+
+test('test TypeList component', () => {
   const schema = mockSchema.data.__schema.types as Documentation[];
   const queryType = mockSchema.data?.__schema?.queryType?.name as string;
   const root = schema?.find(
@@ -104,10 +170,12 @@ test('render types', async () => {
     (s: Documentation) => s.name === 'Continent'
   ) as Documentation;
 
+  const mockFunction = vi.fn();
+
   render(
     <TypesList
       list={list}
-      handleTypeClick={vi.fn()}
+      handleTypeClick={mockFunction}
       schema={schema}
       root={root}
     />
@@ -115,6 +183,10 @@ test('render types', async () => {
 
   expect(screen.getByText('Continent')).toBeInTheDocument();
   expect(screen.getByText('Arguments')).toBeInTheDocument();
-  const link = screen.getByText('ID');
-  expect(link).toBeInTheDocument();
+  const links = screen.getAllByTestId('link');
+  expect(links.length).toBeGreaterThan(0);
+  links.forEach((link) => {
+    fireEvent.click(link);
+    expect(mockFunction).toHaveBeenCalled();
+  });
 });
