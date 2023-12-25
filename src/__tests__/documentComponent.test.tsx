@@ -2,11 +2,15 @@ import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { store } from '../store/store.ts';
 import { screen } from '@testing-library/dom';
-import DocumentationSection from '../components/documentationComponent/DocumentationSection.tsx';
+import DocumentationSection, {
+  Documentation,
+} from '../components/documentationComponent/DocumentationSection.tsx';
 import { expect } from 'vitest';
 import { configureStore } from '@reduxjs/toolkit';
 import editorsReducer, { setEndpoint } from '../store/slices/editorsSlice.ts';
 import { getSchema } from '../store/slices/graphQLThunk.ts';
+import TypesList from '../components/documentationComponent/TypesList.tsx';
+import { mockSchema } from './mockSchema.ts';
 
 test('renders DocumentationSection', () => {
   render(
@@ -87,4 +91,30 @@ test('open/ close doc section', async () => {
     fireEvent.click(buttonElement);
     expect(docSection).not.toHaveClass('doc-section_close');
   });
+});
+
+test('render types', async () => {
+  const schema = mockSchema.data.__schema.types as Documentation[];
+  const queryType = mockSchema.data?.__schema?.queryType?.name as string;
+  const root = schema?.find(
+    (s: Documentation) => s.name === queryType
+  ) as Documentation;
+
+  const list = schema.find(
+    (s: Documentation) => s.name === 'Continent'
+  ) as Documentation;
+
+  render(
+    <TypesList
+      list={list}
+      handleTypeClick={vi.fn()}
+      schema={schema}
+      root={root}
+    />
+  );
+
+  expect(screen.getByText('Continent')).toBeInTheDocument();
+  expect(screen.getByText('Arguments')).toBeInTheDocument();
+  const link = screen.getByText('ID');
+  expect(link).toBeInTheDocument();
 });
