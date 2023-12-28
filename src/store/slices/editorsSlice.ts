@@ -44,9 +44,6 @@ export const editorsSlice = createSlice({
     setQueryHeaders: (state, action: PayloadAction<string>) => {
       state.queryHeaders = action.payload;
     },
-    setResponse: (state, action: PayloadAction<string>) => {
-      state.response = action.payload;
-    },
     setActiveTab: (state, action: PayloadAction<number>) => {
       state.activeTab = action.payload;
     },
