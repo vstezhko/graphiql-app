@@ -43,7 +43,7 @@ describe('editors reducer', () => {
   });
 
   test('handles setError', () => {
-    const errorReference = 'syntax';
+    const errorReference = 'bracketMismatch';
     store.dispatch(setError(errorReference));
     expect(store.getState().editors.error).toBe(errorReference);
   });
