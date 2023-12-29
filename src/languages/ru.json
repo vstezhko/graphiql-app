@@ -18,6 +18,8 @@
   "jenya": "Женя",
   "prettify": "Форматировать",
   "noQuery": "Нет запроса для форматирования",
+  "invalidJSONHeaders": "Невалидный JSON в заголовках",
+  "invalidJSONVariables": "Невалидный JSON в переменных",
   "bracketMismatch": "Несоответствие скобок",
   "unexpectedBlock": "Неожиданные символы в конце запроса",
   "errorSchema": "Произошла ошибка во время запроса схемы",

@@ -13,7 +13,8 @@ export interface EditorsState {
   isFetchingSchema: 'idle' | 'loading';
   response: string;
   endpoint: string;
-  error: DictionaryKey | null;
+  requestError: DictionaryKey | null;
+  prettifyError: DictionaryKey | null;
   documentation: string;
 }
 
@@ -27,7 +28,8 @@ const initialState: EditorsState = {
   isFetchingSchema: 'idle',
   response: '',
   endpoint: '',
-  error: null,
+  requestError: null,
+  prettifyError: null,
   documentation: '',
 };
 
@@ -53,8 +55,11 @@ export const editorsSlice = createSlice({
     setEndpoint: (state, action: PayloadAction<string>) => {
       state.endpoint = action.payload;
     },
-    setError: (state, action: PayloadAction<DictionaryKey | null>) => {
-      state.error = action.payload;
+    setRequestError: (state, action: PayloadAction<DictionaryKey | null>) => {
+      state.requestError = action.payload;
+    },
+    setPrettifyError: (state, action: PayloadAction<DictionaryKey | null>) => {
+      state.prettifyError = action.payload;
     },
     setDocumentation: (state) => {
       state.documentation = '';
@@ -63,7 +68,7 @@ export const editorsSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchData.pending, (state) => {
-        state.error = null;
+        state.requestError = null;
         state.isFetchingQuery = 'loading';
       })
       .addCase(fetchData.fulfilled, (state, action) => {
@@ -73,10 +78,10 @@ export const editorsSlice = createSlice({
       .addCase(fetchData.rejected, (state) => {
         state.isFetchingQuery = 'idle';
         state.response = '';
-        state.error = 'endpointError';
+        state.requestError = 'endpointError';
       })
       .addCase(getSchema.pending, (state) => {
-        state.error = null;
+        state.requestError = null;
         state.isFetchingSchema = 'loading';
       })
       .addCase(getSchema.fulfilled, (state, action) => {
@@ -86,7 +91,7 @@ export const editorsSlice = createSlice({
       .addCase(getSchema.rejected, (state) => {
         state.isFetchingSchema = 'idle';
         state.documentation = '';
-        state.error = 'errorSchema';
+        state.requestError = 'errorSchema';
       });
   },
 });
@@ -98,7 +103,8 @@ export const {
   setActiveTab,
   setIsPanelOpen,
   setEndpoint,
-  setError,
+  setRequestError,
+  setPrettifyError,
   setDocumentation,
 } = editorsSlice.actions;
 

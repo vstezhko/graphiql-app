@@ -18,6 +18,8 @@
   "jenya": "Jenya",
   "prettify": "Prettify",
   "noQuery": "No query to format",
+  "invalidJSONHeaders": "Invalid JSON at Headers",
+  "invalidJSONVariables": "Invalid JSON at Variables",
   "bracketMismatch": "Brackets mismatch",
   "unexpectedBlock": "Extra symbols at the query end",
   "errorSchema": "An error occurred during the schema request",

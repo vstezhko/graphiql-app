@@ -12,10 +12,11 @@ import {
 import {
   setDocumentation,
   setEndpoint,
-  setError,
+  setRequestError,
   setQueryBody,
   setQueryHeaders,
   setQueryVariables,
+  setPrettifyError,
 } from '../../../store/slices/editorsSlice.ts';
 import { formatGraphQL, formatJSON } from '../../../utils/prettify.ts';
 
@@ -24,7 +25,9 @@ const EditorToolbar = () => {
   const endpointValue = useSelector(
     (state: RootState) => state.editors.endpoint
   );
-  const error = useSelector((state: RootState) => state.editors.error);
+  const requestError = useSelector(
+    (state: RootState) => state.editors.requestError
+  );
   const queryBody = useSelector((state: RootState) => state.editors.queryBody);
   const isFetching = useSelector(
     (state: RootState) => state.editors.isFetchingQuery
@@ -42,20 +45,22 @@ const EditorToolbar = () => {
   };
 
   const handleRun = () => {
-    queryBody ? dispatch(fetchData()) : dispatch(setError('enterQuery'));
+    queryBody ? dispatch(fetchData()) : dispatch(setRequestError('enterQuery'));
   };
 
   const handlePrettify = () => {
-    dispatch(setError(null));
+    dispatch(setPrettifyError(null));
     try {
       dispatch(setQueryBody(formatGraphQL(queryBody)));
+      if (queryVariables)
+        dispatch(setQueryVariables(formatJSON(queryVariables, 'Variables')));
+      if (queryHeaders)
+        dispatch(setQueryHeaders(formatJSON(queryHeaders, 'Headers')));
     } catch (error) {
       if (error instanceof Error) {
-        dispatch(setError(error.message as DictionaryKey));
+        dispatch(setPrettifyError(error.message as DictionaryKey));
       }
     }
-    if (queryVariables) dispatch(setQueryVariables(formatJSON(queryVariables)));
-    if (queryHeaders) dispatch(setQueryHeaders(formatJSON(queryHeaders)));
   };
 
   useEffect(() => {
@@ -99,7 +104,9 @@ const EditorToolbar = () => {
           {dictionary.prettify}
         </Button>
       </div>
-      {error && <p className="editor-toolbar__error">{dictionary[error]}</p>}
+      {requestError && (
+        <p className="editor-toolbar__error">{dictionary[requestError]}</p>
+      )}
     </div>
   );
 };

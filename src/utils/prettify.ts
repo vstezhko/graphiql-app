@@ -140,6 +140,11 @@ export function parseBlock(block: string) {
   return formattedQuery;
 }
 
-export function formatJSON(json: string) {
-  return JSON.stringify(JSON.parse(json), null, 2);
+export function formatJSON(json: string, origin: string) {
+  try {
+    return JSON.stringify(JSON.parse(json), null, 2);
+  } catch (error) {
+    debugger;
+    throw new Error(`invalidJSON${origin ? `${origin}` : ''}`);
+  }
 }
