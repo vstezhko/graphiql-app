@@ -1,9 +1,9 @@
 import { Store, configureStore } from '@reduxjs/toolkit';
 import editorsReducer, {
-  setError,
   setQueryBody,
   setQueryHeaders,
   setQueryVariables,
+  setRequestError,
 } from '../store/slices/editorsSlice';
 import { fetchData, getSchema } from '../store/slices/graphQLThunk';
 import { Mock } from 'vitest';
@@ -42,10 +42,10 @@ describe('editors reducer', () => {
     expect(store.getState().editors.queryHeaders).toBe(headers);
   });
 
-  test('handles setError', () => {
+  test('handles setRequestError', () => {
     const errorReference = 'bracketMismatch';
-    store.dispatch(setError(errorReference));
-    expect(store.getState().editors.error).toBe(errorReference);
+    store.dispatch(setRequestError(errorReference));
+    expect(store.getState().editors.requestError).toBe(errorReference);
   });
 
   test('handles fetchData result', async () => {
@@ -63,7 +63,7 @@ describe('editors reducer', () => {
     expect(store.getState().editors.response).toBe(
       JSON.stringify(data, null, 2)
     );
-    expect(store.getState().editors.error).toBeNull();
+    expect(store.getState().editors.requestError).toBeNull();
   });
 
   test('handles fetchData errors', async () => {
@@ -73,7 +73,7 @@ describe('editors reducer', () => {
     await store.dispatch(fetchData());
 
     expect(store.getState().editors.isFetchingQuery).toBe('idle');
-    expect(store.getState().editors.error).toBe(errorReference);
+    expect(store.getState().editors.requestError).toBe(errorReference);
     expect(store.getState().editors.response).toBe('');
   });
 
@@ -84,7 +84,7 @@ describe('editors reducer', () => {
     await store.dispatch(getSchema());
 
     expect(store.getState().editors.isFetchingQuery).toBe('idle');
-    expect(store.getState().editors.error).toBe(errorReference);
+    expect(store.getState().editors.requestError).toBe(errorReference);
     expect(store.getState().editors.response).toBe('');
   });
 });

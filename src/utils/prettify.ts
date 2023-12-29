@@ -46,12 +46,10 @@ export function formatGraphQL(queryBody: string) {
   }
 
   if (currentBlock && currentBlock.trim() !== '') {
-    debugger;
     throw new Error('unexpectedBlock');
   }
 
   let formattedQuery = '';
-  console.log(blocks);
   for (const block of blocks) {
     formattedQuery += parseBlock(block) + '\n';
   }
@@ -59,7 +57,6 @@ export function formatGraphQL(queryBody: string) {
   if (formattedQuery.endsWith('\n')) {
     formattedQuery = formattedQuery.slice(0, -1);
   }
-
   return formattedQuery;
 }
 
@@ -136,7 +133,6 @@ export function parseBlock(block: string) {
       formattedQuery += char;
     }
   }
-
   return formattedQuery;
 }
 
@@ -144,7 +140,6 @@ export function formatJSON(json: string, origin: string) {
   try {
     return JSON.stringify(JSON.parse(json), null, 2);
   } catch (error) {
-    debugger;
     throw new Error(`invalidJSON${origin ? `${origin}` : ''}`);
   }
 }
