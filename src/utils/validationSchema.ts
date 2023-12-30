@@ -17,6 +17,7 @@ export const validationSchema = {
       .matches(/^(?=.*\d)/, 'need 1 digit')
       .matches(/(?=.*[A-Z])/, 'need 1 uppercase (A-Z)')
       .matches(/(?=.*[a-z])/, 'need 1 lowercase (a-z)')
+      .min(8, 'min 8 characters')
       .matches(
         /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/,
         'need 1 special symbol'
@@ -32,6 +33,7 @@ export const validationSchema = {
       .matches(/^(?=.*\d)/, 'need 1 digit')
       .matches(/(?=.*[A-Z])/, 'need 1 uppercase (A-Z)')
       .matches(/(?=.*[a-z])/, 'need 1 lowercase (a-z)')
+      .min(8, 'min 8 characters')
       .matches(
         /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/,
         'need 1 special symbol'
@@ -42,6 +44,7 @@ export const validationSchema = {
       .matches(/(?=.*[A-Z])/, 'need 1 uppercase (A-Z)')
       .matches(/(?=.*[a-z])/, 'need 1 lowercase (a-z)')
       .matches(/[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/, 'need 1 special symbol')
+      .min(8, 'min 8 characters')
       .oneOf([ref(FormFields.PASSWORD)], 'Passwords must match'),
   }),
 };

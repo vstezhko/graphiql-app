@@ -24,5 +24,12 @@
   "notFoundTitle": "ОШИБКА 404",
   "notFoundText": "Извините! Страница не найдена...",
   "errorTitle": "ОШИБКА",
-  "errorText": "Что-то пошло не так... Мы пытаемся исправить это!"
+  "errorText": "Что-то пошло не так... Мы пытаемся исправить это!",
+  "Email": "Email",
+  "Password": "Пароль",
+  "ConfirmPassword": "Подтверди пароль",
+  "FirebaseErrorAuthInvalidCredential": "Неверный  логин или пароль",
+  "FirebaseErrorTooManyAttempts": "Слишком много попыток",
+  "FirebaseErrorAuthEmailAlreadyInUse": "Данный Email уже зарегистрирован",
+  "SUBMIT": "ПОДТВЕРДИТЬ"
 }

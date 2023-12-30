@@ -3,8 +3,9 @@ import { Button } from '@mui/material';
 import TextInput from '../inputs/TextInput.tsx';
 import { FormFields, validationSchema } from '../../utils/validationSchema.ts';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import AuthServerErrorMessage from '../AuthServerErrorMessage.tsx';
+import { LanguageContext } from '../../context/LanguageContext.tsx';
 
 export interface SignInValues {
   email: string;
@@ -22,6 +23,7 @@ export interface AuthFormParams {
 }
 
 const AuthForm: FC<AuthFormParams> = ({ type, onFormSubmit, serverError }) => {
+  const { dictionary } = useContext(LanguageContext);
   const validationResolver =
     type === 'signIn' ? validationSchema.signIn : validationSchema.signUp;
 
@@ -32,7 +34,7 @@ const AuthForm: FC<AuthFormParams> = ({ type, onFormSubmit, serverError }) => {
 
   const {
     handleSubmit,
-    formState: { errors },
+    formState: { errors, dirtyFields },
     register,
   } = methods;
 
@@ -40,7 +42,10 @@ const AuthForm: FC<AuthFormParams> = ({ type, onFormSubmit, serverError }) => {
     onFormSubmit(data);
   };
 
-  const isValid = errors && !Object.keys(errors).length;
+  const filledFields = Object.values(dirtyFields).length;
+  const isFilledAllFields =
+    type === 'signIn' ? filledFields === 2 : filledFields === 3;
+  const isValid = errors && !Object.keys(errors).length && isFilledAllFields;
 
   return (
     <FormProvider {...methods}>
@@ -48,7 +53,7 @@ const AuthForm: FC<AuthFormParams> = ({ type, onFormSubmit, serverError }) => {
         <TextInput
           id={FormFields.EMAIL}
           inputName={FormFields.EMAIL}
-          label="Email"
+          label={dictionary.Email}
           type="text"
           {...register(FormFields.EMAIL)}
           error={errors[FormFields.EMAIL]}
@@ -56,7 +61,7 @@ const AuthForm: FC<AuthFormParams> = ({ type, onFormSubmit, serverError }) => {
         <TextInput
           id={FormFields.PASSWORD}
           inputName={FormFields.PASSWORD}
-          label="Password"
+          label={dictionary.Password}
           type="password"
           {...register(FormFields.PASSWORD)}
           error={errors[FormFields.PASSWORD]}
@@ -65,7 +70,7 @@ const AuthForm: FC<AuthFormParams> = ({ type, onFormSubmit, serverError }) => {
           <TextInput
             id={FormFields.CONFIRM_PASSWORD}
             inputName={FormFields.CONFIRM_PASSWORD}
-            label="Confirm password"
+            label={dictionary.ConfirmPassword}
             type="password"
             {...register(FormFields.CONFIRM_PASSWORD)}
             error={errors[FormFields.CONFIRM_PASSWORD] as FieldError}
@@ -73,7 +78,7 @@ const AuthForm: FC<AuthFormParams> = ({ type, onFormSubmit, serverError }) => {
         )}
 
         <Button variant="outlined" type="submit" disabled={!isValid}>
-          Submit
+          {dictionary.SUBMIT}
         </Button>
         {serverError && <AuthServerErrorMessage message={serverError} />}
       </form>
