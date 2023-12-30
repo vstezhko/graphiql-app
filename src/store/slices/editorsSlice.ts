@@ -55,9 +55,6 @@ export const editorsSlice = createSlice({
     setEndpoint: (state, action: PayloadAction<string>) => {
       state.endpoint = action.payload;
     },
-    setRequestError: (state, action: PayloadAction<DictionaryKey | null>) => {
-      state.requestError = action.payload;
-    },
     setPrettifyError: (state, action: PayloadAction<DictionaryKey | null>) => {
       state.prettifyError = action.payload;
     },
@@ -103,7 +100,6 @@ export const {
   setActiveTab,
   setIsPanelOpen,
   setEndpoint,
-  setRequestError,
   setPrettifyError,
   setDocumentation,
 } = editorsSlice.actions;

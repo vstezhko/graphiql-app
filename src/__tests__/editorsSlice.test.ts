@@ -3,7 +3,6 @@ import editorsReducer, {
   setQueryBody,
   setQueryHeaders,
   setQueryVariables,
-  setRequestError,
 } from '../store/slices/editorsSlice';
 import { fetchData, getSchema } from '../store/slices/graphQLThunk';
 import { Mock } from 'vitest';
@@ -42,18 +41,14 @@ describe('editors reducer', () => {
     expect(store.getState().editors.queryHeaders).toBe(headers);
   });
 
-  test('handles setRequestError', () => {
-    const errorReference = 'bracketMismatch';
-    store.dispatch(setRequestError(errorReference));
-    expect(store.getState().editors.requestError).toBe(errorReference);
-  });
-
   test('handles fetchData result', async () => {
     const data = { data: '12345' };
 
     global.fetch = vi.fn(() =>
       Promise.resolve({
         json: () => Promise.resolve(data),
+        ok: true,
+        status: 200,
       })
     ) as Mock;
 

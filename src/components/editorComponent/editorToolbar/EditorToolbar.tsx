@@ -12,7 +12,6 @@ import {
 import {
   setDocumentation,
   setEndpoint,
-  setRequestError,
   setQueryBody,
   setQueryHeaders,
   setQueryVariables,
@@ -45,7 +44,7 @@ const EditorToolbar = () => {
   };
 
   const handleRun = () => {
-    queryBody ? dispatch(fetchData()) : dispatch(setRequestError('enterQuery'));
+    dispatch(fetchData());
   };
 
   const handlePrettify = () => {
