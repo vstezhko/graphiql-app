@@ -3,7 +3,7 @@
 }
 
 @mixin hover {
-  @media (hover:hover) {
+  @media (hover: hover) {
     @content;
   }
 }
@@ -16,6 +16,12 @@
 
 @mixin small {
   @media (max-width: $tablet-width) {
+    @content;
+  }
+}
+
+@mixin medium-mobile {
+  @media (max-width: 550px) {
     @content;
   }
 }

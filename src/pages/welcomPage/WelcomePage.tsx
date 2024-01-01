@@ -85,8 +85,8 @@ const TeamMembersData: TeamMemberParams[] = [
 
 const WelcomePage = () => {
   return (
-    <>
-      <div className="about__item">
+    <div className="page__content welcome-page">
+      <div className="welcome-page__item">
         <h3>Meet our team</h3>
         <p>
           Our team of developers excelled through active and effective
@@ -95,7 +95,7 @@ const WelcomePage = () => {
           high-quality product. Our openness to feedback and ability to work as
           a team made our project successful and satisfied our clients needs.
         </p>
-        <div className="about__team-members">
+        <div className="welcome-page__team-members">
           {TeamMembersData.map((member, index) => (
             <TeamMemberCard
               key={index}
@@ -105,11 +105,11 @@ const WelcomePage = () => {
           ))}
         </div>
       </div>
-      <div className="about__item">
+      <div className="welcome-page__item">
         <h3>Roots in RS School</h3>
         <ThanksSection />
       </div>
-    </>
+    </div>
   );
 };
 
