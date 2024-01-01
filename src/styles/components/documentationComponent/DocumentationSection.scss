@@ -14,6 +14,11 @@
   align-items: flex-start;
   padding: 1rem 0;
 
+
+  @media (max-width: 500px) {
+    max-width: 270px;
+  }
+
   ::-webkit-scrollbar {
     width: 10px;
     height: 10px;
@@ -114,6 +119,10 @@
 
   &_close {
     transform: translateX(405px);
+
+    @media (max-width: 500px) {
+      transform: translateX(260px);
+    }
   }
 
   &__btn {
@@ -124,6 +133,10 @@
     top: 30% !important;
     color: $color-font !important;
     height: 30px !important;
+
+    @media (max-width: 500px) {
+      right: 96% !important;
+    }
   }
 
   &__progress {
