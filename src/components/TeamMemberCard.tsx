@@ -46,7 +46,11 @@ export const TeamMemberCard = ({
         <div>Contribution: {teamMemberData.contribution}</div>
       </div>
       <div className="team-member__image-block">
-        <img className="team-member__image" src={teamMemberData.photo} alt="Team member photo" />
+        <img
+          className="team-member__image"
+          src={teamMemberData.photo}
+          alt="Team member photo"
+        />
         <div className="team-member__social">
           {/*<Link href={teamMemberData.githubLink}>*/}
           {/*  <GithubIcon />*/}
