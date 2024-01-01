@@ -2,6 +2,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 10px;
   background-color: $color-secondary;
   padding: 15px;
   border-radius: 5px;
@@ -9,6 +10,36 @@
   &__controls {
     display: flex;
     gap: 10px;
+
+    & .editor-toolbar__error {
+      display: none;
+    }
+
+    @media (max-width: 980px) {
+      flex-direction: column;
+      width: 100%;
+
+      & .editor-toolbar__error {
+        display: block;
+        flex-grow: 1;
+      }
+
+    }
+  }
+
+  &__control-wrapper {
+    display: flex;
+    gap: 10px;
+
+    @media (max-width: 980px) {
+      align-items: center;
+      justify-content: flex-end;
+      width: 100%;
+    }
+
+    @media (max-width: 480px) {
+      gap: 5px;
+    }
   }
 
   & .editor-toolbar__run-button {
@@ -23,6 +54,11 @@
       color: $color-additional-2;
       transition: 0.3s;
       z-index: 1;
+
+      @media (max-width: 480px) {
+        width: 40px;
+        height: 40px;
+      }
     }
 
     svg:hover {
@@ -40,6 +76,11 @@
       border-radius: 50%;
       background-color: $color-additional;
       z-index: 0;
+
+      @media (max-width: 480px) {
+        width: 25px;
+        height: 25px;
+      }
     }
 
     &:hover::after {
@@ -65,12 +106,21 @@
       background-color: $color-hovered;
       color: $color-additional-2;
     }
+
+    @media (max-width: 980px) {
+      min-width: fit-content;
+      font-size: 1.4rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 5px;
   }
 }
 
 .editor-toolbar__input {
   font-family: $font-family;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   border: none;
   border-radius: 5px;
   color: $color-additional;
@@ -78,6 +128,12 @@
   background-color: $color-primary;
   padding: 10px;
   min-width: 400px;
+
+  @media (max-width: 980px) {
+    min-width: auto;
+    width: 100%;
+  }
+
 }
 
 .editor-toolbar__input::placeholder {
@@ -86,6 +142,14 @@
 
 .editor-toolbar__error {
   margin: 0;
-  font-size: 1.6rem;
+  font-size: 1.5rem;
   color: $color-additional;
+
+  @media (max-width: 980px) {
+    display: none;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.4rem;
+  }
 }
