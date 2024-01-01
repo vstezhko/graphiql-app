@@ -47,8 +47,12 @@
     background: $color-border;
   }
 
-  ::-webkit-scrollbar-thumb:hover {
-    background: $color-hovered;
+  @media (hover:hover) {
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: $color-hovered;
+    }
+
   }
 
   &__request-section {

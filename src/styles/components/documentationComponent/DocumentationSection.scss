@@ -32,8 +32,12 @@
     background: $color-border;
   }
 
-  ::-webkit-scrollbar-thumb:hover {
-    background: $color-hovered;
+  @media (hover:hover) {
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: $color-hovered;
+    }
+
   }
 
   &__back-btn {
@@ -44,10 +48,14 @@
     margin-right: 4rem !important;
     transition: all 0.3s;
 
-    &:hover {
-      background-color: $color-additional !important;
-      color: $color-primary !important;
+    @media (hover:hover) {
+
+      &:hover {
+        background-color: $color-additional !important;
+        color: $color-primary !important;
+      }
     }
+
   }
 
   &__line {
@@ -63,7 +71,7 @@
     flex-direction: column;
     color: $color-border;
 
-    & > h4 {
+    &>h4 {
       padding-left: 20px;
       color: $color-additional;
       margin-bottom: 1rem;
@@ -87,7 +95,7 @@
     overflow-y: auto;
     padding: 1rem 0 3rem;
 
-    & > h3 {
+    &>h3 {
       padding-left: 2rem;
       text-decoration: underline;
     }
@@ -107,14 +115,19 @@
     transition: all 0.3s;
     word-wrap: break-word;
 
-    & > span {
+    &>span {
       color: $color-border;
       margin-left: 1rem;
     }
 
-    &:hover {
-      background-color: $color-additional-2;
+    @media (hover:hover) {
+
+      &:hover {
+        background-color: $color-additional-2;
+      }
+
     }
+
   }
 
   &_close {
@@ -125,17 +138,26 @@
     }
   }
 
-  &__btn {
-    position: absolute !important;
-    background-color: $color-button !important;
+  & .doc-section__btn {
+    position: absolute;
+    background-color: $color-button;
     transform: rotate(-90deg) translateX(-30%);
-    right: 97.5% !important;
-    top: 30% !important;
-    color: $color-font !important;
-    height: 30px !important;
+    right: 97.5%;
+    top: 30%;
+    color: $color-font;
+    height: 30px;
 
     @media (max-width: 500px) {
-      right: 96% !important;
+      right: 96%
+    }
+
+    @media (hover:hover) {
+
+      &:hover {
+      color: $color-additional-2;
+      background-color: $color-hovered;
+      }
+      
     }
   }
 
@@ -145,7 +167,4 @@
     height: 13px !important;
   }
 
-  .Mui-disabled {
-    color: #565156 !important;
-  }
 }
