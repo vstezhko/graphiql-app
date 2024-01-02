@@ -22,7 +22,7 @@
   "invalidJSONVariables": "Невалидный JSON в переменных",
   "bracketMismatch": "Несоответствие скобок",
   "unexpectedBlock": "Неожиданные символы в конце запроса",
-  "errorSchema": "Произошла ошибка во время запроса схемы",
+  "errorSchema": "Ошибка запроса схемы",
   "schema": "Схема",
   "notFoundTitle": "ОШИБКА 404",
   "notFoundText": "Извините! Страница не найдена...",

@@ -73,35 +73,42 @@ const EditorToolbar = () => {
   return (
     <div className="editor-toolbar">
       <div className="editor-toolbar__controls">
-        <input
-          className="editor-toolbar__input"
-          value={endpointValue}
-          type="text"
-          placeholder={dictionary.enterEndpoint}
-          onChange={handleChange}
-        ></input>
-        <IconButton
-          className="editor-toolbar__run-button"
-          size="large"
-          aria-label="run-request"
-          onClick={handleRun}
-          disabled={!queryBody}
-        >
-          {isFetching === 'loading' ? (
-            <PauseCircleFilledIcon />
-          ) : (
-            <PlayCircleFilledWhiteIcon />
+        <div className="editor-toolbar__control-wrapper">
+          <input
+            className="editor-toolbar__input"
+            value={endpointValue}
+            type="text"
+            placeholder={dictionary.enterEndpoint}
+            onChange={handleChange}
+          ></input>
+          <IconButton
+            className="editor-toolbar__run-button"
+            size="large"
+            aria-label="run-request"
+            onClick={handleRun}
+            disabled={!queryBody}
+          >
+            {isFetching === 'loading' ? (
+              <PauseCircleFilledIcon />
+            ) : (
+              <PlayCircleFilledWhiteIcon />
+            )}
+          </IconButton>
+        </div>
+        <div className="editor-toolbar__control-wrapper">
+          {requestError && (
+            <p className="editor-toolbar__error">{dictionary[requestError]}</p>
           )}
-        </IconButton>
-        <Button
-          className="editor-toolbar__prettify-button"
-          size="large"
-          aria-label="prettify-request"
-          onClick={handlePrettify}
-          disabled={!queryBody}
-        >
-          {dictionary.prettify}
-        </Button>
+          <Button
+            className="editor-toolbar__prettify-button"
+            size="large"
+            aria-label="prettify-request"
+            onClick={handlePrettify}
+            disabled={!queryBody}
+          >
+            {dictionary.prettify}
+          </Button>
+        </div>
       </div>
       {requestError && (
         <p className="editor-toolbar__error">{dictionary[requestError]}</p>

@@ -29,7 +29,7 @@ const EditorContainer = () => {
         <h3 className="editor-container__title">Response Viewer</h3>
         <Editor
           stateValueName="response"
-          className="variable-editor"
+          className="response-viewer"
           isJson
           isReadOnly
         />

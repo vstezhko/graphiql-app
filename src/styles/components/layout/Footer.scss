@@ -39,8 +39,12 @@
         color: $color-additional;
         transition: color 0.2s;
 
-        &:hover {
-          color: $color-additional-2;
+        @media (hover:hover) {
+
+          &:hover {
+            color: $color-additional-2;
+          }
+          
         }
       }
 
