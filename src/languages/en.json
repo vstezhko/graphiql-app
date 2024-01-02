@@ -95,5 +95,7 @@
   "equippedWithTechnicalKnowHow": "This school not only equipped us with the technical know-how but also",
   "servedAsMeetingPoint": "served as the meeting point for our team.",
   "immenselyGratefulToMentors": "We are immensely grateful to the mentors who",
-  "generouslySharedTheirExpertise": "generously shared their expertise, making this project possible."
+  "generouslySharedTheirExpertise": "generously shared their expertise, making this project possible.",
+  "pleaseRegisterOrSignIn": "Please register or sign in to test our service.",
+  "ifAlreadySignedIn": "You are already logged in, go to the main page and enjoy!"
 }

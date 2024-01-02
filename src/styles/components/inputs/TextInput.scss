@@ -2,7 +2,7 @@
   font-size: 1.6rem;
 
   @media (max-width: 768px) {
-    font-size: 14px;
+    font-size: 1.4rem;
   }
 
   &__input {
@@ -15,14 +15,17 @@
     background-color: $color-secondary;
     position: relative;
     color: $color-additional;
+    font-size: 1.6rem;
     @include transitionAll;
 
-    @media (hover:hover) {
-
+    @media (hover: hover) {
       &:hover {
         border: 1px solid $color-hovered;
       }
+    }
 
+    @media (max-width: 768px) {
+      font-size: 1.4rem;
     }
 
     &:focus-visible {
@@ -32,12 +35,10 @@
     &_error {
       border: 1px solid $color-button;
 
-      @media (hover:hover) {
-
+      @media (hover: hover) {
         &:hover {
           border: 1px solid $color-hovered;
         }
-
       }
     }
   }
@@ -47,8 +48,12 @@
     width: 2rem;
     height: 2rem;
     cursor: pointer;
-    top: 3.2rem;
+    top: 3.8rem;
     right: 1rem;
+
+    @media (max-width: 768px) {
+      top: 3.2rem;
+    }
   }
 }
 
