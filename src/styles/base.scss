@@ -64,6 +64,10 @@ main {
   margin: 0 auto;
 
   &>* {
+    min-height: 100vh;
+  }
+
+  &:has(.editor-page)>* {
     height: 100vh;
   }
 
@@ -100,6 +104,11 @@ h1 {
 
 h2 {
   font-size: 2.2em;
+  line-height: 1.1;
+}
+
+h3 {
+  font-size: 2rem;
   line-height: 1.1;
 }
 

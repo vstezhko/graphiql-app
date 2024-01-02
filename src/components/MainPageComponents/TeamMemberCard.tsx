@@ -1,8 +1,6 @@
 import { useMemo } from 'react';
-
-import Paper from '@mui/material/Paper';
 import Slider from '@mui/material/Slider';
-import { TeamMemberParams } from '../pages/welcomPage/WelcomePage.tsx';
+import { TeamMemberParams } from '../../pages/welcomPage/WelcomePage.tsx';
 
 function valuetext(value: number) {
   return `${value}%`;
@@ -38,12 +36,15 @@ export const TeamMemberCard = ({
   );
 
   return (
-    <Paper className={`team-member ${isEven ? 'even' : 'odd'}`}>
+    <div className={`team-member ${isEven ? 'even' : 'odd'}`}>
       <div className="team-member__biography">
-        <h4 className="team-member__name">{teamMemberData.name}</h4>
-        <h5 className="team-member__role highlight">{teamMemberData.role}</h5>
+        <h4 className="team-member__name">
+          {teamMemberData.name} / <span>{teamMemberData.role}</span>
+        </h4>
         <div className="team-member__text">{memoizedHighlightText}</div>
-        <div>Contribution: {teamMemberData.contribution}</div>
+        <div className="team-member__contributions">
+          Contribution: {teamMemberData.contribution}
+        </div>
       </div>
       <div className="team-member__image-block">
         <img
@@ -51,14 +52,6 @@ export const TeamMemberCard = ({
           src={teamMemberData.photo}
           alt="Team member photo"
         />
-        <div className="team-member__social">
-          {/*<Link href={teamMemberData.githubLink}>*/}
-          {/*  <GithubIcon />*/}
-          {/*</Link>*/}
-          {/*<Link href={teamMemberData.linkedinLink}>*/}
-          {/*  <LinkedinIcon />*/}
-          {/*</Link>*/}
-        </div>
       </div>
       <div className="team-member__contributions">
         {teamMemberData.skills.map((skill, index) => (
@@ -74,6 +67,6 @@ export const TeamMemberCard = ({
           </div>
         ))}
       </div>
-    </Paper>
+    </div>
   );
 };

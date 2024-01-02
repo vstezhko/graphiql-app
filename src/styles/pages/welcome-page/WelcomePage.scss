@@ -3,8 +3,18 @@
   flex-direction: column;
   gap: 40px;
 
-  @include small {
-    gap: 10px;
+  @media screen and (max-width: 1280px) {
+    margin: 0 10px;
+  }
+
+  &__main-info {
+    background-color: $color-secondary;
+    border-radius: 5px;
+    color: $color-font;
+
+    &> * {
+      padding: 15px;
+    }
   }
 
   &__item {

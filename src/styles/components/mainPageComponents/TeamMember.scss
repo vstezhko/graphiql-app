@@ -2,9 +2,10 @@
   display: flex;
   gap: 30px;
   flex-wrap: nowrap;
-  padding: 30px;
   align-items: center;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  background-color: $color-secondary;
+  padding: 15px;
+  border-radius: 5px;
 
   &__biography {
     display: flex;
@@ -14,9 +15,8 @@
     flex: 1;
   }
 
-  &__role {
-    font-weight: 700;
-    font-size: 1rem;
+  &__text, &__contributions {
+    color: $color-font;
   }
 
   &__image-block {
@@ -25,6 +25,7 @@
     gap: 15px;
     padding: 15px;
     border-radius: 5px;
+    background-color: $color-primary;
   }
 
   &__social {
@@ -107,14 +108,6 @@
       height: 200px;
     }
 
-    &__text {
-      font-size: 0.9rem;
-    }
-
-    &__contributions {
-      font-size: 0.9rem;
-    }
-
     .team-member__contributions-range {
       width: 180px;
 
@@ -158,25 +151,13 @@
   //}
 
 }
-
-.even {
-  background-color: white;
-
-  .team-member__image-block {
-    background-color: #F2F2F2;
-  }
-
-}
-
 .odd {
-  background-color: #EBF0E4;
 
   .team-member__biography {
     order: 3;
   }
 
   .team-member__image-block {
-    background-color: white;
     order: 2;
   }
 

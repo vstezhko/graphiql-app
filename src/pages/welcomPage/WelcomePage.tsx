@@ -1,5 +1,6 @@
-import { TeamMemberCard } from '../../components/TeamMemberCard.tsx';
-import { ThanksSection } from '../../components/ThankSection.tsx';
+import { TeamMemberCard } from '../../components/MainPageComponents/TeamMemberCard.tsx';
+import { ThanksSection } from '../../components/MainPageComponents/ThankSection.tsx';
+import { KeyFeaturesSection } from '../../styles/components/mainPageComponents/KeyFeaturesSection.tsx';
 
 type SkillItem = [string, number];
 
@@ -86,15 +87,30 @@ const TeamMembersData: TeamMemberParams[] = [
 const WelcomePage = () => {
   return (
     <div className="page__content welcome-page">
-      <div className="welcome-page__item">
-        <h3>Meet our team</h3>
+      <div className="welcome-page__main-info">
+        <h3>Roots in RS School</h3>
+        <ThanksSection />
+      </div>
+      <div className="welcome-page__main-info">
+        <h3>About Project</h3>
         <p>
-          Our team of developers excelled through active and effective
-          communication. We held regular meetings, discussed our ideas, and
-          shared best practices, allowing us to reach a consensus and create a
-          high-quality product. Our openness to feedback and ability to work as
-          a team made our project successful and satisfied our clients needs.
+          The &apos;GraphiQL Explorer&apos; is a React and GraphQL-based web app
+          designed to simplify the creation and execution of GraphQL queries.
         </p>
+        <KeyFeaturesSection />
+      </div>
+      <div className="welcome-page__item">
+        <div className="welcome-page__main-info">
+          <h3>Meet our team</h3>
+          <p>
+            Our team of developers excelled through active and effective
+            communication. We held regular meetings, discussed our ideas, and
+            shared best practices, allowing us to reach a consensus and create a
+            high-quality product. Our openness to feedback and ability to work
+            as a team made our project successful and satisfied our clients
+            needs.
+          </p>
+        </div>
         <div className="welcome-page__team-members">
           {TeamMembersData.map((member, index) => (
             <TeamMemberCard
@@ -104,10 +120,6 @@ const WelcomePage = () => {
             />
           ))}
         </div>
-      </div>
-      <div className="welcome-page__item">
-        <h3>Roots in RS School</h3>
-        <ThanksSection />
       </div>
     </div>
   );
