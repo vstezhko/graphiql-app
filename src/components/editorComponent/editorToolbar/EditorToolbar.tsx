@@ -12,10 +12,10 @@ import {
 import {
   setDocumentation,
   setEndpoint,
-  setError,
   setQueryBody,
   setQueryHeaders,
   setQueryVariables,
+  setPrettifyError,
 } from '../../../store/slices/editorsSlice.ts';
 import { formatGraphQL, formatJSON } from '../../../utils/prettify.ts';
 
@@ -24,7 +24,9 @@ const EditorToolbar = () => {
   const endpointValue = useSelector(
     (state: RootState) => state.editors.endpoint
   );
-  const error = useSelector((state: RootState) => state.editors.error);
+  const requestError = useSelector(
+    (state: RootState) => state.editors.requestError
+  );
   const queryBody = useSelector((state: RootState) => state.editors.queryBody);
   const isFetching = useSelector(
     (state: RootState) => state.editors.isFetchingQuery
@@ -42,20 +44,22 @@ const EditorToolbar = () => {
   };
 
   const handleRun = () => {
-    queryBody ? dispatch(fetchData()) : dispatch(setError('enterQuery'));
+    dispatch(fetchData());
   };
 
   const handlePrettify = () => {
-    dispatch(setError(null));
+    dispatch(setPrettifyError(null));
     try {
       dispatch(setQueryBody(formatGraphQL(queryBody)));
+      if (queryVariables)
+        dispatch(setQueryVariables(formatJSON(queryVariables, 'Variables')));
+      if (queryHeaders)
+        dispatch(setQueryHeaders(formatJSON(queryHeaders, 'Headers')));
     } catch (error) {
       if (error instanceof Error) {
-        dispatch(setError(error.message as DictionaryKey));
+        dispatch(setPrettifyError(error.message as DictionaryKey));
       }
     }
-    if (queryVariables) dispatch(setQueryVariables(formatJSON(queryVariables)));
-    if (queryHeaders) dispatch(setQueryHeaders(formatJSON(queryHeaders)));
   };
 
   useEffect(() => {
@@ -69,37 +73,46 @@ const EditorToolbar = () => {
   return (
     <div className="editor-toolbar">
       <div className="editor-toolbar__controls">
-        <input
-          className="editor-toolbar__input"
-          value={endpointValue}
-          type="text"
-          placeholder={dictionary.enterEndpoint}
-          onChange={handleChange}
-        ></input>
-        <IconButton
-          className="editor-toolbar__run-button"
-          size="large"
-          aria-label="run-request"
-          onClick={handleRun}
-          disabled={!queryBody}
-        >
-          {isFetching === 'loading' ? (
-            <PauseCircleFilledIcon />
-          ) : (
-            <PlayCircleFilledWhiteIcon />
+        <div className="editor-toolbar__control-wrapper">
+          <input
+            className="editor-toolbar__input"
+            value={endpointValue}
+            type="text"
+            placeholder={dictionary.enterEndpoint}
+            onChange={handleChange}
+          ></input>
+          <IconButton
+            className="editor-toolbar__run-button"
+            size="large"
+            aria-label="run-request"
+            onClick={handleRun}
+            disabled={!queryBody}
+          >
+            {isFetching === 'loading' ? (
+              <PauseCircleFilledIcon />
+            ) : (
+              <PlayCircleFilledWhiteIcon />
+            )}
+          </IconButton>
+        </div>
+        <div className="editor-toolbar__control-wrapper">
+          {requestError && (
+            <p className="editor-toolbar__error">{dictionary[requestError]}</p>
           )}
-        </IconButton>
-        <Button
-          className="editor-toolbar__prettify-button"
-          size="large"
-          aria-label="prettify-request"
-          onClick={handlePrettify}
-          disabled={!queryBody}
-        >
-          {dictionary.prettify}
-        </Button>
+          <Button
+            className="editor-toolbar__prettify-button"
+            size="large"
+            aria-label="prettify-request"
+            onClick={handlePrettify}
+            disabled={!queryBody}
+          >
+            {dictionary.prettify}
+          </Button>
+        </div>
       </div>
-      {error && <p className="editor-toolbar__error">{dictionary[error]}</p>}
+      {requestError && (
+        <p className="editor-toolbar__error">{dictionary[requestError]}</p>
+      )}
     </div>
   );
 };

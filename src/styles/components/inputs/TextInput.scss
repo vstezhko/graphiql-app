@@ -13,8 +13,12 @@
     color: $color-additional;
     @include transitionAll;
 
-    &:hover {
-      border: 1px solid $color-hovered;
+    @media (hover:hover) {
+
+      &:hover {
+        border: 1px solid $color-hovered;
+      }
+
     }
 
     &:focus-visible {
@@ -24,8 +28,12 @@
     &_error {
       border: 1px solid $color-button;
 
-      &:hover {
-        border: 1px solid $color-hovered;
+      @media (hover:hover) {
+
+        &:hover {
+          border: 1px solid $color-hovered;
+        }
+
       }
     }
   }
