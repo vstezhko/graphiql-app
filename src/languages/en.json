@@ -27,5 +27,22 @@
   "notFoundTitle": "ERROR 404",
   "notFoundText": "Sorry! Page not found...",
   "errorTitle": "ERROR",
-  "errorText": "Something went wrong... We try to fix it!"
+  "errorText": "Something went wrong... We try to fix it!",
+  "Email": "Email",
+  "Password": "Password",
+  "ConfirmPassword": "ConfirmPassword",
+  "FirebaseErrorAuthInvalidCredential": "Invalid Credential",
+  "FirebaseErrorTooManyAttempts": "Too Many Attempts",
+  "FirebaseErrorAuthEmailAlreadyInUse": "Email Already In Use",
+  "SUBMIT": "SUBMIT",
+  "EmailIsRequired": "Email is required",
+  "InvalidEmailFormat": "Invalid email format",
+  "PasswordIsRequired": "Password is required",
+  "Need1Digit": "need 1 digit",
+  "Need1UppercaseAZ": "Need 1 uppercase (A-Z)",
+  "Need1LowerCaseAZ": "Need 1 lowercase (a-z)",
+  "Min8Characters": "Min 8 characters",
+  "Need1SpecialSymbol": "Need 1 special symbol",
+  "ConfirmPasswordIsRequired": "Confirm Password is required",
+  "PasswordsMustMatch": "Passwords must match"
 }

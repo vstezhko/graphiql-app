@@ -1,5 +1,7 @@
 import { FieldError, useFormContext } from 'react-hook-form';
-import { forwardRef, useState } from 'react';
+import { forwardRef, useContext, useState } from 'react';
+import { LanguageContext } from '../../context/LanguageContext.tsx';
+import { ErrorsKeys } from '../../utils/validationSchema.ts';
 
 type TextInputTypes = 'text' | 'password';
 
@@ -14,9 +16,10 @@ export interface TextInputParams {
 export const TextInput = forwardRef<HTMLInputElement, TextInputParams>(
   ({ label, inputName, id, type, error, ...rest }, ref) => {
     const [hideInputData, setHideInputData] = useState(type === 'password');
-    const isError = error?.message;
+    const isError = error?.message as ErrorsKeys | undefined;
     const { register } = useFormContext();
     const { onChange } = register(inputName);
+    const { dictionary } = useContext(LanguageContext);
 
     const switchPasswordVisibility = () => {
       setHideInputData((prevState) => !prevState);
@@ -42,6 +45,12 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputParams>(
       />
     );
 
+    const errorText = isError
+      ? dictionary[isError]
+        ? dictionary[isError]
+        : error?.message
+      : '';
+
     return (
       <div className="textInput inputItem">
         <label htmlFor={id}>{label}</label>
@@ -58,7 +67,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputParams>(
             hideInputData ? 'password' : type === 'password' ? 'text' : type
           }
         />
-        <p className="inputItem__error">{isError ? error.message : ' '}</p>
+        <p className="inputItem__error">{errorText}</p>
         {type === 'password' && passwordIcon}
       </div>
     );

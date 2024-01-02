@@ -27,5 +27,22 @@
   "notFoundTitle": "ОШИБКА 404",
   "notFoundText": "Извините! Страница не найдена...",
   "errorTitle": "ОШИБКА",
-  "errorText": "Что-то пошло не так... Мы пытаемся исправить это!"
+  "errorText": "Что-то пошло не так... Мы пытаемся исправить это!",
+  "Email": "Адрес электронной почты",
+  "Password": "Пароль",
+  "ConfirmPassword": "Подтверди пароль",
+  "FirebaseErrorAuthInvalidCredential": "Неверный  логин или пароль",
+  "FirebaseErrorTooManyAttempts": "Слишком много попыток",
+  "FirebaseErrorAuthEmailAlreadyInUse": "Данный Email уже зарегистрирован",
+  "SUBMIT": "ПОДТВЕРДИТЬ",
+  "EmailIsRequired": "Необходим адрес электронной почты",
+  "InvalidEmailFormat": "Неверный формат электронной почты",
+  "PasswordIsRequired": "Необходим пароль",
+  "Need1Digit": "Нужна 1 цифра",
+  "Need1UppercaseAZ": "Нужна 1 заглавная буква (A-Z)",
+  "Need1LowerCaseAZ": "Нужна 1 строчная буква (a-z)",
+  "Min8Characters": "Минимум 8 символов",
+  "Need1SpecialSymbol": "Нужен 1 специальный символ",
+  "ConfirmPasswordIsRequired": "Требуется подтверждение пароля",
+  "PasswordsMustMatch": "Пароли должны совпадать"
 }
