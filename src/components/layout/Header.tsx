@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useRef, useState } from 'react';
 import Localization from '../localizationComponent/Localization.tsx';
 import { logout } from '../../firebase/firebase.ts';
@@ -20,6 +20,13 @@ const Navigation = ({
 }) => {
   const { dictionary } = useContext(LanguageContext);
   const { status } = useSelector((state: RootState) => state.isLoggedIn);
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  if (!status && pathname === '/main') {
+    navigate('/');
+  }
+
   return (
     <div className={isBurger ? 'burger__menu' : 'navigation'}>
       <NavLink to={'/'} onClick={handleCloseMenu}>
