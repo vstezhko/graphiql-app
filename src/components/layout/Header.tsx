@@ -25,9 +25,13 @@ const Navigation = ({
   const navigate = useNavigate();
   const { pathname } = useLocation();
 
-  if (!status && pathname === '/main') {
-    navigate('/');
-  }
+  useEffect(() => {
+    const lsStatus = JSON.parse(localStorage.getItem('isLoggedIn') || 'false');
+
+    if (!lsStatus && pathname === '/main') {
+      navigate('/');
+    }
+  }, [status]);
 
   const isSticky = scroll ? 'sticky__link' : 'header__link';
 
