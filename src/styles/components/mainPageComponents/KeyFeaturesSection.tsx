@@ -2,7 +2,7 @@ export const KeyFeaturesSection = () => {
   return (
     <div className="key-features">
       <div className="key-features__item">
-        <h2>Authorization and Authentication:</h2>
+        <h4>Authorization and Authentication:</h4>
         <ul>
           <li>
             Implements user authentication using Firebase, ensuring secure
@@ -15,7 +15,7 @@ export const KeyFeaturesSection = () => {
       </div>
 
       <div className="key-features__item">
-        <h2>Dynamic GraphQL Interaction:</h2>
+        <h4>Dynamic GraphQL Interaction:</h4>
         <ul>
           <li>Provides a Query editor with prettifying functionality.</li>
           <li>
@@ -31,7 +31,7 @@ export const KeyFeaturesSection = () => {
       </div>
 
       <div className="key-features__item">
-        <h2>Flexible API Endpoint Selection:</h2>
+        <h4>Flexible API Endpoint Selection:</h4>
         <ul>
           <li>
             Allows users to switch between different user-specified GraphQL
@@ -42,7 +42,7 @@ export const KeyFeaturesSection = () => {
       </div>
 
       <div className="key-features__item">
-        <h2>User-Friendly Interface:</h2>
+        <h4>User-Friendly Interface:</h4>
         <ul>
           <li>
             Sticky header with language toggle, sign-out option, and animated
@@ -56,7 +56,7 @@ export const KeyFeaturesSection = () => {
       </div>
 
       <div className="key-features__item">
-        <h2>Localization and Error Handling:</h2>
+        <h4>Localization and Error Handling:</h4>
         <ul>
           <li>
             Implements localization with a language toggler in the header.
@@ -66,7 +66,7 @@ export const KeyFeaturesSection = () => {
       </div>
 
       <div className="key-features__item">
-        <h2>Testing and Quality Assurance:</h2>
+        <h4>Testing and Quality Assurance:</h4>
         <ul>
           <li>
             Ensures a minimum of 80% test coverage with reporting in the
@@ -81,7 +81,7 @@ export const KeyFeaturesSection = () => {
       </div>
 
       <div className="key-features__item">
-        <h2>Additional Design Considerations:</h2>
+        <h4>Additional Design Considerations:</h4>
         <ul>
           <li>
             Attention to typography, with a maximum of three fonts per page and
