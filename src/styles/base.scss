@@ -63,14 +63,9 @@ main {
   padding: 20px 0;
   margin: 0 auto;
 
-  &>* {
-    min-height: 100vh;
-  }
-
-  &:has(.editor-page)>* {
+  &:has(.editor-page) > * {
     height: 100vh;
   }
-
 
   &__img {
     width: 100%;
@@ -80,20 +75,19 @@ main {
     justify-content: flex-start;
     gap: 2rem;
 
-    &>img {
+    & > img {
       object-fit: cover;
       max-width: 400px;
     }
 
-    &>h1 {
+    & > h1 {
       color: $color-additional;
     }
 
-    &>p {
+    & > p {
       font-size: 2rem;
       color: $color-font;
     }
-
   }
 }
 
@@ -135,23 +129,20 @@ header {
   text-align: center;
   font-size: 2rem;
 
-
-  &>.navigation {
+  & > .navigation {
     display: flex;
     align-items: center;
     gap: 4rem;
 
-    &>a {
+    & > a {
       color: $color-additional;
       position: relative;
       transition: color 0.2s;
 
-      @media (hover:hover) {
-
+      @media (hover: hover) {
         &:hover {
           color: $color-additional-2;
         }
-
       }
     }
 
@@ -159,7 +150,6 @@ header {
       display: none;
     }
   }
-
 
   .burger {
     display: none;
@@ -185,7 +175,6 @@ header {
         z-index: 2;
       }
 
-
       &__menu {
         position: absolute;
         top: 0;
@@ -200,38 +189,35 @@ header {
         padding: 2rem;
         gap: 2rem;
 
-
-        &>a {
+        & > a {
           color: $color-additional;
         }
 
-        &>.links__container {
+        & > .links__container {
           flex-direction: column;
           align-items: flex-start;
           margin-left: 0;
 
-          &>a {
+          & > a {
             background-color: $color-additional;
 
-            @media (hover:hover) {
-
+            @media (hover: hover) {
               &:hover {
                 color: $color-additional;
                 background-color: $color-additional-2;
               }
-
             }
           }
         }
       }
     }
   }
-
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
-  transition: background-color 0s 600000s,
+  transition:
+    background-color 0s 600000s,
     color 0s 600000s;
 }
 
