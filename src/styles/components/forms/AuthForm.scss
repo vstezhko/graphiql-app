@@ -1,4 +1,5 @@
 .auth-page {
+  font-size: 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,7 +7,15 @@
   padding-top: 200px;
 
   @media (max-width: 768px) {
+    font-size: 14px;
     padding-top: 50px;
+  }
+
+  h2 {
+    max-width: 100%;
+    //overflow-wrap: break-word;
+    hyphens: auto;
+    text-align: center;
   }
 }
 
@@ -15,6 +24,7 @@
   display: flex;
   flex-direction: column;
   width: 40rem;
+  max-width: 100%;
 
   @media (max-width: $mobile-big-width) {
     padding: 0 1rem;
@@ -40,7 +50,7 @@
         background-color: #075591;
         color: $color-additional;
       }
-      
+
     }
 
     &.Mui-disabled {

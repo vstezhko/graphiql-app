@@ -1,4 +1,4 @@
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useRef, useState } from 'react';
 import Localization from '../localizationComponent/Localization.tsx';
 import { logout } from '../../firebase/firebase.ts';
@@ -22,6 +22,13 @@ const Navigation = ({
   const { status, isLoading } = useSelector(
     (state: RootState) => state.isLoggedIn
   );
+  const navigate = useNavigate();
+  const { pathname } = useLocation();
+
+  if (!status && pathname === '/main') {
+    navigate('/');
+  }
+
   const isSticky = scroll ? 'sticky__link' : 'header__link';
 
   return (
