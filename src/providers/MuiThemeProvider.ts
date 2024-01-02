@@ -16,4 +16,9 @@ export const theme = createTheme({
       },
     },
   },
+  palette: {
+    action: {
+      disabled: 'rgba(0, 0, 0, 0.5)',
+    },
+  },
 });

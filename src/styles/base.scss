@@ -41,12 +41,15 @@ body {
   overflow-y: auto;
 }
 
-.no-scroll{
+.no-scroll {
   overflow: hidden;
 }
 
 .wrapper {
+  display: flex;
+  flex-direction: column;
   position: relative;
+  min-height: 100vh;
 }
 
 main {
@@ -60,7 +63,7 @@ main {
   padding: 20px 0;
   margin: 0 auto;
 
-  & > * {
+  &>* {
     height: 100vh;
   }
 
@@ -73,16 +76,16 @@ main {
     justify-content: flex-start;
     gap: 2rem;
 
-    & > img {
+    &>img {
       object-fit: cover;
       max-width: 400px;
     }
 
-    & > h1 {
+    &>h1 {
       color: $color-additional;
     }
 
-    & > p {
+    &>p {
       font-size: 2rem;
       color: $color-font;
     }
@@ -119,18 +122,22 @@ header {
   font-size: 2rem;
 
 
-  & > .navigation {
+  &>.navigation {
     display: flex;
     align-items: center;
     gap: 4rem;
 
-    & > a {
+    &>a {
       color: $color-additional;
       position: relative;
       transition: color 0.2s;
 
-      &:hover {
-        color: $color-additional-2;
+      @media (hover:hover) {
+
+        &:hover {
+          color: $color-additional-2;
+        }
+
       }
     }
 
@@ -140,16 +147,18 @@ header {
   }
 
 
-  .burger{
+  .burger {
     display: none;
+
     @media (max-width: 768px) {
       display: flex;
       justify-content: flex-start;
-      &__btn{
+
+      &__btn {
         background-color: $color-button !important;
       }
 
-      &__close{
+      &__close {
         position: absolute;
         background-color: transparent !important;
         right: 2rem;
@@ -163,7 +172,7 @@ header {
       }
 
 
-      &__menu{
+      &__menu {
         position: absolute;
         top: 0;
         left: 0;
@@ -178,21 +187,25 @@ header {
         gap: 2rem;
 
 
-        & > a{
+        &>a {
           color: $color-additional;
         }
 
-        & > .links__container{
+        &>.links__container {
           flex-direction: column;
           align-items: flex-start;
           margin-left: 0;
 
-          & > a{
+          &>a {
             background-color: $color-additional;
 
-            &:hover {
-              color: $color-additional;
-              background-color: $color-additional-2;
+            @media (hover:hover) {
+
+              &:hover {
+                color: $color-additional;
+                background-color: $color-additional-2;
+              }
+
             }
           }
         }
@@ -205,7 +218,7 @@ header {
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
   transition: background-color 0s 600000s,
-  color 0s 600000s;
+    color 0s 600000s;
 }
 
 .Mui-selected {

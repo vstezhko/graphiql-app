@@ -31,12 +31,16 @@
     font-family: 'Inconsolata', 'Source Code Pro', monospace;
     line-height: 1.5;
     font-weight: 400;
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     border-radius: 0.8rem;
 
-    &:hover {
-      background-color: #075591;
-      color: $color-additional;
+    @media (hover:hover) {
+
+      &:hover {
+        background-color: #075591;
+        color: $color-additional;
+      }
+      
     }
 
     &.Mui-disabled {
