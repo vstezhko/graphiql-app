@@ -1,6 +1,7 @@
-import { useMemo } from 'react';
+import { useContext, useMemo } from 'react';
 import Slider from '@mui/material/Slider';
 import { TeamMemberParams } from '../../pages/welcomPage/WelcomePage.tsx';
+import { LanguageContext } from '../../context/LanguageContext.tsx';
 
 function valuetext(value: number) {
   return `${value}%`;
@@ -30,6 +31,7 @@ export const TeamMemberCard = ({
   teamMemberData: TeamMemberParams;
   isEven: boolean;
 }) => {
+  const { dictionary } = useContext(LanguageContext);
   const memoizedHighlightText = useMemo(
     () => highlightText(teamMemberData.text, teamMemberData.highlights),
     [teamMemberData.text, teamMemberData.highlights]
@@ -43,7 +45,7 @@ export const TeamMemberCard = ({
         </h4>
         <div className="team-member__text">{memoizedHighlightText}</div>
         <div className="team-member__contributions">
-          Contribution: {teamMemberData.contribution}
+          {dictionary.Contribution}: {teamMemberData.contribution}
         </div>
       </div>
       <div className="team-member__image-block">

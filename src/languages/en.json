@@ -79,5 +79,21 @@
   "additionalDesign": "Additional Design Considerations:",
   "additionalDesignTypography": "Attention to typography, with a maximum of three fonts per page and a font size of at least 14px.",
   "additionalDesignAdaptiveLayout": "Adaptive layout supporting a minimum page width of 320px.",
-  "additionalDesignConsistentStyling": "Consistent styling and unity of elements across all pages for a cohesive user experience."
+  "additionalDesignConsistentStyling": "Consistent styling and unity of elements across all pages for a cohesive user experience.",
+  "Contribution": "Contribution",
+  "reactAndGraphQLWebApp": "The 'GraphiQL Explorer' is a React and GraphQL-based web app designed to simplify the creation and execution of GraphQL queries.",
+  "aboutProject": "About Project",
+  "rootsInRschool": "Roots in RS School",
+  "meetOurTeam": "Meet Our Team",
+  "ourTeamExcellence": "Our team of developers excelled through active and effective communication. We held regular meetings, discussed our ideas, and shared best practices, allowing us to reach a consensus and create a high-quality product. Our openness to feedback and ability to work as a team made our project successful and satisfied our clients' needs.",
+  "rsSchoolLogoAlt": "rs-logo",
+  "projectJourney": "Our project's journey began within the nurturing confines of RS School, a program founded by",
+  "rollingScopesCommunity": "The Rolling Scopes developer community",
+  "rsSchoolFoundedYear": "in 2013.",
+  "foundInspirationAndSkills": "It's at RS School that we found the inspiration and skills needed",
+  "bringProjectToLife": "to bring this project to life.",
+  "equippedWithTechnicalKnowHow": "This school not only equipped us with the technical know-how but also",
+  "servedAsMeetingPoint": "served as the meeting point for our team.",
+  "immenselyGratefulToMentors": "We are immensely grateful to the mentors who",
+  "generouslySharedTheirExpertise": "generously shared their expertise, making this project possible."
 }

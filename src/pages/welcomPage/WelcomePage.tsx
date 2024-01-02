@@ -1,6 +1,8 @@
 import { TeamMemberCard } from '../../components/MainPageComponents/TeamMemberCard.tsx';
 import { ThanksSection } from '../../components/MainPageComponents/ThankSection.tsx';
 import { KeyFeaturesSection } from '../../styles/components/mainPageComponents/KeyFeaturesSection.tsx';
+import { useContext, useMemo } from 'react';
+import { LanguageContext } from '../../context/LanguageContext.tsx';
 
 type SkillItem = [string, number];
 
@@ -16,7 +18,7 @@ export interface TeamMemberParams {
   contribution: string;
 }
 
-const TeamMembersData: TeamMemberParams[] = [
+const TeamMembersDataEn: TeamMemberParams[] = [
   {
     name: 'Kseniya Biarezina',
     role: 'Front-end Dev',
@@ -34,7 +36,7 @@ const TeamMembersData: TeamMemberParams[] = [
     linkedinLink: 'https://www.linkedin.com/in/kseniya-biarezina/',
     skills: [
       ['requeriment analysis', 95],
-      ['learning', 100],
+      ['testing', 100],
       ['outcomes delivery', 90],
     ],
     contribution: 'taking part in coding, realize task requirements, testing',
@@ -84,35 +86,99 @@ const TeamMembersData: TeamMemberParams[] = [
   },
 ];
 
+const TeamMembersDataRu: TeamMemberParams[] = [
+  {
+    name: 'Ксения Березина',
+    role: 'Front-end Dev',
+    text: `Работая финансовым аналитиком в банковском секторе, я широко использовала Excel, SQL и VBA. Перешла затем в веб-разработку через курсы на LinkedIn Learning и Netology, а также через Stage 0 школы RS School. Несмотря на новизну в коммерческой веб-разработке, я участвовала во многих проектах во время обучения. Мне нравится веб-разработка за ее осязаемые результаты и постоянные возможности обучения.`,
+    highlights: [
+      'Excel, SQL и VBA',
+      'LinkedIn Learning',
+      'Netology',
+      `Stage 0 школы RS School`,
+      'осязаемые результаты',
+      'постоянные возможности обучения',
+    ],
+    photo: '../../../src/assets/team-members/ksusha.jpg',
+    githubLink: 'https://github.com/BiarezKseniya',
+    linkedinLink: 'https://www.linkedin.com/in/kseniya-biarezina/',
+    skills: [
+      ['анализ требований', 95],
+      ['тестирование', 100],
+      ['выполнение результатов', 90],
+    ],
+    contribution:
+      'участие в кодировании, реализация требований задачи, тестирование',
+  },
+  {
+    name: 'Евгения Халеева',
+    role: 'Front-end Dev',
+    text: `Я React Front-end Developer с опытом коммерческой разработки более 1 года. Моя цель - стать востребованным специалистом в IT, постоянно совершенствуя свои навыки. Меня отличают командная работа и способность решать проблемы. У меня есть опыт в управлении учетными записями и сертификаты по Front-end разработке, включая завершение программы JS/FE PRE-SCHOOL.`,
+    highlights: [
+      'более 1 года опыта коммерческой разработки',
+      'стать востребованным специалистом в IT',
+      'моя командная работа и способность решать проблемы',
+      'сертификаты по Front-end разработке',
+      'программа JS/FE PRE-SCHOOL',
+    ],
+    photo: '../../../src/assets/team-members/zhenya.jpg',
+    githubLink: 'https://github.com/khaleeva',
+    linkedinLink: 'https://www.linkedin.com/in/eugenia-khaleeva-b66035157',
+    skills: [
+      ['креативность', 100],
+      ['командная работа', 90],
+      ['решение проблем', 95],
+    ],
+    contribution: 'участие в кодировании, реализация требований задачи, дизайн',
+  },
+  {
+    name: 'Виктория Стежко',
+    role: 'Team-Lead | Front-end Dev',
+    text: `Я креативный человек, открытый ко всему новому. После получения ценного опыта в управлении и положительных отзывов за оптимизацию бизнес-процессов я перешла в IT-индустрию, где работаю уже 1,5 года. Мой опыт включает в себя такие проекты, как сайт для онлайн-кинофестиваля и веб-приложение для B2B платформы продаж.`,
+    highlights: [
+      'отличные навыки коммуникации',
+      'опыт в управлении',
+      'оптимизация бизнес-процессов',
+      'сайт для онлайн-кинофестиваля',
+      'веб-приложение для B2B платформы продаж',
+    ],
+    photo: '../../../src/assets/team-members/vika.jpg',
+    githubLink: 'https://github.com/vstezhko',
+    linkedinLink: 'https://www.linkedin.com/in/viktoria-stezhko',
+    skills: [
+      ['коммуникация', 95],
+      ['улучшение процессов', 90],
+      ['управление проектами', 100],
+    ],
+    contribution:
+      'участие в кодировании, реализация требований задачи, оптимизация',
+  },
+];
+
 const WelcomePage = () => {
+  const { language, dictionary } = useContext(LanguageContext);
+  const data = useMemo(
+    () => (language === 'en' ? TeamMembersDataEn : TeamMembersDataRu),
+    [language]
+  );
   return (
     <div className="page__content welcome-page">
       <div className="welcome-page__main-info">
-        <h3>Roots in RS School</h3>
+        <h3>{dictionary.rootsInRschool}</h3>
         <ThanksSection />
       </div>
       <div className="welcome-page__main-info">
-        <h3>About Project</h3>
-        <p>
-          The &apos;GraphiQL Explorer&apos; is a React and GraphQL-based web app
-          designed to simplify the creation and execution of GraphQL queries.
-        </p>
+        <h3>{dictionary.aboutProject}</h3>
+        <p>{dictionary.reactAndGraphQLWebApp}</p>
         <KeyFeaturesSection />
       </div>
       <div className="welcome-page__item">
         <div className="welcome-page__main-info">
-          <h3>Meet our team</h3>
-          <p>
-            Our team of developers excelled through active and effective
-            communication. We held regular meetings, discussed our ideas, and
-            shared best practices, allowing us to reach a consensus and create a
-            high-quality product. Our openness to feedback and ability to work
-            as a team made our project successful and satisfied our clients
-            needs.
-          </p>
+          <h3>{dictionary.meetOurTeam}</h3>
+          <p>{dictionary.ourTeamExcellence}</p>
         </div>
         <div className="welcome-page__team-members">
-          {TeamMembersData.map((member, index) => (
+          {data.map((member, index) => (
             <TeamMemberCard
               key={index}
               teamMemberData={member}
