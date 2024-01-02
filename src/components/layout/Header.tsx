@@ -5,7 +5,7 @@ import { logout } from '../../firebase/firebase.ts';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store.ts';
 import { LanguageContext } from '../../context/LanguageContext.tsx';
-import { Button } from '@mui/material';
+import { Button, CircularProgress } from '@mui/material';
 
 const Navigation = ({
   scroll,
@@ -19,7 +19,11 @@ const Navigation = ({
   isBurger: boolean;
 }) => {
   const { dictionary } = useContext(LanguageContext);
-  const { status } = useSelector((state: RootState) => state.isLoggedIn);
+  const { status, isLoading } = useSelector(
+    (state: RootState) => state.isLoggedIn
+  );
+  const isSticky = scroll ? 'sticky__link' : 'header__link';
+
   return (
     <div className={isBurger ? 'burger__menu' : 'navigation'}>
       <NavLink to={'/'} onClick={handleCloseMenu}>
@@ -31,19 +35,16 @@ const Navigation = ({
       <div className="links__container">
         <Localization status={status} isBurger={isBurger} />
         {status ? (
-          <button
-            className={scroll ? 'sticky__link' : 'header__link'}
-            onClick={onClick}
-          >
+          <button className={isSticky} onClick={onClick}>
             {dictionary.logOut}
+          </button>
+        ) : isLoading ? (
+          <button className={isSticky}>
+            <CircularProgress size="2rem" className="header__progress" />
           </button>
         ) : (
           <>
-            <Link
-              className={scroll ? 'sticky__link' : 'header__link'}
-              to={'/signIn'}
-              onClick={handleCloseMenu}
-            >
+            <Link className={isSticky} to={'/signIn'} onClick={handleCloseMenu}>
               {dictionary.signIn}
             </Link>
             <Link
