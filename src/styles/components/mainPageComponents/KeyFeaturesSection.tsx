@@ -1,97 +1,75 @@
+import { useContext } from 'react';
+import { LanguageContext } from '../../../context/LanguageContext.tsx';
+
 export const KeyFeaturesSection = () => {
+  const { dictionary } = useContext(LanguageContext);
   return (
     <div className="key-features">
       <div className="key-features__item">
-        <h4>Authorization and Authentication:</h4>
+        <h4>{dictionary.authAndAuth}</h4>
         <ul>
-          <li>
-            Implements user authentication using Firebase, ensuring secure
-            access to the application.
-          </li>
-          <li>
-            Private routes and redirects to the main page upon successful login.
-          </li>
+          <li>{dictionary.authAndAuthImplements}</li>
+          <li>{dictionary.authAndAuthPrivateRoutes}</li>
         </ul>
       </div>
 
       <div className="key-features__item">
-        <h4>Dynamic GraphQL Interaction:</h4>
+        <h4>{dictionary.dynamicGraphQL}</h4>
         <ul>
-          <li>Provides a Query editor with prettifying functionality.</li>
-          <li>
-            Supports Variables and Headers sections, allowing users to customize
-            requests.
-          </li>
-          <li>
-            Displays a Documentation Explorer for schema navigation
-            (lazy-loaded).
-          </li>
-          <li>Response section with a JSON viewer for result visualization.</li>
+          <li>{dictionary.dynamicGraphQLQueryEditor}</li>
+          <li>{dictionary.dynamicGraphQLVariablesHeaders}</li>
+          <li>{dictionary.dynamicGraphQLDocumentation}</li>
+          <li>{dictionary.dynamicGraphQLResponse}</li>
         </ul>
       </div>
 
       <div className="key-features__item">
-        <h4>Flexible API Endpoint Selection:</h4>
+        <h4>{dictionary.flexibleAPI}</h4>
         <ul>
-          <li>
-            Allows users to switch between different user-specified GraphQL
-            endpoints.
-          </li>
-          <li>Supports any open GraphQL API with CORS compatibility.</li>
+          <li>{dictionary.flexibleAPIEndpointSwitching}</li>
+          <li>{dictionary.flexibleAPICORS}</li>
         </ul>
       </div>
 
       <div className="key-features__item">
-        <h4>User-Friendly Interface:</h4>
+        <h4>{dictionary.userFriendly}</h4>
         <ul>
-          <li>
-            Sticky header with language toggle, sign-out option, and animated
-            styling.
-          </li>
-          <li>
-            Welcome page with Sign In/Sign Up buttons, dynamically updating
-            based on user authentication status.
-          </li>
+          <li>{dictionary.userFriendlyStickyHeader}</li>
+          <li>{dictionary.userFriendlyWelcomePage}</li>
         </ul>
       </div>
 
       <div className="key-features__item">
-        <h4>Localization and Error Handling:</h4>
+        <h4>{dictionary.localizationAndError}</h4>
         <ul>
-          <li>
-            Implements localization with a language toggler in the header.
-          </li>
-          <li>Displays API-side errors in a user-friendly format.</li>
+          <li>{dictionary.localization}</li>
+          <li>{dictionary.apiErrors}</li>
         </ul>
       </div>
 
       <div className="key-features__item">
-        <h4>Testing and Quality Assurance:</h4>
+        <h4>{dictionary.testingAndQA}</h4>
         <ul>
-          <li>
-            Ensures a minimum of 80% test coverage with reporting in the
-            package.json file.
-          </li>
-          <li>Utilizes ESLint, Prettier, and Husky hooks for code quality.</li>
-          <li>
-            Adheres to semantic layout principles and responsive design for
-            adaptability.
-          </li>
+          <li>{dictionary.testCoverage}</li>
+          <li>{dictionary.eslintPrettierHusky}</li>
+          <li>{dictionary.semanticLayout}</li>
         </ul>
       </div>
 
       <div className="key-features__item">
-        <h4>Additional Design Considerations:</h4>
+        <h4>{dictionary.collaborativeDevelopment}</h4>
         <ul>
-          <li>
-            Attention to typography, with a maximum of three fonts per page and
-            a font size of at least 14px.
-          </li>
-          <li>Adaptive layout supporting a minimum page width of 320px.</li>
-          <li>
-            Consistent styling and unity of elements across all pages for a
-            cohesive user experience.
-          </li>
+          <li>{dictionary.createPrivateRepo}</li>
+          <li>{dictionary.pullRequestInitiated}</li>
+        </ul>
+      </div>
+
+      <div className="key-features__item">
+        <h4>{dictionary.additionalDesign}</h4>
+        <ul>
+          <li>{dictionary.additionalDesignTypography}</li>
+          <li>{dictionary.additionalDesignAdaptiveLayout}</li>
+          <li>{dictionary.additionalDesignConsistentStyling}</li>
         </ul>
       </div>
     </div>
