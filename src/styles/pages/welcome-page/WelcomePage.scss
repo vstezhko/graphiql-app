@@ -1,0 +1,61 @@
+.welcome-page {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+
+  @media screen and (max-width: 1280px) {
+    margin: 0 10px;
+  }
+
+  &__links {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+  }
+
+  &__main-info {
+    background-color: $color-secondary;
+    border-radius: 5px;
+    color: $color-font;
+
+    & > * {
+      padding: 15px;
+    }
+
+    &.links {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+
+  &__item {
+    & h3 {
+      margin-bottom: 15px;
+    }
+
+    & p {
+      margin-bottom: 1rem;
+
+      .indent {
+        margin-left: 10px;
+      }
+    }
+  }
+
+  &__team-members {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 20px 0;
+  }
+
+  @include medium-mobile {
+    &__team-members {
+      padding: 10px 0;
+    }
+  }
+}

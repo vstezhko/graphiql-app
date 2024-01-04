@@ -10,12 +10,11 @@ export const useFetchAndSetFirebaseStatus = () => {
     dispatch(isLoggedInSlice.actions.setLoading(true));
     onAuthStateChanged(auth, (user) => {
       if (user) {
-        const uid = user.uid;
-        console.log('uid', uid);
+        localStorage.setItem('isLoggedIn', JSON.stringify(true));
         dispatch(isLoggedInSlice.actions.setStatus(true));
         dispatch(isLoggedInSlice.actions.setLoading(false));
       } else {
-        console.log('user is logged out');
+        localStorage.setItem('isLoggedIn', JSON.stringify(false));
         dispatch(isLoggedInSlice.actions.setStatus(false));
         dispatch(isLoggedInSlice.actions.setLoading(false));
       }

@@ -41,12 +41,15 @@ body {
   overflow-y: auto;
 }
 
-.no-scroll{
+.no-scroll {
   overflow: hidden;
 }
 
 .wrapper {
+  display: flex;
+  flex-direction: column;
   position: relative;
+  min-height: 100vh;
 }
 
 main {
@@ -60,10 +63,9 @@ main {
   padding: 20px 0;
   margin: 0 auto;
 
-  & > * {
+  &:has(.editor-page) > * {
     height: 100vh;
   }
-
 
   &__img {
     width: 100%;
@@ -86,7 +88,6 @@ main {
       font-size: 2rem;
       color: $color-font;
     }
-
   }
 }
 
@@ -98,6 +99,16 @@ h1 {
 h2 {
   font-size: 2.2em;
   line-height: 1.1;
+}
+
+h3 {
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+h4 {
+  font-size: 1.7rem;
+  line-height: 2;
 }
 
 button {
@@ -118,7 +129,6 @@ header {
   text-align: center;
   font-size: 2rem;
 
-
   & > .navigation {
     display: flex;
     align-items: center;
@@ -129,8 +139,10 @@ header {
       position: relative;
       transition: color 0.2s;
 
-      &:hover {
-        color: $color-additional-2;
+      @media (hover: hover) {
+        &:hover {
+          color: $color-additional-2;
+        }
       }
     }
 
@@ -139,17 +151,18 @@ header {
     }
   }
 
-
-  .burger{
+  .burger {
     display: none;
+
     @media (max-width: 768px) {
       display: flex;
       justify-content: flex-start;
-      &__btn{
+
+      &__btn {
         background-color: $color-button !important;
       }
 
-      &__close{
+      &__close {
         position: absolute;
         background-color: transparent !important;
         right: 2rem;
@@ -162,8 +175,7 @@ header {
         z-index: 2;
       }
 
-
-      &__menu{
+      &__menu {
         position: absolute;
         top: 0;
         left: 0;
@@ -177,35 +189,36 @@ header {
         padding: 2rem;
         gap: 2rem;
 
-
-        & > a{
+        & > a {
           color: $color-additional;
         }
 
-        & > .links__container{
+        & > .links__container {
           flex-direction: column;
           align-items: flex-start;
           margin-left: 0;
 
-          & > a{
+          & > a {
             background-color: $color-additional;
 
-            &:hover {
-              color: $color-additional;
-              background-color: $color-additional-2;
+            @media (hover: hover) {
+              &:hover {
+                color: $color-additional;
+                background-color: $color-additional-2;
+              }
             }
           }
         }
       }
     }
   }
-
 }
 
 input:-webkit-autofill,
 input:-webkit-autofill:focus {
-  transition: background-color 0s 600000s,
-  color 0s 600000s;
+  transition:
+    background-color 0s 600000s,
+    color 0s 600000s;
 }
 
 .Mui-selected {

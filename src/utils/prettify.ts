@@ -3,7 +3,7 @@ export function formatGraphQL(queryBody: string) {
   const closeBraces = (queryBody.match(/}/g) || []).length;
 
   if (openBraces !== closeBraces) {
-    throw new Error('syntax');
+    throw new Error('bracketMismatch');
   }
 
   if (openBraces === 0) {
@@ -19,12 +19,14 @@ export function formatGraphQL(queryBody: string) {
     const char = queryBody[i];
 
     if (char === '#') {
+      if (currentBlock.trim() !== '') {
+        blocks.push(currentBlock);
+      }
+      currentBlock = char;
       inComment = true;
-    }
-
-    if (inComment) {
+    } else if (inComment) {
       currentBlock += char;
-      if (char === '\n') {
+      if (char === '\n' || i === queryBody.length - 1) {
         blocks.push(currentBlock);
         currentBlock = '';
         inComment = false;
@@ -43,17 +45,18 @@ export function formatGraphQL(queryBody: string) {
     }
   }
 
+  if (currentBlock && currentBlock.trim() !== '') {
+    throw new Error('unexpectedBlock');
+  }
+
   let formattedQuery = '';
-  console.log(blocks);
   for (const block of blocks) {
-    debugger;
     formattedQuery += parseBlock(block) + '\n';
   }
 
   if (formattedQuery.endsWith('\n')) {
     formattedQuery = formattedQuery.slice(0, -1);
   }
-
   return formattedQuery;
 }
 
@@ -73,12 +76,19 @@ export function parseBlock(block: string) {
   let formattedQuery = '';
   let indentationLevel = 0;
   let isParam = false;
-  console.log(trimmedBlock);
 
   for (let i = 0; i < trimmedBlock.length; i++) {
     const char = trimmedBlock[i];
 
     if (char === '{') {
+      if (
+        i !== 0 &&
+        trimmedBlock[i - 1] !== ' ' &&
+        trimmedBlock[i - 1] !== ')' &&
+        trimmedBlock[i - 1] !== '\n'
+      ) {
+        formattedQuery += ' ';
+      }
       if (trimmedBlock[i + 1] === '}') {
         formattedQuery += char + trimmedBlock[i + 1];
         i++;
@@ -123,11 +133,13 @@ export function parseBlock(block: string) {
       formattedQuery += char;
     }
   }
-
   return formattedQuery;
 }
 
-export function formatJSON(json: string) {
-  console.log(JSON.stringify(JSON.parse(json), null, 2));
-  return JSON.stringify(JSON.parse(json), null, 2);
+export function formatJSON(json: string, origin: string) {
+  try {
+    return JSON.stringify(JSON.parse(json), null, 2);
+  } catch (error) {
+    throw new Error(`invalidJSON${origin ? `${origin}` : ''}`);
+  }
 }

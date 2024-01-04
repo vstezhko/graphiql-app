@@ -6,42 +6,61 @@ export enum FormFields {
   CONFIRM_PASSWORD = 'confirmPassword',
 }
 
+export enum ErrorsKeys {
+  EmailIsRequired = 'EmailIsRequired',
+  InvalidEmailFormat = 'InvalidEmailFormat',
+  PasswordIsRequired = 'PasswordIsRequired',
+  Need1Digit = 'Need1Digit',
+  Need1UppercaseAZ = 'Need1UppercaseAZ',
+  Need1LowerCaseAZ = 'Need1LowerCaseAZ',
+  Min8Characters = 'Min8Characters',
+  Need1SpecialSymbol = 'Need1SpecialSymbol',
+  ConfirmPasswordIsRequired = 'ConfirmPasswordIsRequired',
+  PasswordsMustMatch = 'PasswordsMustMatch',
+}
+
 export const validationSchema = {
   signIn: object().shape({
     [FormFields.EMAIL]: string()
-      .required('Email is required')
-      .email('Invalid email format'),
+      .required(ErrorsKeys.EmailIsRequired)
+      .email(ErrorsKeys.InvalidEmailFormat),
 
     [FormFields.PASSWORD]: string()
-      .required('Password is required')
-      .matches(/^(?=.*\d)/, 'need 1 digit')
-      .matches(/(?=.*[A-Z])/, 'need 1 uppercase (A-Z)')
-      .matches(/(?=.*[a-z])/, 'need 1 lowercase (a-z)')
+      .required(ErrorsKeys.PasswordIsRequired)
+      .matches(/^(?=.*\d)/, ErrorsKeys.Need1Digit)
+      .matches(/(?=.*[A-Z])/, ErrorsKeys.Need1UppercaseAZ)
+      .matches(/(?=.*[a-z])/, ErrorsKeys.Need1LowerCaseAZ)
+      .min(8, ErrorsKeys.Min8Characters)
       .matches(
         /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/,
-        'need 1 special symbol'
+        ErrorsKeys.Need1SpecialSymbol
       ),
   }),
   signUp: object().shape({
     [FormFields.EMAIL]: string()
-      .required('Email is required')
-      .email('Invalid email format'),
+      .required(ErrorsKeys.EmailIsRequired)
+      .email(ErrorsKeys.InvalidEmailFormat),
 
     [FormFields.PASSWORD]: string()
-      .required('Password is required')
-      .matches(/^(?=.*\d)/, 'need 1 digit')
-      .matches(/(?=.*[A-Z])/, 'need 1 uppercase (A-Z)')
-      .matches(/(?=.*[a-z])/, 'need 1 lowercase (a-z)')
+      .required(ErrorsKeys.PasswordIsRequired)
+      .matches(/^(?=.*\d)/, ErrorsKeys.Need1Digit)
+      .matches(/(?=.*[A-Z])/, ErrorsKeys.Need1UppercaseAZ)
+      .matches(/(?=.*[a-z])/, ErrorsKeys.Need1LowerCaseAZ)
+      .min(8, ErrorsKeys.Min8Characters)
       .matches(
         /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/,
-        'need 1 special symbol'
+        ErrorsKeys.Need1SpecialSymbol
       ),
 
     [FormFields.CONFIRM_PASSWORD]: string()
-      .required('Confirm Password is required')
-      .matches(/(?=.*[A-Z])/, 'need 1 uppercase (A-Z)')
-      .matches(/(?=.*[a-z])/, 'need 1 lowercase (a-z)')
-      .matches(/[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/, 'need 1 special symbol')
-      .oneOf([ref(FormFields.PASSWORD)], 'Passwords must match'),
+      .required(ErrorsKeys.ConfirmPasswordIsRequired)
+      .matches(/(?=.*[A-Z])/, ErrorsKeys.Need1UppercaseAZ)
+      .matches(/(?=.*[a-z])/, ErrorsKeys.Need1LowerCaseAZ)
+      .matches(
+        /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/,
+        ErrorsKeys.Need1SpecialSymbol
+      )
+      .min(8, 'min 8 characters')
+      .oneOf([ref(FormFields.PASSWORD)], ErrorsKeys.PasswordsMustMatch),
   }),
 };
