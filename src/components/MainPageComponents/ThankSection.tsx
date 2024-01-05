@@ -10,7 +10,7 @@ export const ThanksSection = () => {
         <Link className="thanks__link" to="https://rs.school/react/">
           <img
             src="../../../public/rs_school_js.svg"
-            alt={dictionary.rsSchoolLogoAlt}
+            alt={dictionary.rsLogoAlt}
           />
         </Link>
       </div>
