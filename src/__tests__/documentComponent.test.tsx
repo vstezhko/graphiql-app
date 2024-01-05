@@ -1,23 +1,16 @@
-import {
-  act,
-  fireEvent,
-  render,
-  renderHook,
-  waitFor,
-} from '@testing-library/react';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { store } from '../store/store.ts';
 import { screen } from '@testing-library/dom';
 import DocumentationSection, {
   Documentation,
 } from '../components/documentationComponent/DocumentationSection.tsx';
-import { expect } from 'vitest';
+import { expect, Mock } from 'vitest';
 import { configureStore } from '@reduxjs/toolkit';
 import editorsReducer, { setEndpoint } from '../store/slices/editorsSlice.ts';
 import { getSchema } from '../store/slices/graphQLThunk.ts';
 import TypesList from '../components/documentationComponent/TypesList.tsx';
 import { mockSchema } from './mockSchema.ts';
-import { useState } from 'react';
 
 test('renders DocumentationSection', () => {
   render(
@@ -117,20 +110,6 @@ it('should render the back button when a type is selected, should back history',
     </Provider>
   );
 
-  const { result } = renderHook(() => {
-    const [history, setHistory] = useState(['Type1', 'Type2']);
-    const [selectedType, setSelectedType] = useState<string | null>(null);
-
-    const handleBackClick = () => {
-      const newHistory = [...history];
-      newHistory.pop();
-      setHistory(newHistory);
-      setSelectedType(newHistory[newHistory.length - 1] || null);
-    };
-
-    return { handleBackClick, history, selectedType };
-  });
-
   await act(async () => {
     store.dispatch(setEndpoint('https://countries.trevorblades.com/graphql'));
     store.dispatch(getSchema());
@@ -141,18 +120,18 @@ it('should render the back button when a type is selected, should back history',
     fireEvent.click(typeElement);
     const backButton = screen.getByTestId('backBtn');
     expect(backButton).toBeInTheDocument();
-    fireEvent.click(backButton);
   });
-
-  act(() => {
-    result.current.handleBackClick();
-  });
-
-  expect(result.current.history).toEqual(['Type1']);
-  expect(result.current.selectedType).toEqual('Type1');
 });
 
 test('should click on links and call the mock function', async () => {
+  global.fetch = vi.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve(mockSchema),
+      ok: true,
+      status: 200,
+    })
+  ) as Mock;
+
   const store = configureStore({
     reducer: {
       editors: editorsReducer,

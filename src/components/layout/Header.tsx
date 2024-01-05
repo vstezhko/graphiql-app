@@ -31,7 +31,7 @@ const Navigation = ({
     if (!lsStatus && pathname === '/main') {
       navigate('/');
     }
-  }, [status]);
+  }, [status, pathname, navigate]);
 
   const isSticky = scroll ? 'sticky__link' : 'header__link';
 

@@ -68,7 +68,7 @@ const EditorToolbar = () => {
     } else {
       dispatch(setDocumentation());
     }
-  }, [endpointValue, queryHeaders]);
+  }, [endpointValue, queryHeaders, dispatch]);
 
   return (
     <div className="editor-toolbar">

@@ -33,7 +33,7 @@ const TypesList: React.FC<TypesListProps> = ({
     if (arg) {
       setArgumentData(arg);
     } else setArgumentData({ type: '', args: [] });
-  }, [list?.name]);
+  }, [list?.name, root?.fields]);
 
   const findSchemaType = (name: string | null, type: Type) => {
     return schema.find(

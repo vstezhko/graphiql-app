@@ -80,7 +80,7 @@ const DocumentationSection = () => {
     );
     setRootQuery(root);
     setAllSchemaTypes(allTypes);
-  }, [schema, doc]);
+  }, [schema, schemaTypes.queryType]);
 
   useEffect(() => {
     if (schema && schema?.length > 0) {
