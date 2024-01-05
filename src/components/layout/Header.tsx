@@ -103,7 +103,7 @@ const Header = () => {
     await logout();
     handleCloseMenu();
     dispatch(resetState());
-    navigate('/signIn');
+    navigate('/');
   };
 
   const handleOpenMenu = () => {
