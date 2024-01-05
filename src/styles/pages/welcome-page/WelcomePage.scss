@@ -18,6 +18,7 @@
     background-color: $color-secondary;
     border-radius: 5px;
     color: $color-font;
+    min-height: 15rem; 
 
     & > * {
       padding: 15px;

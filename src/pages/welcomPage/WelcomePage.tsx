@@ -6,6 +6,7 @@ import { LanguageContext } from '../../context/LanguageContext.tsx';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store.ts';
+import { CircularProgress } from '@mui/material';
 
 type SkillItem = [string, number];
 
@@ -160,7 +161,9 @@ const TeamMembersDataRu: TeamMemberParams[] = [
 
 const WelcomePage = () => {
   const { language, dictionary } = useContext(LanguageContext);
-  const { status } = useSelector((state: RootState) => state.isLoggedIn);
+  const { status, isLoading } = useSelector(
+    (state: RootState) => state.isLoggedIn
+  );
   const data = useMemo(
     () => (language === 'en' ? TeamMembersDataEn : TeamMembersDataRu),
     [language]
@@ -168,27 +171,33 @@ const WelcomePage = () => {
   return (
     <div className="page__content welcome-page">
       <div className="welcome-page__main-info links">
-        <h2>
-          {!status
-            ? dictionary.pleaseRegisterOrSignIn
-            : dictionary.ifAlreadySignedIn}
-        </h2>
-        <div className="welcome-page__links">
-          {!status ? (
-            <>
-              <Link className="header__link" to={'/signIn'}>
-                {dictionary.signIn}
-              </Link>
-              <Link className="header__link" to={'/signUp'}>
-                {dictionary.signUp}
-              </Link>
-            </>
-          ) : (
-            <Link className="header__link" to={'/main'}>
-              {dictionary.mainPage}
-            </Link>
-          )}
-        </div>
+        {isLoading ? (
+          <CircularProgress size="7rem" />
+        ) : (
+          <>
+            <h2>
+              {!status
+                ? dictionary.pleaseRegisterOrSignIn
+                : dictionary.ifAlreadySignedIn}
+            </h2>
+            <div className="welcome-page__links">
+              {!status ? (
+                <>
+                  <Link className="header__link" to={'/signIn'}>
+                    {dictionary.signIn}
+                  </Link>
+                  <Link className="header__link" to={'/signUp'}>
+                    {dictionary.signUp}
+                  </Link>
+                </>
+              ) : (
+                <Link className="header__link" to={'/main'}>
+                  {dictionary.mainPage}
+                </Link>
+              )}
+            </div>
+          </>
+        )}
       </div>
       <div className="welcome-page__main-info">
         <h3>{dictionary.rootsInRschool}</h3>
