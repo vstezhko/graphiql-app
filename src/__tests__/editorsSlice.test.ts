@@ -1,5 +1,8 @@
 import { Store, configureStore } from '@reduxjs/toolkit';
 import editorsReducer, {
+  editorsSlice,
+  initialState,
+  resetState,
   setQueryBody,
   setQueryHeaders,
   setQueryVariables,
@@ -82,4 +85,21 @@ describe('editors reducer', () => {
     expect(store.getState().editors.requestError).toBe(errorReference);
     expect(store.getState().editors.response).toBe('');
   });
+});
+
+test('resetState action resets state to initial state', () => {
+  let state = {
+    ...initialState,
+    queryBody: 'testBody',
+    queryVariables: 'testVariables',
+    queryHeaders: 'testHeaders',
+    activeTab: 1,
+    isPanelOpen: false,
+    endpoint: 'endpointError',
+    documentation: 'testDocumentation',
+  };
+
+  state = editorsSlice.reducer(state, resetState());
+
+  expect(state).toEqual(initialState);
 });

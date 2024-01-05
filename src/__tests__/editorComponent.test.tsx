@@ -1,9 +1,10 @@
 import { Provider } from 'react-redux';
 import EditorContainer from '../components/editorComponent/editorContainer/EditorContainer';
 import { store } from '../store/store';
-import { fireEvent, render } from '@testing-library/react';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import { screen } from '@testing-library/dom';
 import EditorTabs from '../components/editorComponent/editorTabs/EditorTabs';
+import { setPrettifyError } from '../store/slices/editorsSlice';
 
 test('renders EditorContainer', () => {
   render(
@@ -53,4 +54,20 @@ test('switches tabs of the variables&headers panel', () => {
 
   fireEvent.click(getByText('Headers'));
   expect(store.getState().editors.activeTab).toBe(1);
+});
+
+test('renders EditorContainer', async () => {
+  render(
+    <Provider store={store}>
+      <EditorContainer />
+    </Provider>
+  );
+
+  act(() => {
+    store.dispatch(setPrettifyError('bracketMismatch'));
+  });
+
+  await waitFor(() =>
+    expect(screen.getByText('Brackets mismatch')).toBeInTheDocument()
+  );
 });

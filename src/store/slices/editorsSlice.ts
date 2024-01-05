@@ -18,7 +18,7 @@ export interface EditorsState {
   documentation: string;
 }
 
-const initialState: EditorsState = {
+export const initialState: EditorsState = {
   queryBody: '',
   queryVariables: '',
   queryHeaders: '',
@@ -61,6 +61,7 @@ export const editorsSlice = createSlice({
     setDocumentation: (state) => {
       state.documentation = '';
     },
+    resetState: () => initialState,
   },
   extraReducers: (builder) => {
     builder
@@ -102,6 +103,7 @@ export const {
   setEndpoint,
   setPrettifyError,
   setDocumentation,
+  resetState,
 } = editorsSlice.actions;
 
 export default editorsSlice.reducer;
