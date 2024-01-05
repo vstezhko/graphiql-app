@@ -77,6 +77,7 @@ const Header = () => {
   const [scroll, setScroll] = useState(false);
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState<boolean>(false);
+  const { dictionary } = useContext(LanguageContext);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -121,7 +122,7 @@ const Header = () => {
           className="burger__btn"
           onClick={handleOpenMenu}
         >
-          Menu
+          {dictionary.menu}
         </Button>
         {isVisible && (
           <>

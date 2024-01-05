@@ -11,7 +11,7 @@ export const makeRequest = async (state: RootState) => {
     try {
       variables = JSON.parse(variablesString);
     } catch (error) {
-      console.error('An error occurred while parsing variables:', error);
+      // Api answer is enough to show error
     }
   }
 
@@ -20,7 +20,7 @@ export const makeRequest = async (state: RootState) => {
     try {
       headers = JSON.parse(headersString);
     } catch (error) {
-      console.error('An error occurred while parsing headers:', error);
+      // Api answer is enough to show error
     }
   }
 
