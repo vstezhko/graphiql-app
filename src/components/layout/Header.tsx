@@ -101,12 +101,10 @@ const Header = () => {
 
   const handleOpenMenu = () => {
     setIsVisible(true);
-    document.body.classList.add('no-scroll');
   };
 
   const handleCloseMenu = () => {
     setIsVisible(false);
-    document.body.classList.remove('no-scroll');
   };
 
   return (
