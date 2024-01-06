@@ -96,7 +96,7 @@
   }
 
   .css-nnid7-MuiSlider-valueLabel {
-    line-height: 0.8rem;
+    line-height: 1rem;
   }
 
   .css-nnid7-MuiSlider-valueLabel:before {
@@ -126,11 +126,6 @@
       height: 30px;
     }
 
-    .css-nnid7-MuiSlider-valueLabel {
-      line-height: 0.75rem;
-      font-size: 0.75rem;
-    }
-
   }
 
   @include small {
@@ -147,11 +142,6 @@
     }
 
   }
-  //
-  //@include medium-mobile {
-  //  padding: 20px 15px;
-  //  flex-direction: column;
-  //}
 
 }
 .odd {
