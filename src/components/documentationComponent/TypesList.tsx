@@ -33,7 +33,7 @@ const TypesList: React.FC<TypesListProps> = ({
     if (arg) {
       setArgumentData(arg);
     } else setArgumentData({ type: '', args: [] });
-  }, [list?.name]);
+  }, [list?.name, root?.fields]);
 
   const findSchemaType = (name: string | null, type: Type) => {
     return schema.find(
@@ -54,6 +54,7 @@ const TypesList: React.FC<TypesListProps> = ({
               return (
                 <p
                   className="doc-section__item"
+                  data-testid="link"
                   onClick={() => handleTypeClick(res)}
                   key={arg.name}
                 >{`{ ${arg.name} : ${findFirstNonNullName(arg?.type)} }`}</p>
@@ -71,6 +72,7 @@ const TypesList: React.FC<TypesListProps> = ({
         return (
           <div
             className="doc-section__item"
+            data-testid="link"
             key={field.name}
             onClick={() => handleTypeClick(res)}
           >

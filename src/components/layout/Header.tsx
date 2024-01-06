@@ -32,7 +32,7 @@ const Navigation = ({
     if (!lsStatus && pathname === '/main') {
       navigate('/');
     }
-  }, [status]);
+  }, [status, pathname, navigate]);
 
   const isSticky = scroll ? 'sticky__link' : 'header__link';
 
@@ -45,7 +45,6 @@ const Navigation = ({
         {dictionary.mainPage}
       </NavLink>
       <div className="links__container">
-        <Localization status={status} isBurger={isBurger} />
         {status ? (
           <button className={isSticky} onClick={onClick}>
             {dictionary.logOut}
@@ -59,15 +58,12 @@ const Navigation = ({
             <Link className={isSticky} to={'/signIn'} onClick={handleCloseMenu}>
               {dictionary.signIn}
             </Link>
-            <Link
-              className={scroll ? 'sticky__link' : 'header__link'}
-              to={'/signUp'}
-              onClick={handleCloseMenu}
-            >
+            <Link className={isSticky} to={'/signUp'} onClick={handleCloseMenu}>
               {dictionary.signUp}
             </Link>
           </>
         )}
+        <Localization isBurger={isBurger} />
       </div>
     </div>
   );
@@ -108,12 +104,10 @@ const Header = () => {
 
   const handleOpenMenu = () => {
     setIsVisible(true);
-    document.body.classList.add('no-scroll');
   };
 
   const handleCloseMenu = () => {
     setIsVisible(false);
-    document.body.classList.remove('no-scroll');
   };
 
   return (

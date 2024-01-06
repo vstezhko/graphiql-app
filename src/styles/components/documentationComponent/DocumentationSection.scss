@@ -6,7 +6,7 @@
   bottom: 0;
   width: 100%;
   max-width: 415px;
-  z-index: 200;
+  z-index: 90;
   border-left: 10px solid $color-button;
   transition: all 0.3s;
   display: flex;
@@ -16,7 +16,7 @@
 
 
   @media (max-width: 500px) {
-    max-width: 270px;
+    max-width: 230px;
   }
 
   ::-webkit-scrollbar {
@@ -134,16 +134,16 @@
     transform: translateX(405px);
 
     @media (max-width: 500px) {
-      transform: translateX(260px);
+      transform: translateX(220px);
     }
   }
 
   & .doc-section__btn {
     position: absolute;
-    background-color: $color-button;
+    background-color: $color-button !important;
     transform: rotate(-90deg) translateX(-30%);
     right: 97.5%;
-    top: 30%;
+    top: 40%;
     color: $color-font;
     height: 30px;
 
@@ -157,7 +157,7 @@
       color: $color-additional-2;
       background-color: $color-hovered;
       }
-      
+
     }
   }
 

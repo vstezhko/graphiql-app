@@ -80,7 +80,7 @@ const DocumentationSection = () => {
     );
     setRootQuery(root);
     setAllSchemaTypes(allTypes);
-  }, [schema, doc]);
+  }, [schema, schemaTypes.queryType]);
 
   useEffect(() => {
     if (schema && schema?.length > 0) {
@@ -105,10 +105,13 @@ const DocumentationSection = () => {
   };
 
   return (
-    <div className={isOpen ? 'doc-section' : 'doc-section doc-section_close'}>
+    <div
+      data-testid="docSection"
+      className={isOpen ? 'doc-section' : 'doc-section doc-section_close'}
+    >
       {selectedType && rootQuery ? (
         <>
-          <Button className="doc-section__back-btn" onClick={handleBackClick}>
+          <Button className="doc-section__back-btn"  data-testid="backBtn" onClick={handleBackClick}>
             {dictionary.backButton}
           </Button>
           <TypesList
@@ -125,6 +128,7 @@ const DocumentationSection = () => {
               <h3>{dictionary.rootType}</h3>
               <div
                 className="doc-section__item"
+                data-testid="link"
                 onClick={() => handleTypeClick(rootQuery)}
               >
                 {rootQuery?.name}
@@ -137,6 +141,7 @@ const DocumentationSection = () => {
               {allSchemaTypes?.map((type) => (
                 <div
                   className="doc-section__item"
+                  data-testid="link"
                   key={type.name}
                   onClick={() => handleTypeClick(type)}
                 >
@@ -150,13 +155,17 @@ const DocumentationSection = () => {
 
       <Button
         className="doc-section__btn"
+        data-testid="openBtn"
         onClick={handleCloseOpenSection}
         disabled={!schema || schema?.length === 0}
       >
         {isFetching !== 'loading' ? (
           dictionary.schema
         ) : (
-          <CircularProgress className="doc-section__progress" />
+          <CircularProgress
+            data-testid="сircularProgress"
+            className="doc-section__progress"
+          />
         )}
       </Button>
     </div>
