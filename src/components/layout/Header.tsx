@@ -73,18 +73,12 @@ const Header = () => {
   const [scroll, setScroll] = useState(false);
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState<boolean>(false);
-  const { pathname } = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
       if (headerRef.current) {
         const sticky = headerRef.current?.offsetTop;
-        if (
-          window.pageYOffset > sticky &&
-          pathname !== '/signIn' &&
-          pathname !== '/signUp'
-        ) {
-          console.log('jjjj');
+        if (window.pageYOffset > sticky) {
           setScroll(true);
         } else {
           setScroll(false);
@@ -96,7 +90,7 @@ const Header = () => {
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [pathname]);
+  }, []);
 
   const handleLogout = async () => {
     await logout();
