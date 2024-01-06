@@ -40,6 +40,13 @@ test('show name in button when isFetchingSchema is not "loading"', () => {
 });
 
 test('open doc section if schema is ready, render schema', async () => {
+  global.fetch = vi.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve(mockSchema),
+      ok: true,
+      status: 200,
+    })
+  ) as Mock;
   const store = configureStore({
     reducer: {
       editors: editorsReducer,
@@ -66,6 +73,13 @@ test('open doc section if schema is ready, render schema', async () => {
 });
 
 test('open/ close doc section', async () => {
+  global.fetch = vi.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve(mockSchema),
+      ok: true,
+      status: 200,
+    })
+  ) as Mock;
   const store = configureStore({
     reducer: {
       editors: editorsReducer,
@@ -104,6 +118,14 @@ it('should not render the back button when no type is selected', () => {
 });
 
 it('should render the back button when a type is selected, should back history', async () => {
+  global.fetch = vi.fn(() =>
+    Promise.resolve({
+      json: () => Promise.resolve(mockSchema),
+      ok: true,
+      status: 200,
+    })
+  ) as Mock;
+
   render(
     <Provider store={store}>
       <DocumentationSection />
