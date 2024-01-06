@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { LanguageContext } from '../../../context/LanguageContext.tsx';
+import { LanguageContext } from '../../context/LanguageContext.tsx';
 
 export const KeyFeaturesSection = () => {
   const { dictionary } = useContext(LanguageContext);

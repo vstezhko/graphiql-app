@@ -48,7 +48,7 @@ const AuthForm: FC<AuthFormParams> = ({ type, onFormSubmit, serverError }) => {
   const isValid = errors && !Object.keys(errors).length && isFilledAllFields;
 
   return (
-    <FormProvider {...methods}>
+    <FormProvider {...methods} data-testid="authForm">
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <TextInput
           id={FormFields.EMAIL}
@@ -77,7 +77,12 @@ const AuthForm: FC<AuthFormParams> = ({ type, onFormSubmit, serverError }) => {
           />
         )}
 
-        <Button variant="outlined" type="submit" disabled={!isValid}>
+        <Button
+          variant="outlined"
+          type="submit"
+          disabled={!isValid}
+          data-testid="authForm-submit"
+        >
           {dictionary.SUBMIT}
         </Button>
         {serverError && <AuthServerErrorMessage message={serverError} />}

@@ -59,8 +59,10 @@ const SignIn = () => {
   }, [dictionary]);
 
   return (
-    <div className="auth-page">
-      <h2 className="h2">{dictionary.signIn}</h2>
+    <div className="auth-page" data-testid="signIn-page">
+      <h2 className="h2" data-testid="signIn-title">
+        {dictionary.signIn}
+      </h2>
       <AuthForm
         type={'signIn'}
         onFormSubmit={onSubmit}
