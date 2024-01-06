@@ -130,6 +130,10 @@
     }
   }
 
+  &_disabled {
+    border-color: $color-border;
+  }
+
   & .doc-section__btn {
     position: absolute;
     background-color: $color-button;
@@ -138,6 +142,10 @@
     top: 40%;
     color: $color-font;
     height: 30px;
+
+    &:disabled {
+      background-color: $color-border;
+    }
 
     @media (max-width: 500px) {
       right: 96%;

@@ -82,12 +82,6 @@ const DocumentationSection = () => {
     setAllSchemaTypes(allTypes);
   }, [schema, schemaTypes.queryType]);
 
-  useEffect(() => {
-    if (schema && schema?.length > 0) {
-      setIsOpen(true);
-    } else setIsOpen(false);
-  }, [schema]);
-
   const handleCloseOpenSection = () => {
     setIsOpen(!isOpen);
   };
@@ -104,14 +98,21 @@ const DocumentationSection = () => {
     setSelectedType(newHistory[newHistory.length - 1] || null);
   };
 
+  const isDisabled = !schema || schema?.length === 0;
+
   return (
     <div
       data-testid="docSection"
-      className={isOpen ? 'doc-section' : 'doc-section doc-section_close'}
+      className={`${isDisabled && 'doc-section_disabled'}
+          ${isOpen ? 'doc-section' : 'doc-section doc-section_close'}`}
     >
       {selectedType && rootQuery ? (
         <>
-          <Button className="doc-section__back-btn"  data-testid="backBtn" onClick={handleBackClick}>
+          <Button
+            className="doc-section__back-btn"
+            data-testid="backBtn"
+            onClick={handleBackClick}
+          >
             {dictionary.backButton}
           </Button>
           <TypesList
@@ -157,7 +158,7 @@ const DocumentationSection = () => {
         className="doc-section__btn"
         data-testid="openBtn"
         onClick={handleCloseOpenSection}
-        disabled={!schema || schema?.length === 0}
+        disabled={isDisabled}
       >
         {isFetching !== 'loading' ? (
           dictionary.schema
