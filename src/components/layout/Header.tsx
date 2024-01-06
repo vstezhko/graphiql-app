@@ -45,7 +45,6 @@ const Navigation = ({
         {dictionary.mainPage}
       </NavLink>
       <div className="links__container">
-        <Localization status={status} isBurger={isBurger} />
         {status ? (
           <button className={isSticky} onClick={onClick}>
             {dictionary.logOut}
@@ -64,6 +63,7 @@ const Navigation = ({
             </Link>
           </>
         )}
+        <Localization isBurger={isBurger} />
       </div>
     </div>
   );
