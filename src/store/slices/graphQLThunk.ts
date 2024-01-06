@@ -14,10 +14,6 @@ export const getSchema = createAsyncThunk(
   'documentation/getSchema',
   async (_, thunkAPI) => {
     const state = thunkAPI.getState() as RootState;
-    try {
-      return JSON.stringify(await makeSchemaRequest(state), null, 2);
-    } catch (error) {
-      throw error;
-    }
+    return JSON.stringify(await makeSchemaRequest(state), null, 2);
   }
 );
