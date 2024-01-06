@@ -23,7 +23,11 @@ export const validationSchema = {
   signIn: object().shape({
     [FormFields.EMAIL]: string()
       .required(ErrorsKeys.EmailIsRequired)
-      .email(ErrorsKeys.InvalidEmailFormat),
+      .email(ErrorsKeys.InvalidEmailFormat)
+      .matches(
+        /^[\w-]+@[a-zA-Z\d-]+\.[a-zA-Z]{2,}/,
+        ErrorsKeys.InvalidEmailFormat
+      ),
 
     [FormFields.PASSWORD]: string()
       .required(ErrorsKeys.PasswordIsRequired)
@@ -39,7 +43,11 @@ export const validationSchema = {
   signUp: object().shape({
     [FormFields.EMAIL]: string()
       .required(ErrorsKeys.EmailIsRequired)
-      .email(ErrorsKeys.InvalidEmailFormat),
+      .email(ErrorsKeys.InvalidEmailFormat)
+      .matches(
+        /^[\w-]+@[a-zA-Z\d-]+\.[a-zA-Z]{2,}/,
+        ErrorsKeys.InvalidEmailFormat
+      ),
 
     [FormFields.PASSWORD]: string()
       .required(ErrorsKeys.PasswordIsRequired)
