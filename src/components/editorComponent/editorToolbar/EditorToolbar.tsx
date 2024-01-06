@@ -21,23 +21,14 @@ import { formatGraphQL, formatJSON } from '../../../utils/prettify.ts';
 
 const EditorToolbar = () => {
   const dispatch: AppDispatch = useDispatch();
-  const endpointValue = useSelector(
-    (state: RootState) => state.editors.endpoint
-  );
-  const requestError = useSelector(
-    (state: RootState) => state.editors.requestError
-  );
-  const queryBody = useSelector((state: RootState) => state.editors.queryBody);
-  const isFetching = useSelector(
-    (state: RootState) => state.editors.isFetchingQuery
-  );
-
-  const queryVariables = useSelector(
-    (state: RootState) => state.editors.queryVariables
-  );
-  const queryHeaders = useSelector(
-    (state: RootState) => state.editors.queryHeaders
-  );
+  const {
+    endpoint,
+    requestError,
+    queryBody,
+    isFetchingQuery,
+    queryVariables,
+    queryHeaders,
+  } = useSelector((state: RootState) => state.editors);
   const { dictionary } = useContext(LanguageContext);
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     dispatch(setEndpoint(event.target.value));
@@ -63,12 +54,12 @@ const EditorToolbar = () => {
   };
 
   useEffect(() => {
-    if (endpointValue) {
+    if (endpoint) {
       dispatch(getSchema());
     } else {
       dispatch(setDocumentation());
     }
-  }, [endpointValue, queryHeaders, dispatch]);
+  }, [endpoint, queryHeaders, dispatch]);
 
   return (
     <div className="editor-toolbar">
@@ -76,7 +67,7 @@ const EditorToolbar = () => {
         <div className="editor-toolbar__control-wrapper">
           <input
             className="editor-toolbar__input"
-            value={endpointValue}
+            value={endpoint}
             type="text"
             placeholder={dictionary.enterEndpoint}
             onChange={handleChange}
@@ -88,7 +79,7 @@ const EditorToolbar = () => {
             onClick={handleRun}
             disabled={!queryBody}
           >
-            {isFetching === 'loading' ? (
+            {isFetchingQuery === 'loading' ? (
               <PauseCircleFilledIcon />
             ) : (
               <PlayCircleFilledWhiteIcon />

@@ -111,12 +111,8 @@ const DocumentationSection = () => {
     >
       {selectedType && rootQuery ? (
         <>
-          <Button
-            className="doc-section__back-btn"
-            data-testid="backBtn"
-            onClick={handleBackClick}
-          >
-            Back
+          <Button className="doc-section__back-btn"  data-testid="backBtn" onClick={handleBackClick}>
+            {dictionary.backButton}
           </Button>
           <TypesList
             list={selectedType}
@@ -129,7 +125,7 @@ const DocumentationSection = () => {
         <div className="doc-section__list">
           {rootQuery && (
             <>
-              <h3>Root Type</h3>
+              <h3>{dictionary.rootType}</h3>
               <div
                 className="doc-section__item"
                 data-testid="link"
@@ -141,7 +137,7 @@ const DocumentationSection = () => {
           )}
           {allSchemaTypes && allSchemaTypes.length > 0 && (
             <>
-              <h3>All Schema Types</h3>
+              <h3>{dictionary.schemaTypes}</h3>
               {allSchemaTypes?.map((type) => (
                 <div
                   className="doc-section__item"

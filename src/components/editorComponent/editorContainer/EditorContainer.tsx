@@ -15,7 +15,7 @@ const EditorContainer = () => {
     <div className="editor-container">
       <section className="editor-container__request-section">
         <div className="editor-container__header">
-          <h3 className="editor-container__title">Query Editor</h3>
+          <h3 className="editor-container__title">{dictionary.queryEditor}</h3>
           {prettifyError && <p>{dictionary[prettifyError]}</p>}
         </div>
         <Editor
@@ -26,7 +26,7 @@ const EditorContainer = () => {
         <EditorTabs />
       </section>
       <section className="editor-container__response-section">
-        <h3 className="editor-container__title">Response Viewer</h3>
+        <h3 className="editor-container__title">{dictionary.responseViewer}</h3>
         <Editor
           stateValueName="response"
           className="response-viewer"

@@ -52,7 +52,7 @@ export const TeamMemberCard = ({
         <img
           className="team-member__image"
           src={teamMemberData.photo}
-          alt="Team member photo"
+          alt={dictionary.teamMemberAlt}
         />
       </div>
       <div className="team-member__contributions">
