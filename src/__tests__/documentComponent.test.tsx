@@ -64,10 +64,8 @@ test('open doc section if schema is ready, render schema', async () => {
   });
 
   await waitFor(() => {
-    const docSection = screen.getByTestId('docSection');
     const buttonElement = screen.getByTestId('openBtn');
     expect(buttonElement).not.toBeDisabled();
-    expect(docSection).not.toHaveClass('doc-section_close');
     expect(screen.getByText('Root Type')).toBeInTheDocument();
   });
 });

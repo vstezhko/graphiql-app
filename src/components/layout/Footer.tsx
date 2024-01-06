@@ -5,16 +5,16 @@ import { LanguageContext } from '../../context/LanguageContext';
 const Footer = () => {
   const { dictionary } = useContext(LanguageContext);
   return (
-    <footer className="footer">
+    <footer className="footer" data-testid="footer">
       <div className="footer__links">
-        <div className="link">
+        <div className="link" data-testid="footerLink">
           <img
             src="./../../../public/github-mark.svg"
             alt={dictionary.githubAlt}
           />
           <Link to="https://github.com/vstezhko">{dictionary.vika}</Link>
         </div>
-        <div className="link">
+        <div className="link" data-testid="footerLink">
           <img
             src="./../../../public/github-mark.svg"
             alt={dictionary.githubAlt}
@@ -23,7 +23,7 @@ const Footer = () => {
             {dictionary.kseniya}
           </Link>
         </div>
-        <div className="link">
+        <div className="link" data-testid="footerLink">
           <img
             src="./../../../public/github-mark.svg"
             alt={dictionary.githubAlt}
