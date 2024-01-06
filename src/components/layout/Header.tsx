@@ -2,10 +2,11 @@ import { Link, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { useContext, useEffect, useRef, useState } from 'react';
 import Localization from '../localizationComponent/Localization.tsx';
 import { logout } from '../../firebase/firebase.ts';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store/store.ts';
 import { LanguageContext } from '../../context/LanguageContext.tsx';
 import { Button, CircularProgress } from '@mui/material';
+import { resetState } from '../../store/slices/editorsSlice.ts';
 
 const Navigation = ({
   scroll,
@@ -72,6 +73,7 @@ const Header = () => {
   const headerRef = useRef<HTMLDivElement | null>(null);
   const [scroll, setScroll] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isVisible, setIsVisible] = useState<boolean>(false);
   const { dictionary } = useContext(LanguageContext);
 
@@ -96,7 +98,8 @@ const Header = () => {
   const handleLogout = async () => {
     await logout();
     handleCloseMenu();
-    navigate('/signIn');
+    dispatch(resetState());
+    navigate('/');
   };
 
   const handleOpenMenu = () => {

@@ -11,7 +11,7 @@
 
   h2 {
     max-width: 100%;
-    //overflow-wrap: break-word;
+    margin-bottom: 10px;
     hyphens: auto;
     text-align: center;
   }
@@ -41,6 +41,8 @@
     font-weight: 400;
     font-size: 1.4rem;
     border-radius: 0.8rem;
+    border: none;
+    padding: 10px;
 
     @media (hover:hover) {
 

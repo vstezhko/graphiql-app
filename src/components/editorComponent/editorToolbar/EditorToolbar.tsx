@@ -77,7 +77,7 @@ const EditorToolbar = () => {
             size="large"
             aria-label="run-request"
             onClick={handleRun}
-            disabled={!queryBody}
+            disabled={!queryBody || isFetchingQuery === 'loading'}
           >
             {isFetchingQuery === 'loading' ? (
               <PauseCircleFilledIcon />
