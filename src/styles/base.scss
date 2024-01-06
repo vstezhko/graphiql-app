@@ -68,7 +68,7 @@ main {
 .container {
   width: 100%;
   max-width: 1280px;
-  padding: 20px 0;
+  //padding: 20px 0;
 
   &:has(.editor-page) > * {
     height: 100vh;
