@@ -1,6 +1,7 @@
 import { findFirstNonNullName } from '../../helpers/findFirstNonNullName.ts';
 import { Documentation, Field, Type } from './DocumentationSection.tsx';
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { LanguageContext } from '../../context/LanguageContext.tsx';
 
 interface TypesListProps {
   list: Documentation;
@@ -21,6 +22,8 @@ const TypesList: React.FC<TypesListProps> = ({
     type: string;
     args: Field[];
   }>({ type: '', args: [] });
+
+  const { dictionary } = useContext(LanguageContext);
 
   useEffect(() => {
     const gatheredArgs =
@@ -47,7 +50,7 @@ const TypesList: React.FC<TypesListProps> = ({
         <>
           <span className="doc-section__line" />
           <div className="doc-section__args">
-            <h4>Arguments</h4>
+            <h4>{dictionary.arguments}</h4>
             {argumentData.args.map((arg) => {
               const res = findSchemaType(arg?.type?.name, arg.type);
 

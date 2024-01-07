@@ -30,6 +30,7 @@
   "backButton": "Назад",
   "rootType": "Тип корневого объекта",
   "schemaTypes": "Все типы схемы",
+  "arguments": "Аргументы",
   "notFoundTitle": "ОШИБКА 404",
   "notFoundText": "Извините! Страница не найдена...",
   "errorTitle": "ОШИБКА",
