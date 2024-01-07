@@ -56,7 +56,7 @@ const SignIn = () => {
     if (serverInitialError === errorTooManyAttempts) {
       setServerError(dictionary.FirebaseErrorTooManyAttempts);
     }
-  }, [dictionary]);
+  }, [dictionary, serverInitialError]);
 
   return (
     <div className="auth-page" data-testid="signIn-page">

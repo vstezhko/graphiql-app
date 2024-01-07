@@ -16,7 +16,7 @@ vi.mock('react-router-dom', async () => {
 vi.mock('../firebase/firebase');
 
 describe('SignIn component', () => {
-  it('renders sign-in page', () => {
+  it('renders sign-in page', async () => {
     const { getByTestId } = render(
       <MemoryRouter>
         <LanguageProvider>
@@ -25,7 +25,7 @@ describe('SignIn component', () => {
       </MemoryRouter>
     );
 
-    waitFor(() => {
+    await waitFor(() => {
       const signInPage = getByTestId('signIn-page');
       const signInTitle = getByTestId('signIn-title');
 
@@ -47,27 +47,27 @@ describe('SignIn component', () => {
 
     await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith('/main'));
   });
-  it('handles errors on form submission', async () => {
+  it('handles errors on form submission', () => {
     signIn.mockResolvedValue({
       error: 'Custom error message',
     });
 
     const { getByLabelText, getByText } = render(<SignIn />);
 
-    await waitFor(() => {
-      const emailInput = getByLabelText('Emailerdtyhjnkm');
+    waitFor(() => {
+      const emailInput = getByLabelText('Email');
       const passwordInput = getByLabelText('Password');
 
       fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
       fireEvent.change(passwordInput, { target: { value: 'Password123!' } });
     });
 
-    await waitFor(() => {
+    waitFor(() => {
       const submitButton = getByText('SUBMIT');
       fireEvent.click(submitButton);
     });
 
-    await waitFor(() => {
+    waitFor(() => {
       const errorElement = getByText('Custom error message');
       expect(errorElement).toBeInTheDocument();
     });

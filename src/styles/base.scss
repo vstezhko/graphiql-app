@@ -34,7 +34,7 @@ body {
   min-width: 320px;
   font-size: 1.4rem;
 
-  &:has(.burger__close){
+  &:has(.burger__close) {
     overflow: hidden;
   }
 }
@@ -68,7 +68,6 @@ main {
 .container {
   width: 100%;
   max-width: 1280px;
-  //padding: 20px 0;
 
   &:has(.editor-page) > * {
     height: 100vh;

@@ -47,7 +47,7 @@ const SignUp = () => {
       setServerError(dictionary.FirebaseErrorAuthEmailAlreadyInUse);
       return;
     }
-  }, [dictionary]);
+  }, [dictionary, serverInitialError]);
 
   return (
     <div className="auth-page" data-testid="signUp-page">
