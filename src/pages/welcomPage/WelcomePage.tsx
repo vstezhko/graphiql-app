@@ -103,7 +103,7 @@ const TeamMembersDataRu: TeamMemberParams[] = [
       'осязаемые результаты',
       'постоянные возможности обучения',
     ],
-    photo: '../../../src/assets/team-members/ksusha.jpg',
+    photo: 'src/assets/team-members/ksusha.jpg',
     githubLink: 'https://github.com/BiarezKseniya',
     linkedinLink: 'https://www.linkedin.com/in/kseniya-biarezina/',
     skills: [
@@ -125,7 +125,7 @@ const TeamMembersDataRu: TeamMemberParams[] = [
       'сертификаты по Front-end разработке',
       'программа JS/FE PRE-SCHOOL',
     ],
-    photo: '../../../src/assets/team-members/zhenya.jpg',
+    photo: 'src/assets/team-members/zhenya.jpg',
     githubLink: 'https://github.com/khaleeva',
     linkedinLink: 'https://www.linkedin.com/in/eugenia-khaleeva-b66035157',
     skills: [
@@ -146,7 +146,7 @@ const TeamMembersDataRu: TeamMemberParams[] = [
       'сайт для онлайн-кинофестиваля',
       'веб-приложение для B2B платформы продаж',
     ],
-    photo: '../../../src/assets/team-members/vika.jpg',
+    photo: 'src/assets/team-members/vika.jpg',
     githubLink: 'https://github.com/vstezhko',
     linkedinLink: 'https://www.linkedin.com/in/viktoria-stezhko',
     skills: [
