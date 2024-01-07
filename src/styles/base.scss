@@ -85,15 +85,27 @@ main {
     & > img {
       object-fit: cover;
       max-width: 400px;
+
+      @media (max-width: 500px) {
+        max-width: 200px;
+      }
     }
 
     & > h1 {
       color: $color-additional;
+
+      @media (max-width: 500px) {
+        font-size: 2rem;
+      }
     }
 
     & > p {
       font-size: 2rem;
       color: $color-font;
+
+      @media (max-width: 500px) {
+        font-size: 1.6rem;
+      }
     }
   }
 }
