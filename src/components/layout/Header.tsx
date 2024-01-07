@@ -38,10 +38,14 @@ const Navigation = ({
 
   return (
     <div className={isBurger ? 'burger__menu' : 'navigation'}>
-      <NavLink to={'/'} onClick={handleCloseMenu}>
+      <NavLink to={'/'} onClick={handleCloseMenu} data-testid="headerNavLink">
         {dictionary.welcomePage}
       </NavLink>
-      <NavLink to={'/main'} onClick={handleCloseMenu}>
+      <NavLink
+        to={'/main'}
+        onClick={handleCloseMenu}
+        data-testid="headerNavLink"
+      >
         {dictionary.mainPage}
       </NavLink>
       <div className="links__container">
@@ -55,7 +59,12 @@ const Navigation = ({
           </button>
         ) : (
           <>
-            <Link className={isSticky} to={'/signIn'} onClick={handleCloseMenu}>
+            <Link
+              className={isSticky}
+              to={'/signIn'}
+              onClick={handleCloseMenu}
+              data-testid="signIn"
+            >
               {dictionary.signIn}
             </Link>
             <Link className={isSticky} to={'/signUp'} onClick={handleCloseMenu}>
@@ -111,7 +120,11 @@ const Header = () => {
   };
 
   return (
-    <header className={scroll ? 'sticky' : 'header'} ref={headerRef}>
+    <header
+      className={scroll ? 'sticky' : 'header'}
+      ref={headerRef}
+      data-testid="header"
+    >
       <Navigation scroll={scroll} onClick={handleLogout} isBurger={false} />
       <div className="burger">
         <Button

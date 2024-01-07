@@ -61,10 +61,12 @@ const Localization = ({ isBurger }: { isBurger: boolean }) => {
         variant="contained"
         onClick={handleClick}
         className="language__button"
+        data-testid="langBtn"
       >
         {langArray.find(({ id }) => id === language)?.abbr}
       </Button>
       <Popover
+        data-testid="popover"
         disableScrollLock
         id={id}
         open={Boolean(anchorEl)}

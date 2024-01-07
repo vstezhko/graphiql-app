@@ -1,6 +1,6 @@
 import { TeamMemberCard } from '../../components/MainPageComponents/TeamMemberCard.tsx';
 import { ThanksSection } from '../../components/MainPageComponents/ThankSection.tsx';
-import { KeyFeaturesSection } from '../../styles/components/mainPageComponents/KeyFeaturesSection.tsx';
+import { KeyFeaturesSection } from '../../components/MainPageComponents/KeyFeaturesSection.tsx';
 import { useContext, useMemo } from 'react';
 import { LanguageContext } from '../../context/LanguageContext.tsx';
 import { Link } from 'react-router-dom';
@@ -169,7 +169,7 @@ const WelcomePage = () => {
     [language]
   );
   return (
-    <div className="page__content welcome-page">
+    <div className="page__content welcome-page" data-testid="welcome-page">
       <div className="welcome-page__main-info links">
         {isLoading ? (
           <CircularProgress size="7rem" />
@@ -180,13 +180,24 @@ const WelcomePage = () => {
                 ? dictionary.pleaseRegisterOrSignIn
                 : dictionary.ifAlreadySignedIn}
             </h2>
-            <div className="welcome-page__links">
+            <div
+              className="welcome-page__links"
+              data-testid="welcome-page__links"
+            >
               {!status ? (
                 <>
-                  <Link className="header__link" to={'/signIn'}>
+                  <Link
+                    className="header__link"
+                    to={'/signIn'}
+                    data-testid="signIn-link"
+                  >
                     {dictionary.signIn}
                   </Link>
-                  <Link className="header__link" to={'/signUp'}>
+                  <Link
+                    className="header__link"
+                    to={'/signUp'}
+                    data-testid="signUp-link"
+                  >
                     {dictionary.signUp}
                   </Link>
                 </>

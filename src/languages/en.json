@@ -38,7 +38,7 @@
   "Password": "Password",
   "showPassword": "Show password",
   "hidePassword": "Hide password",
-  "ConfirmPassword": "ConfirmPassword",
+  "ConfirmPassword": "Confirm Password",
   "FirebaseErrorAuthInvalidCredential": "Invalid Credential",
   "FirebaseErrorTooManyAttempts": "Too Many Attempts",
   "FirebaseErrorAuthEmailAlreadyInUse": "Email Already In Use",

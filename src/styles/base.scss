@@ -34,7 +34,7 @@ body {
   min-width: 320px;
   font-size: 1.4rem;
 
-  &:has(.burger__close){
+  &:has(.burger__close) {
     overflow: hidden;
   }
 }
@@ -68,7 +68,6 @@ main {
 .container {
   width: 100%;
   max-width: 1280px;
-  //padding: 20px 0;
 
   &:has(.editor-page) > * {
     height: 100vh;
@@ -85,15 +84,27 @@ main {
     & > img {
       object-fit: cover;
       max-width: 400px;
+
+      @media (max-width: 500px) {
+        max-width: 200px;
+      }
     }
 
     & > h1 {
       color: $color-additional;
+
+      @media (max-width: 500px) {
+        font-size: 2rem;
+      }
     }
 
     & > p {
       font-size: 2rem;
       color: $color-font;
+
+      @media (max-width: 500px) {
+        font-size: 1.6rem;
+      }
     }
   }
 }

@@ -19,5 +19,5 @@ export const useFetchAndSetFirebaseStatus = () => {
         dispatch(isLoggedInSlice.actions.setLoading(false));
       }
     });
-  }, []);
+  }, [dispatch]);
 };

@@ -47,11 +47,13 @@ const SignUp = () => {
       setServerError(dictionary.FirebaseErrorAuthEmailAlreadyInUse);
       return;
     }
-  }, [dictionary]);
+  }, [dictionary, serverInitialError]);
 
   return (
-    <div className="auth-page">
-      <h2 className="h2">{dictionary.signUp}</h2>
+    <div className="auth-page" data-testid="signUp-page">
+      <h2 className="h2" data-testid="signUp-title">
+        {dictionary.signUp}
+      </h2>
       <AuthForm
         type={'signUp'}
         onFormSubmit={onSubmit}
