@@ -8,7 +8,7 @@ export const ThanksSection = () => {
     <div className="thanks">
       <div className="thanks__image-block">
         <Link className="thanks__link" to="https://rs.school/react/">
-          <img src="public/rs_school_js.svg" alt={dictionary.rsLogoAlt} />
+          <img src="./rs_school_js.svg" alt={dictionary.rsLogoAlt} />
         </Link>
       </div>
       <div className="thanks__text-block">
