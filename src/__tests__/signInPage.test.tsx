@@ -55,7 +55,7 @@ describe('SignIn component', () => {
     const { getByLabelText, getByText } = render(<SignIn />);
 
     await waitFor(() => {
-      const emailInput = getByLabelText('Email');
+      const emailInput = getByLabelText('Emailerdtyhjnkm');
       const passwordInput = getByLabelText('Password');
 
       fireEvent.change(emailInput, { target: { value: 'test@example.com' } });
