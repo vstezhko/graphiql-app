@@ -8,22 +8,22 @@ const Footer = () => {
     <footer className="footer" data-testid="footer">
       <div className="footer__links">
         <div className="link" data-testid="footerLink">
-          <img src="public/github-mark.svg" alt={dictionary.githubAlt} />
+          <img src="src/assets/github-mark.svg" alt={dictionary.githubAlt} />
           <Link to="https://github.com/vstezhko">{dictionary.vika}</Link>
         </div>
         <div className="link" data-testid="footerLink">
-          <img src="public/github-mark.svg" alt={dictionary.githubAlt} />
+          <img src="src/assets/github-mark.svg" alt={dictionary.githubAlt} />
           <Link to="https://github.com/BiarezKseniya">
             {dictionary.kseniya}
           </Link>
         </div>
         <div className="link" data-testid="footerLink">
-          <img src="public/github-mark.svg" alt={dictionary.githubAlt} />
+          <img src="src/assets/github-mark.svg" alt={dictionary.githubAlt} />
           <Link to="https://github.com/khaleeva">{dictionary.jenya}</Link>
         </div>
       </div>
       <Link to="https://rs.school/react/">
-        <img src="public/rs_school_js.svg" alt={dictionary.rsLogoAlt} />
+        <img src="src/assets/rs_school_js.svg" alt={dictionary.rsLogoAlt} />
       </Link>
       <div className="footer__date">2023</div>
     </footer>

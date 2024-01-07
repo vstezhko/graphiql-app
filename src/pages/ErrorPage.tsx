@@ -7,7 +7,7 @@ const ErrorPage = ({ title, text }: { title: string; text: string }) => {
   return (
     <Layout>
       <div className="container__img">
-        <img src="public/error.png" alt="404" />
+        <img src="src/assets/error.png" alt="404" />
         <h1>{dictionary[title as DictionaryKey]}</h1>
         <p>{dictionary[text as DictionaryKey]}</p>
       </div>
