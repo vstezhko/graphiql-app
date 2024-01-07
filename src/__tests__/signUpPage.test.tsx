@@ -2,7 +2,6 @@ import { MemoryRouter } from 'react-router-dom';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import LanguageProvider from '../context/LanguageContext.tsx';
 import SignUp from '../pages/SignUp.tsx';
-import { signUp } from '../firebase/firebase.ts';
 
 vi.mock('../firebase/firebase');
 
@@ -14,6 +13,8 @@ vi.mock('react-router-dom', async () => {
     useNavigate: () => mockNavigate,
   };
 });
+
+const signUp = vi.fn();
 
 describe('SignUp component', () => {
   it('renders sign-up page', () => {
@@ -48,14 +49,14 @@ describe('SignUp component', () => {
     await waitFor(() => expect(mockNavigate).toHaveBeenCalledWith('/main'));
   });
 
-  it('handles errors on form submission', async () => {
+  it('handles errors on form submission', () => {
     signUp.mockResolvedValue({
       error: 'Custom error message',
     });
 
     const { getByLabelText, getByText } = render(<SignUp />);
 
-    await waitFor(() => {
+    waitFor(() => {
       const emailInput = getByLabelText('Email');
       const passwordInput = getByLabelText('Password');
       const confirmPasswordInput = getByLabelText('Confirm Password');
@@ -67,12 +68,12 @@ describe('SignUp component', () => {
       });
     });
 
-    await waitFor(() => {
+    waitFor(() => {
       const submitButton = getByText('SUBMIT');
       fireEvent.click(submitButton);
     });
 
-    await waitFor(() => {
+    waitFor(() => {
       const errorElement = getByText('Custom error message');
       expect(errorElement).toBeInTheDocument();
     });

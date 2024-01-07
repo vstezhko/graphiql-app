@@ -2,7 +2,6 @@ import { MemoryRouter } from 'react-router-dom';
 import SignIn from '../pages/SignIn.tsx';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import LanguageProvider from '../context/LanguageContext.tsx';
-import { signIn } from '../firebase/firebase.ts';
 
 const mockNavigate = vi.fn();
 vi.mock('react-router-dom', async () => {
@@ -14,6 +13,8 @@ vi.mock('react-router-dom', async () => {
 });
 
 vi.mock('../firebase/firebase');
+
+const signIn = vi.fn();
 
 describe('SignIn component', () => {
   it('renders sign-in page', async () => {
