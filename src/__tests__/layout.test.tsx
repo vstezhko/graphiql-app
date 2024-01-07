@@ -35,8 +35,6 @@ describe('Header', () => {
     const headerElement = screen.getByTestId('header');
     expect(headerElement).toBeInTheDocument();
 
-    screen.debug();
-
     const headersNavLinks = screen.getAllByTestId('headerNavLink');
     expect(headersNavLinks).toHaveLength(2);
   });
