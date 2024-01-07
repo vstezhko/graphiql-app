@@ -157,6 +157,13 @@
         background-color: $color-hovered;
       }
     }
+
+    @media (hover: none) {
+      &:hover {
+        color: $color-additional-2;
+        background-color: $color-hovered;
+      }
+    }
   }
 
   &__progress {
