@@ -32,8 +32,8 @@ export const validationSchema = {
     [FormFields.PASSWORD]: string()
       .required(ErrorsKeys.PasswordIsRequired)
       .matches(/^(?=.*\d)/, ErrorsKeys.Need1Digit)
-      .matches(/(?=.*[A-Z])/, ErrorsKeys.Need1UppercaseAZ)
-      .matches(/(?=.*[a-z])/, ErrorsKeys.Need1LowerCaseAZ)
+      .matches(/(?=.*[A-ZА-Я])/u, ErrorsKeys.Need1UppercaseAZ)
+      .matches(/(?=.*[a-zа-я])/u, ErrorsKeys.Need1LowerCaseAZ)
       .min(8, ErrorsKeys.Min8Characters)
       .matches(
         /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/,
@@ -52,8 +52,8 @@ export const validationSchema = {
     [FormFields.PASSWORD]: string()
       .required(ErrorsKeys.PasswordIsRequired)
       .matches(/^(?=.*\d)/, ErrorsKeys.Need1Digit)
-      .matches(/(?=.*[A-Z])/, ErrorsKeys.Need1UppercaseAZ)
-      .matches(/(?=.*[a-z])/, ErrorsKeys.Need1LowerCaseAZ)
+      .matches(/(?=.*[A-ZА-Я])/u, ErrorsKeys.Need1UppercaseAZ)
+      .matches(/(?=.*[a-zа-я])/u, ErrorsKeys.Need1LowerCaseAZ)
       .min(8, ErrorsKeys.Min8Characters)
       .matches(
         /[`!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?~]/,
