@@ -53,11 +53,11 @@ const GQLRouterProvider = () => {
           path: '/signUp',
           element: <SignUp />,
         },
+        {
+          path: '*',
+          element: <ErrorPage title="notFoundTitle" text="notFoundText" />,
+        },
       ],
-    },
-    {
-      path: '*',
-      element: <ErrorPage title="notFoundTitle" text="notFoundText" />,
     },
   ]);
 
