@@ -54,7 +54,7 @@ const GQLRouterProvider = () => {
           element: <SignUp />,
         },
         {
-          path: '*',
+          path: '/*',
           element: <ErrorPage title="notFoundTitle" text="notFoundText" />,
         },
       ],
