@@ -59,7 +59,12 @@ const Navigation = ({
           </button>
         ) : (
           <>
-            <Link className={isSticky} to={'/signIn'} onClick={handleCloseMenu}>
+            <Link
+              className={isSticky}
+              to={'/signIn'}
+              onClick={handleCloseMenu}
+              data-testid="signIn"
+            >
               {dictionary.signIn}
             </Link>
             <Link className={isSticky} to={'/signUp'} onClick={handleCloseMenu}>
