@@ -1,0 +1,177 @@
+.team-member {
+  display: flex;
+  gap: 30px;
+  flex-wrap: nowrap;
+  align-items: center;
+  background-color: $color-secondary;
+  padding: 15px;
+  border-radius: 5px;
+
+  &__biography {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex: 1;
+  }
+
+  &__text, &__contributions {
+    color: $color-font;
+  }
+
+  &__image-block {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: $color-primary;
+  }
+
+  &__social {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+
+    svg {
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+    }
+
+    .linkedin {
+      color: #007EBB;
+    }
+
+    @include hover {
+
+      .github:hover {
+        color: $color-hovered;
+      }
+
+      .linkedin:hover {
+        color: #3ca3d7;
+      }
+
+    }
+
+  }
+
+  &__image {
+    width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+
+  &__contributions {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    gap: 7px;
+  }
+
+  &__skill {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      text-transform: capitalize;
+    }
+
+    .MuiSlider-valueLabelOpen {
+      padding: 0.5rem;
+      font-size: 1.4rem;
+    }
+  }
+
+  .team-member__contributions-range {
+    pointer-events: none;
+    width: 250px;
+
+    .css-h22bzp-MuiSlider-root {
+      height: 6px;
+    }
+
+  }
+
+  .css-nnid7-MuiSlider-valueLabel {
+    line-height: 1rem;
+  }
+
+  .css-nnid7-MuiSlider-valueLabel:before {
+    z-index: -1;
+  }
+
+  @include medium {
+    gap: 20px;
+
+    &__image {
+      width: 200px;
+      height: 200px;
+    }
+
+    .team-member__contributions-range {
+      width: 180px;
+
+    }
+
+    &__image-block {
+      padding: 10px;
+      gap: 10px;
+    }
+
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+
+  }
+
+  @include small {
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 15px;
+
+    &__biography {
+      min-width: 100%;
+    }
+
+    &__contributions {
+      flex: 0;
+    }
+
+  }
+
+}
+.odd {
+
+  .team-member__biography {
+    order: 3;
+  }
+
+  .team-member__image-block {
+    order: 2;
+  }
+
+  .team-member__contributions {
+    order: 1;
+  }
+
+  @include small {
+
+    .team-member__biography {
+      order: 1;
+    }
+
+    .team-member__image-block {
+      order: 2;
+    }
+
+    .team-member__contributions {
+      order: 3;
+    }
+
+  }
+
+}

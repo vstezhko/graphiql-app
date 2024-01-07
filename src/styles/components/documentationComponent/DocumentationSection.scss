@@ -1,0 +1,174 @@
+.doc-section {
+  background-color: $color-primary;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 415px;
+  z-index: 90;
+  border-left: 10px solid $color-button;
+  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1rem 0;
+
+  @media (max-width: 500px) {
+    max-width: 230px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: $color-secondary;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: $color-border;
+  }
+
+  @media (hover: hover) {
+    ::-webkit-scrollbar-thumb:hover {
+      background: $color-hovered;
+    }
+  }
+
+  &__back-btn {
+    background-color: transparent;
+    border: 1px solid $color-additional !important;
+    color: $color-additional !important;
+    align-self: flex-end;
+    margin-right: 4rem !important;
+    transition: all 0.3s;
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: $color-additional !important;
+        color: $color-primary !important;
+      }
+    }
+  }
+
+  &__line {
+    display: block;
+    width: 100%;
+    height: 1px;
+    background-color: $color-border;
+    margin: 2rem 0;
+  }
+
+  &__args {
+    display: flex;
+    flex-direction: column;
+    color: $color-border;
+
+    & > h4 {
+      padding-left: 20px;
+      color: $color-additional;
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__description {
+    color: $color-font;
+  }
+
+  &__title {
+    padding: 2rem 2rem 0;
+    margin-bottom: 1rem;
+  }
+
+  &__list {
+    width: 100%;
+    height: 100%;
+    font-size: 1.6rem;
+    color: $color-additional;
+    overflow-y: auto;
+    padding: 1rem 0 3rem;
+
+    & > h3 {
+      padding-left: 2rem;
+      text-decoration: underline;
+    }
+  }
+
+  &__description-item {
+    padding-left: 2rem;
+    color: $color-border;
+  }
+
+  &__item {
+    font-size: 1.8rem;
+    color: $color-button;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    text-align: left;
+    transition: all 0.3s;
+    word-wrap: break-word;
+
+    & > span {
+      color: $color-border;
+      margin-left: 1rem;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: $color-additional-2;
+      }
+    }
+  }
+
+  &_close {
+    transform: translateX(405px);
+
+    @media (max-width: 500px) {
+      transform: translateX(220px);
+    }
+  }
+
+  &_disabled {
+    border-color: $color-border;
+  }
+
+  & .doc-section__btn {
+    position: absolute;
+    background-color: $color-button;
+    transform: rotate(-90deg) translateX(-30%);
+    right: 97.5%;
+    top: 40%;
+    color: $color-font;
+    height: 30px;
+
+    &:disabled {
+      background-color: $color-border;
+    }
+
+    @media (max-width: 500px) {
+      right: 96%;
+    }
+
+    @media (hover: hover) {
+      &:hover {
+        color: $color-additional-2;
+        background-color: $color-hovered;
+      }
+    }
+
+    @media (hover: none) {
+      &:hover {
+        color: $color-additional-2;
+        background-color: $color-hovered;
+      }
+    }
+  }
+
+  &__progress {
+    color: $color-font !important;
+    width: 13px !important;
+    height: 13px !important;
+  }
+}

@@ -1,0 +1,165 @@
+.editor-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  background-color: $color-secondary;
+  padding: 15px;
+  border-radius: 5px;
+
+  &__controls {
+    display: flex;
+    gap: 10px;
+
+    & .editor-toolbar__error {
+      display: none;
+    }
+
+    @media (max-width: 980px) {
+      flex-direction: column;
+      width: 100%;
+
+      & .editor-toolbar__error {
+        display: block;
+        flex-grow: 1;
+      }
+    }
+  }
+
+  &__control-wrapper {
+    display: flex;
+    gap: 10px;
+
+    @media (max-width: 980px) {
+      align-items: center;
+      justify-content: flex-end;
+      width: 100%;
+    }
+
+    @media (max-width: 480px) {
+      gap: 5px;
+    }
+  }
+
+  & .editor-toolbar__run-button {
+    position: relative;
+    padding: 0;
+    z-index: 1;
+
+    svg {
+      position: relative;
+      width: 45px;
+      height: 45px;
+      color: $color-additional-2;
+      transition: 0.3s;
+      z-index: 1;
+
+      @media (max-width: 480px) {
+        width: 40px;
+        height: 40px;
+      }
+
+      @media (hover: hover) {
+        &:hover {
+          color: $color-hovered;
+        }
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: $color-additional;
+      z-index: 0;
+
+      @media (max-width: 480px) {
+        width: 25px;
+        height: 25px;
+      }
+    }
+
+    @media (hover: hover) {
+      &:hover::after {
+        background-color: $color-additional-2;
+      }
+    }
+
+    &:disabled svg {
+      color: $color-border;
+    }
+
+    &:disabled::after {
+      background-color: $color-hovered;
+    }
+  }
+
+  & .editor-toolbar__prettify-button {
+    background-color: $color-button;
+    color: white;
+    transition: 0.3s;
+
+    @media (hover: hover) {
+      &:hover {
+        background-color: $color-hovered;
+        color: $color-additional-2;
+      }
+    }
+
+    @media (hover: none) {
+      &:hover {
+        color: $color-additional-2;
+        background-color: $color-hovered;
+      }
+    }
+
+    @media (max-width: 980px) {
+      min-width: fit-content;
+      font-size: 1.4rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    padding: 5px;
+  }
+}
+
+.editor-toolbar__input {
+  font-family: $font-family;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 5px;
+  color: $color-additional;
+  outline: none;
+  background-color: $color-primary;
+  padding: 10px;
+  min-width: 400px;
+
+  @media (max-width: 980px) {
+    min-width: auto;
+    width: 100%;
+  }
+}
+
+.editor-toolbar__input::placeholder {
+  color: $color-border;
+}
+
+.editor-toolbar__error {
+  margin: 0;
+  font-size: 1.5rem;
+  color: $color-additional;
+
+  @media (max-width: 980px) {
+    display: none;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 1.4rem;
+  }
+}

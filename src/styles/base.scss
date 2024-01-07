@@ -1,0 +1,255 @@
+:root {
+  font-family: 'Inconsolata', 'Source Code Pro', monospace;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 10px;
+  background: $color-primary;
+  color: $color-additional;
+}
+
+a {
+  font-weight: 500;
+  text-decoration: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  min-width: 320px;
+  font-size: 1.4rem;
+
+  &:has(.burger__close) {
+    overflow: hidden;
+  }
+}
+
+#root {
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  width: 100%;
+  max-width: 1280px;
+
+  &:has(.editor-page) > * {
+    height: 100vh;
+  }
+
+  &__img {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 2rem;
+
+    & > img {
+      object-fit: cover;
+      max-width: 400px;
+
+      @media (max-width: 500px) {
+        max-width: 200px;
+      }
+    }
+
+    & > h1 {
+      color: $color-additional;
+
+      @media (max-width: 500px) {
+        font-size: 2rem;
+      }
+    }
+
+    & > p {
+      font-size: 2rem;
+      color: $color-font;
+
+      @media (max-width: 500px) {
+        font-size: 1.6rem;
+      }
+    }
+  }
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+h2 {
+  font-size: 2.2em;
+  line-height: 1.1;
+}
+
+h3 {
+  font-size: 2rem;
+  line-height: 1.1;
+}
+
+h4 {
+  font-size: 1.7rem;
+  line-height: 2;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+
+footer,
+header {
+  width: 100%;
+  background: $color-secondary;
+  text-align: center;
+  font-size: 2rem;
+
+  & > .navigation {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+
+    & > a {
+      color: $color-additional;
+      position: relative;
+      transition: color 0.2s;
+
+      @media (hover: hover) {
+        &:hover {
+          color: $color-additional-2;
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      display: none;
+    }
+  }
+
+  .burger {
+    display: none;
+
+    @media (max-width: 768px) {
+      display: flex;
+      justify-content: flex-start;
+
+      &__btn {
+        background-color: $color-button !important;
+      }
+
+      &__close {
+        position: absolute;
+        background-color: transparent !important;
+        right: 2rem;
+        color: $color-additional;
+        border-radius: 50%;
+        border: 1px solid $color-additional;
+        width: 3rem;
+        height: 3rem;
+        padding: 0;
+        z-index: 100;
+      }
+
+      &__menu {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        z-index: 100;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        background-color: $color-secondary;
+        padding: 2rem;
+        gap: 2rem;
+
+        & > a {
+          color: $color-additional;
+        }
+
+        & > .links__container {
+          flex-direction: column;
+          align-items: flex-start;
+          margin-left: 0;
+
+          & > a {
+            background-color: $color-additional;
+
+            @media (hover: hover) {
+              &:hover {
+                color: $color-additional;
+                background-color: $color-additional-2;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:focus {
+  transition:
+    background-color 0s 600000s,
+    color 0s 600000s;
+}
+
+.Mui-selected {
+  color: $color-additional !important;
+}
+
+.MuiTabs-indicator {
+  background-color: $color-additional !important;
+}
+
+.main-loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

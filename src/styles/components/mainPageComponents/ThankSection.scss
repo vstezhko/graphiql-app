@@ -1,0 +1,99 @@
+.thanks {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  @include small {
+    gap: 10px;
+  }
+
+  @include mobile {
+    flex-direction: column;
+  }
+
+  &__image-block {
+    width: 150px;
+    flex-shrink: 0;
+  }
+
+
+  &__link {
+    cursor: pointer;
+    width: 100%;
+
+    svg {
+
+      * {
+        fill: currentColor;
+      }
+
+      .st0 {
+        fill: #fff;
+      }
+
+      .st1 {
+        fill: currentColor;
+        clip-path: url(#SVGID_2_);
+      }
+
+      .st2 {
+        clip-path: url(#SVGID_4_);
+      }
+
+      .st3 {
+        clip-path: url(#SVGID_6_);
+      }
+
+      .st4 {
+        clip-path: url(#SVGID_8_);
+      }
+
+      .st5 {
+        fill: #fff;
+        stroke: currentColor;
+        stroke-width: 4;
+        stroke-miterlimit: 10;
+      }
+
+      .st6 {
+        clip-path: url(#SVGID_8_);
+      }
+
+      .st6,
+      .st7 {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 4;
+        stroke-miterlimit: 10;
+      }
+
+      .st8,
+      .st9 {
+        clip-path: url(#SVGID_10_);
+      }
+
+      .st9 {
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 4;
+        stroke-miterlimit: 10;
+      }
+
+      @include medium {
+        max-width: 170px;
+        max-height: 170px;
+      }
+
+      @include small {
+        max-width: 150px;
+        max-height: 150px;
+      }
+
+      @include hover {
+        &:hover {
+          color: $color-hovered;
+        }
+      }
+    }
+  }
+}

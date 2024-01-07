@@ -1,0 +1,15 @@
+.key-features {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &__item {
+    border-radius: 4px;
+    padding: 10px;
+    background-color: $color-primary;
+  }
+
+  ul {
+    list-style-position: inside;
+  }
+}

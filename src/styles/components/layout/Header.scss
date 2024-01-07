@@ -1,0 +1,165 @@
+.header {
+  padding: 1.6rem;
+  transition: all 0.3s;
+
+  .active {
+    &:after {
+      content: '';
+      position: absolute;
+      height: 2px;
+      width: 100%;
+      background-color: $color-additional;
+      left: 0;
+      top: 100%;
+    }
+  }
+
+  &__link {
+    background-color: $color-additional;
+    color: $color-font;
+    padding: 0.6rem 1.6rem;
+    border-radius: 0.4rem;
+    transition: all 0.3s;
+
+    @media (hover:hover) {
+
+      &:hover {
+        color: $color-additional;
+        background-color: $color-additional-2;
+      }
+
+    }
+  }
+}
+
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 70;
+  padding: 1.6rem;
+  background-color: $color-additional;
+  transition: all 0.3s;
+
+  &>.navigation {
+    &>a {
+      color: $color-secondary;
+    }
+  }
+
+  .active {
+    &:after {
+      content: '';
+      position: absolute;
+      height: 0.2rem;
+      width: 100%;
+      background-color: $color-secondary;
+      left: 0;
+      top: 100%;
+    }
+  }
+
+  &__link {
+    background-color: $color-secondary;
+    color: $color-font;
+    padding: 0.6rem 1.6rem;
+    border-radius: 0.4rem;
+    transition: all 0.3s;
+    box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+      0px 2px 2px 0px rgba(0, 0, 0, 0.14),
+      0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+
+    @media (hover:hover) {
+
+      &:hover {
+        color: $color-additional;
+        background-color: $color-additional-2;
+      }
+    }
+  }
+}
+
+.links__container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-left: auto;
+}
+
+.language__button {
+  background-color: $color-button !important;
+  font-size: 1.6rem !important;
+  transition: 0.3s !important;
+
+  @media (hover:hover) {
+    &:hover {
+      background-color: $color-hovered !important;
+      color: $color-additional-2 !important;
+    }
+  }
+}
+
+.lang__menu {
+  display: flex;
+  gap: 1rem;
+  padding: 0;
+
+  &>.MuiButtonBase-root {
+    padding: 0;
+
+    &>.MuiListItemButton-root {
+      color: $color-font;
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      border: 1px solid $color-button;
+
+      @media (hover:hover) {
+
+        &:hover {
+          background-color: $color-button !important;
+          color: $color-font !important;
+        }
+
+      }
+
+      &>.MuiListItemText-root>span {
+        font-size: 1.4rem;
+      }
+    }
+
+    &>.Mui-selected {
+      background-color: $color-button !important;
+      color: $color-font !important;
+    }
+  }
+}
+
+.MuiPaper-root {
+  background-color: $color-additional !important;
+
+  &>.MuiList-root {
+    &>.MuiButtonBase-root {
+      &>.MuiListItemButton-root {
+        color: $color-font;
+
+        @media (hover:hover) {
+
+          &:hover {
+            background-color: transparent !important;
+          }
+
+        }
+
+        &>.MuiListItemText-root>span {
+          font-size: 1.6rem;
+        }
+      }
+
+      &>.Mui-selected {
+        background-color: transparent !important;
+        color: $color-primary !important;
+        text-decoration: underline;
+      }
+    }
+  }
+}
