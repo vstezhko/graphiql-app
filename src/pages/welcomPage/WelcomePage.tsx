@@ -35,7 +35,7 @@ const TeamMembersDataEn: TeamMemberParams[] = [
       'tangible results',
       'constant learning opportunities',
     ],
-    photo: 'src/assets/ksusha.jpg',
+    photo: '/img/ksusha.jpg',
     githubLink: 'https://github.com/BiarezKseniya',
     linkedinLink: 'https://www.linkedin.com/in/kseniya-biarezina/',
     skills: [
@@ -56,7 +56,7 @@ const TeamMembersDataEn: TeamMemberParams[] = [
       'certifications in Front-end development',
       'JS/FE PRE-SCHOOL program',
     ],
-    photo: 'src/assets/zhenya.jpg',
+    photo: '/img/zhenya.jpg',
     githubLink: 'https://github.com/khaleeva',
     linkedinLink: 'https://www.linkedin.com/in/eugenia-khaleeva-b66035157',
     skills: [
@@ -77,7 +77,7 @@ const TeamMembersDataEn: TeamMemberParams[] = [
       'a website for an online film festival',
       'a web app for B2B sales platform',
     ],
-    photo: 'src/assets/vika.jpg',
+    photo: '/img/vika.jpg',
     githubLink: 'https://github.com/vstezhko',
     linkedinLink: 'https://www.linkedin.com/in/viktoria-stezhko',
     skills: [
@@ -103,7 +103,7 @@ const TeamMembersDataRu: TeamMemberParams[] = [
       'осязаемые результаты',
       'постоянные возможности обучения',
     ],
-    photo: 'src/assets/ksusha.jpg',
+    photo: '/img/ksusha.jpg',
     githubLink: 'https://github.com/BiarezKseniya',
     linkedinLink: 'https://www.linkedin.com/in/kseniya-biarezina/',
     skills: [
@@ -125,7 +125,7 @@ const TeamMembersDataRu: TeamMemberParams[] = [
       'сертификаты по Front-end разработке',
       'программа JS/FE PRE-SCHOOL',
     ],
-    photo: 'src/assets/zhenya.jpg',
+    photo: '/img/zhenya.jpg',
     githubLink: 'https://github.com/khaleeva',
     linkedinLink: 'https://www.linkedin.com/in/eugenia-khaleeva-b66035157',
     skills: [
@@ -146,7 +146,7 @@ const TeamMembersDataRu: TeamMemberParams[] = [
       'сайт для онлайн-кинофестиваля',
       'веб-приложение для B2B платформы продаж',
     ],
-    photo: 'src/assets/vika.jpg',
+    photo: '/img/vika.jpg',
     githubLink: 'https://github.com/vstezhko',
     linkedinLink: 'https://www.linkedin.com/in/viktoria-stezhko',
     skills: [

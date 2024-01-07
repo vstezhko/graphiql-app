@@ -33,14 +33,14 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputParams>(
       <img
         className="textInput__passwordIcon"
         onClick={switchPasswordVisibility}
-        src="src/assets/eye.svg"
+        src="/img/eye.svg"
         alt={dictionary.showPassword}
       />
     ) : (
       <img
         className="textInput__passwordIcon"
         onClick={switchPasswordVisibility}
-        src="src/assets/invisible.svg"
+        src="/img/invisible.svg"
         alt={dictionary.hidePassword}
       />
     );
